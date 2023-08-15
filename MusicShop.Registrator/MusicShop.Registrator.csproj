@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MusicShop.AppData\MusicShop.AppData.csproj" />
+    <ProjectReference Include="..\MusicShop.DataAccess\MusicShop.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
