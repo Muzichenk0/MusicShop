@@ -11,4 +11,9 @@
     <ProjectReference Include="..\MusicShop.Domain\MusicShop.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contexts\MusicalInstrument\InstrumentType\" />
+    <Folder Include="Contexts\Offer\OfferCategory\" />
+  </ItemGroup>
+
 </Project>
