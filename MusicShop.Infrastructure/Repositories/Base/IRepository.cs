@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace MusicShop.Infrastructure.Repositories.Base
+﻿namespace MusicShop.Infrastructure.Repositories.Base
 {
     /// <summary>
     /// Абстрактная сущность - контракт, описывающая внешний интерфейс репозитория, взаимодействующего с БД.

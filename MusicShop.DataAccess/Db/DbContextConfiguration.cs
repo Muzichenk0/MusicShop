@@ -6,25 +6,38 @@ using Microsoft.Extensions.Logging;
 
 namespace MusicShop.DataAccess.Db
 {
+    /// <summary>
+    /// Определеяет внутренний, внешний интерфейс для конфигурации контекста базы данных.
+    /// </summary>
     public class DbContextConfiguration : IDbContextOptionsConfigurator<DbAppContext>
     {
-        private readonly IConfiguration configuration;
-        private readonly ILoggerFactory loggerFactory;
-        public DbContextConfiguration(IConfiguration _configuration, ILoggerFactory _loggerFactory)
+        /// <summary>
+        /// Поле с конкретной сущностью из зависимости.
+        /// Текущая настройка сборки.
+        /// </summary>
+        private readonly IConfiguration _configuration;
+        /// <summary>
+        /// Поле с конкретной сущностью из зависимости.
+        /// Выбранная фабрика для логгеров.
+        /// </summary>
+        private readonly ILoggerFactory _loggerFactory;
+        public DbContextConfiguration(IConfiguration configuration, ILoggerFactory loggerFactory)
         {
-            configuration = _configuration;
-            loggerFactory = _loggerFactory;
+            _configuration = configuration;
+            _loggerFactory = loggerFactory;
         }
+        
+        /// <exception cref="InvalidOperationException">Отсутствует пара ключ-значение, содержащая строку подключения к БД, в json файле.</exception>
         public void Configure(DbContextOptionsBuilder<DbAppContext> optBuilder)
         {
-            var connectionString = configuration.GetConnectionString("Default");
+            var connectionString = _configuration.GetConnectionString("Default");
             if (string.IsNullOrWhiteSpace(connectionString))
             {
                 throw new InvalidOperationException(
                     $"Не найдена строка подключения с именем 'Default'");
             }
             optBuilder.UseSqlServer(connectionString);
-            optBuilder.UseLoggerFactory(loggerFactory);
+            optBuilder.UseLoggerFactory(_loggerFactory);
         }
     }
 }

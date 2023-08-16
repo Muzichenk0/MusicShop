@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace MusicShop.DataAccess.Db
 {
+    /// <summary>
+    /// Контекст базы данных. Производная сущность в отношении наследования от базовой <see cref="DbContext"/>
+    /// </summary>
     public class DbAppContext : DbContext
     {
         public DbAppContext(DbContextOptions options) : base(options)
