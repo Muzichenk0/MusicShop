@@ -16,7 +16,7 @@ namespace MusicShop.DataAccess.Contexts.Offer
         public void Configure(EntityTypeBuilder<Domain.Models.Offer.Offer> builder)
         {
             builder.HasKey(u => u.Id);
-            builder.HasMany(o => o.OfferCategories).WithOne(o => o.Offer).HasForeignKey(o => o.Id);
+            builder.HasMany(o => o.OfferCategories).WithOne(o => o.Offer).HasForeignKey(o => o.OfferId);
         }
     }
 

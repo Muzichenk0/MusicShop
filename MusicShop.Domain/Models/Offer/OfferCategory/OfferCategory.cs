@@ -23,7 +23,7 @@ namespace MusicShop.Domain.Models.Offer
         /// <summary>
         /// Внешний ключ для отношения один ко многим между главной сущностью <see cref="Offer"/> и зависимой <see cref="OfferCategory"/>
         /// </summary>
-        [Required]
+        
         public Guid? OfferId { get; set; }
         /// <summary>
         /// 

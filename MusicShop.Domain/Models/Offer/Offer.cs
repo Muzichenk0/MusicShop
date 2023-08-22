@@ -52,5 +52,6 @@ namespace MusicShop.Domain.Models.Offer
         /// </summary>
         [Required]
         public User.User User { get; set; }
+        public Guid? UserId { get; set; }
     }
 }

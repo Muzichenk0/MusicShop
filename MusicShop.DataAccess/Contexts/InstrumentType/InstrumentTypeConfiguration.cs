@@ -16,7 +16,7 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         public void Configure(EntityTypeBuilder<Domain.Models.MusicalInstrument.MusicalInstrumentType.InstrumentType> builder)
         {
             builder.HasKey(u => u.Id);
-            builder.HasMany(t => t.MusicalInstruments).WithOne(i => i.InstrumentType).HasForeignKey(o => o.Id);
+            builder.HasMany(t => t.MusicalInstruments).WithOne(i => i.InstrumentType).HasForeignKey(o => o.InstrumentTypeId);
         }
     }
 }
