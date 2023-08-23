@@ -16,7 +16,7 @@ namespace MusicShop.Domain.Models.Offer
         [Required]
         public Guid Id { get; set; }
         /// <summary>
-        /// Требуемая цена за совершение предложения.
+        /// Требуемая цена для принятия предложения.
         /// </summary>
         [Required]
         [MinValue(0)]
@@ -56,7 +56,7 @@ namespace MusicShop.Domain.Models.Offer
         public User.User User { get; set; }
         /// <summary>
         /// Уникальный идентификатор пользователя, открывшего предложение.
-        /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="User.Users"/> и завис. <see cref="Review.SellerReview"/>
+        /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="User.User"/> и завис. <see cref="Review.SellerReview"/>
         /// </summary>
         public Guid? UserId { get; set; }
     }

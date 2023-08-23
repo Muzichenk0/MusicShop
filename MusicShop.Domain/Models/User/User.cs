@@ -47,7 +47,7 @@ namespace MusicShop.Domain.Models.User
         [Required]
         public string PhoneNumber { get; set; }
         /// <summary>
-        /// Сделки, открытые пользователем.
+        /// Предложения, открытые пользователем.
         /// </summary>
         [Required]
         public ICollection<Offer.Offer?> Offers { get; set; }
@@ -58,12 +58,12 @@ namespace MusicShop.Domain.Models.User
         [Range(0,5)]
         public double Rating { get; set; }
         /// <summary>
-        /// Полученные отзывы о проданных товарах.
+        /// Полученные оценки о проданных товарах.
         /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
         /// </summary>
         public ICollection<Review.SellerReview?> GainedReviews { get; set; }
         /// <summary>
-        /// Отправленные отзывы о купленных товарах.
+        /// Отправленные оценки о купленных товарах.
         /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
         /// </summary>
         public ICollection<Review.SellerReview?> SendedReviews { get; set; }
