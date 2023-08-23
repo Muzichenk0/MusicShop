@@ -60,6 +60,9 @@ namespace MusicShop.Domain.Models.User
         [Required]
         [Range(0,5)]
         public double Rating { get; set; }
+
+        public ICollection<Review.SellerReview?> GainedReviews { get; set; }
+        public ICollection<Review.SellerReview?> SendedReviews { get; set; }
         
     }
 }

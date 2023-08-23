@@ -13,7 +13,7 @@ namespace MusicShop.Migrator
             string? connectionString = configuration.GetConnectionString("Default");
 
             DbContextOptionsBuilder<MigrationDbContext> dbContextOptionsBuilder = new DbContextOptionsBuilder<MigrationDbContext>();
-            dbContextOptionsBuilder.UseSqlServer(connectionString);
+            dbContextOptionsBuilder.UseNpgsql(connectionString);
             return new MigrationDbContext(dbContextOptionsBuilder.Options);
         }
     }

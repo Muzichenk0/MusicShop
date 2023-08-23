@@ -23,7 +23,7 @@ namespace MusicShop.Migrator
         private static IServiceCollection ConfigureDbConnections(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("Default");
-            services.AddDbContext<MigrationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<MigrationDbContext>(options => options.UseNpgsql(connectionString));
             return services;
         }
     }
