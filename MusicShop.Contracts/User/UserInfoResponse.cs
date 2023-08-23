@@ -6,7 +6,7 @@ namespace MusicShop.Contracts.User
     /// ДТО модель, для передачи информации о пользователе,
     /// через ответ от сервера на запросы.
     /// </summary>
-    public class UserInfoResponse
+    public sealed class UserInfoResponse
     {
         /// <summary>
         /// Идентификатор пользователя.
