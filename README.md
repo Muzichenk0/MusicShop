@@ -5,12 +5,14 @@ Music Shop web server's logic
 
 Внутри программного решения задействованы библиотеки классов из пакетов -
 
-    * Microsoft.Extensions.EntityFrameworkCore;
-    * Microsoft.Extensions.Hosting;
-    * Microsoft.Extensions.Configuration;
-    * Microsoft.Extensions.EntitryFrameworkCore.Design;
-    * Microsoft.Extensions.EntitryFrameworkCore.SqlServer;
-    * Microsoft.Extensions.EntitryFrameworkCore.Abstractions.
+    * Microsoft.EntityFrameworkCore
+    * Microsoft.EntityFrameworkCore.Abstractions
+    * Npgsql.EntityFrameworkCore.PostgreSQL
+    * Microsoft.EntityFrameworkCore.Design
+    * Microsoft.Extensions.Configuration
+    * Microsoft.Extensions.Hosting
+    * Swashbuckle.AspNetCore
+    * Microsoft.AspNetCore.OpenApi
 
 Файлы сборок, составляющие единое программное решение адаптированы для редактирования/дополнения, через синтаксис:
 
