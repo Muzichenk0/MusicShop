@@ -22,11 +22,12 @@ namespace MusicShop.DataAccess.Contexts.User
                 .WithOne(r => r.Sender)
                 .HasForeignKey(r => r.SenderId)
                 .OnDelete(DeleteBehavior.Cascade);
-            //builder
-            //    .HasMany(u => u.GainedReviews)
-            //    .WithOne(r => r.User)
-            //    .HasForeignKey(r => r.UserId)
-            //    .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasMany(u => u.GainedReviews)
+                .WithOne(r => r.User)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
