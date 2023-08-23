@@ -16,7 +16,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
         /// Текущая таблица из БД, сформированная на основе сущности <see cref="T"/>
         /// </summary>
         protected DbSet<T> DbSet { get; set; }
-
+         
         public Repository(DbContext dbContext, DbSet<T> modelTable)
             => (DbContext, DbSet) = (dbContext, dbContext.Set<T>());
 

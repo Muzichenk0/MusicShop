@@ -15,8 +15,13 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         /// <param name="builder">Строитель типа сущности</param>
         public void Configure(EntityTypeBuilder<Domain.Models.MusicalInstrument.MusicalInstrumentType.InstrumentType> builder)
         {
-            builder.HasKey(u => u.Id);
-            builder.HasMany(t => t.MusicalInstruments).WithOne(i => i.InstrumentType).HasForeignKey(o => o.InstrumentTypeId).OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasKey(u => u.Id);
+            builder
+                .HasMany(t => t.MusicalInstruments)
+                .WithOne(i => i.InstrumentType)
+                .HasForeignKey(o => o.InstrumentTypeId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

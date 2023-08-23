@@ -15,8 +15,12 @@ namespace MusicShop.DataAccess.Contexts.User
         /// <param name="builder">Строитель типа сущности</param>B
         public void Configure(EntityTypeBuilder<Domain.Models.User.User> builder)
         {
-            builder.HasKey(u => u.Id);
-            builder.HasMany(u => u.Offers).WithOne(o => o.User).HasForeignKey(u => u.UserId);
+            builder
+                .HasKey(u => u.Id);
+            builder
+                .HasMany(u => u.Offers)
+                .WithOne(o => o.User)
+                .HasForeignKey(u => u.UserId);
             builder
                 .HasMany(u => u.SendedReviews)
                 .WithOne(r => r.Sender)

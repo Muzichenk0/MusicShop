@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MusicShop.Domain.Models.Offer
 {
     /// <summary>
-    /// Cущность, описывающая интерфейс модели сделки. 
+    /// Cущность, описывающая интерфейс модели предложения. 
     /// Зависима и реализует <see cref="IIdentificable"/>"/>
     /// </summary>
     public class Offer : IIdentificable
@@ -16,13 +16,13 @@ namespace MusicShop.Domain.Models.Offer
         [Required]
         public Guid Id { get; set; }
         /// <summary>
-        /// Требуемая цена за совершение сделки.
+        /// Требуемая цена за совершение предложения.
         /// </summary>
         [Required]
         [MinValue(0)]
         public double RequirePrice { get; set; }
         /// <summary>
-        /// Описание сделки.
+        /// Описание предложения.
         /// </summary>
         [Required]
         [StringLength(1500)]
@@ -33,7 +33,7 @@ namespace MusicShop.Domain.Models.Offer
         [Required]
         public IReadOnlyCollection<MusicalInstrument.MusicalInstrument> InstrumentsToOffer { get; set; }
         /// <summary>
-        /// Состояние сделки.
+        /// Состояние предложения.
         /// </summary>
         [Required]
         public OfferState.OfferState OfferState { get; set; } = Models.Offer.OfferState.OfferState.Moderatable;
@@ -44,14 +44,20 @@ namespace MusicShop.Domain.Models.Offer
         public double Discount { get; set; } = 0.0;
         /// <summary>
         /// Категории предложения.
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="Offer"/> и завис. <see cref="OfferCategory"/>
         /// </summary>
         [Required]
-        public ICollection<OfferCategory> OfferCategories { get; set; } // навигационное свойство
+        public ICollection<OfferCategory> OfferCategories { get; set; }
         /// <summary>
-        /// 
+        /// Пользователь, открывший предложение.
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User.User"/> и завис. <see cref="Offer"/>
         /// </summary>
         [Required]
         public User.User User { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор пользователя, открывшего предложение.
+        /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="User.Users"/> и завис. <see cref="Review.SellerReview"/>
+        /// </summary>
         public Guid? UserId { get; set; }
     }
 }

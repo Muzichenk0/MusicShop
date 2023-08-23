@@ -9,9 +9,6 @@ namespace MusicShop.Domain.Models.User
     /// </summary>
     public class User : IIdentificable
     {
-        /// <summary>
-        /// Идентификатор пользователя.
-        /// </summary>
         [Required]
         public Guid Id { get; set; }
         /// <summary>
@@ -25,7 +22,7 @@ namespace MusicShop.Domain.Models.User
         [Required]
         public string Password { get; set; }
         /// <summary>
-        /// Почта пользователя .
+        /// Электронный, почтовый адрес пользователя.
         /// </summary>
         [Required]
         [EmailAddress]
@@ -60,8 +57,15 @@ namespace MusicShop.Domain.Models.User
         [Required]
         [Range(0,5)]
         public double Rating { get; set; }
-
+        /// <summary>
+        /// Полученные отзывы о проданных товарах.
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
+        /// </summary>
         public ICollection<Review.SellerReview?> GainedReviews { get; set; }
+        /// <summary>
+        /// Отправленные отзывы о купленных товарах.
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
+        /// </summary>
         public ICollection<Review.SellerReview?> SendedReviews { get; set; }
         
     }

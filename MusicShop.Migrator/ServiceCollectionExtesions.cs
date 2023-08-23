@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MusicShop.Migrator
 {
+    /// <summary>
+    /// Класс, хранящий методы расширения для абстрактного типа-контракта <see cref="IServiceCollection"/>
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
