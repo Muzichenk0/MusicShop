@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>documentation.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,10 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MusicShop.DataAccess\MusicShop.DataAccess.csproj" />
     <ProjectReference Include="..\MusicShop.Registrator\MusicShop.Registrator.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
