@@ -4,6 +4,26 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Login">
+            <summary>
+            Логин пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Password">
+            <summary>
+            Обновление информации о пользователе.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.EMail">
+            <summary>
+            Адрес электронной почты пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Rating">
+            <summary>
+            Рейтинг пользователя.
+            </summary>
+        </member>
         <member name="T:MusicShop.Contracts.User.UserInfoResponse">
             <summary>
             ДТО модель, для передачи информации о пользователе,

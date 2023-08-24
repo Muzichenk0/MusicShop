@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>documentation.xml</DocumentationFile>
+    <DocumentationFile>MusicShop.Contracts.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

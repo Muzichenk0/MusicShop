@@ -18,7 +18,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
         /// </summary>
         protected DbSet<T> DbSet { get; set; }
          
-        public Repository(DbContext dbContext, DbSet<T> modelTable)
+        public Repository(DbContext dbContext)
             => (DbContext, DbSet) = (dbContext, dbContext.Set<T>());
 
         public async Task<IQueryable<T>> GetAllAsync(CancellationToken token = default)

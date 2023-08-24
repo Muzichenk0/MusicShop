@@ -8,7 +8,7 @@ namespace MusicShop.AppData.Contexts.User.Services
     public sealed class UserService : IUserService
     {
         private readonly IUserRepository _repository;
-        public UserService(IUserRepository repository, ILogger<UserService> logger)
+        public UserService(IUserRepository repository)
         {
             _repository = repository;
         }

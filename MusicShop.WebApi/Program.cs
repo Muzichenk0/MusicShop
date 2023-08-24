@@ -29,7 +29,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DataAccess.Db;
 using MusicShop.Infrastructure.MapProfile.User;
-using System.Linq;
 using MusicShop.Registrator;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
@@ -51,8 +50,9 @@ namespace MusicShop.WebApi
                 .GetRequiredService<IDbContextOptionsConfigurator<DbAppContext>>()
                 .Configure((DbContextOptionsBuilder<DbAppContext>)dbContextOptBuilder));
 
+
             builder.Services
-                .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+               .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
             builder.Services.ConfigureServices();
 
