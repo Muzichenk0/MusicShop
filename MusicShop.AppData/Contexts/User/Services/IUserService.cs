@@ -2,6 +2,9 @@
 
 namespace MusicShop.AppData.Contexts.User.Services
 {
+    /// <summary>
+    /// Абстрактная сущность 
+    /// </summary>
     public interface IUserService
     {
         public Task AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default);

@@ -7,7 +7,6 @@ namespace MusicShop.Domain.Models.ValidationAttributes
     {
         private double _minDouble { get; set; }
         public MinValueAttribute(double minDouble) => _minDouble = minDouble;
-
         public override bool IsValid(object? value)
         {
             if (value == null) return false;

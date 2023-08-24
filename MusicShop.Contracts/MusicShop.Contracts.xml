@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MusicShop.Contracts</name>
+    </assembly>
+    <members>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Login">
+            <summary>
+            Логин пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Password">
+            <summary>
+            Обновление информации о пользователе.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.EMail">
+            <summary>
+            Адрес электронной почты пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Rating">
+            <summary>
+            Рейтинг пользователя.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.User.UserInfoResponse">
+            <summary>
+            ДТО модель, для передачи информации о пользователе,
+            через ответ от сервера на запросы.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.Id">
+            <summary>
+            Идентификатор пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.Login">
+            <summary>
+            Логин пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.EMail">
+            <summary>
+            Электронный, почтовый адрес пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.RegistratedIn">
+            <summary>
+            Дата регистрации пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.PhoneNumber">
+            <summary>
+            Номер телефона пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.Rating">
+            <summary>
+            Рейтинг пользователя, как продавца.
+            </summary>
+        </member>
+    </members>
+</doc>

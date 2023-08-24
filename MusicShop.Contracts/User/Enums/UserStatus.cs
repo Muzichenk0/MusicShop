@@ -1,11 +1,12 @@
 ﻿
-namespace MusicShop.Domain.Models.User
+
+namespace MusicShop.Contracts.User.Enums
 {
     /// <summary>
-    /// Стаутс учетной записи пользователя
+    /// Статус учетной записи пользователя
     /// </summary>
     public enum UserStatus
-    {
+    { 
         /// <summary>
         /// Верифицирован
         /// </summary>

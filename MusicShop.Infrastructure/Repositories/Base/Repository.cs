@@ -12,12 +12,13 @@ namespace MusicShop.Infrastructure.Repositories.Base
         /// Контекст, связывающий с таблицами БД.
         /// </summary>
         protected DbContext DbContext { get; set; }
+
         /// <summary>
         /// Текущая таблица из БД, сформированная на основе сущности <see cref="T"/>
         /// </summary>
         protected DbSet<T> DbSet { get; set; }
          
-        public Repository(DbContext dbContext, DbSet<T> modelTable)
+        public Repository(DbContext dbContext)
             => (DbContext, DbSet) = (dbContext, dbContext.Set<T>());
 
         public async Task<IQueryable<T>> GetAllAsync(CancellationToken token = default)
@@ -37,10 +38,12 @@ namespace MusicShop.Infrastructure.Repositories.Base
             });
      
         public async Task UpdateAsync(T objToUpdate, CancellationToken token = default)
-            => await Task.Run(() =>
+            => await Task.Run(async () =>
             {
-                 if (objToUpdate is null)
-                 throw new ArgumentNullException(nameof(objToUpdate));
+                if (objToUpdate is null)
+                throw new ArgumentNullException(nameof(objToUpdate));
+                DbContext.Update(objToUpdate);
+                await DbContext.SaveChangesAsync();
             });
 
         public async Task DeleteAsync(T objToDelete, CancellationToken token = default)
@@ -48,10 +51,6 @@ namespace MusicShop.Infrastructure.Repositories.Base
             {
                 if (objToDelete == null)
                    throw new ArgumentNullException(nameof(objToDelete));
-
-                T? foundObj = await DbSet.FirstOrDefaultAsync(obj => Equals(obj, objToDelete));
-                if (foundObj is null) 
-                    throw new ArgumentNullException(nameof(foundObj));
 
                 DbContext.Remove(objToDelete);
                 await DbContext.SaveChangesAsync();
