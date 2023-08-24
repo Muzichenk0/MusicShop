@@ -36,7 +36,7 @@ namespace MusicShop.DataAccess.Db
                 throw new InvalidOperationException(
                     $"Не найдена строка подключения с именем 'Default'");
             }
-            optBuilder.UseSqlServer(connectionString);
+            optBuilder.UseNpgsql(connectionString);
             optBuilder.UseLoggerFactory(_loggerFactory);
         }
     }

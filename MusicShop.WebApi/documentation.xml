@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MusicShop.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.#ctor(Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.User.UserController},MusicShop.AppData.Contexts.User.Repository.IUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="userRepository"></param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.CreateUserAsync(MusicShop.Contracts.User.CreateUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="userToAdd"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -16,17 +16,18 @@ namespace MusicShop.Domain.Models.Offer
         [Required]
         public string Name { get; set; } 
         /// <summary>
-        /// Имя категории сделки
+        /// Подкатегории предложения.
         /// </summary>
         [Required]
         public IReadOnlyCollection<OfferCategory> Categories { get; set; }
         /// <summary>
-        /// Внешний ключ для отношения один ко многим между главной сущностью <see cref="Offer"/> и зависимой <see cref="OfferCategory"/>
+        ///  Уникальный идентификатор предложения, частью которого является текущая категория.
+        /// Внешний ключ для отношения один ко многим между главной сущностью <see cref="Offer.Offer"/> и зависимой <see cref="OfferCategory"/>
         /// </summary>
-        [Required]
         public Guid? OfferId { get; set; }
         /// <summary>
-        /// 
+        /// Предложение, частью которого является текущая категория.
+        /// Навигационное свойство для отношения один ко многим между главной сущностью <see cref="Offer.Offer"/> и зависимой <see cref="OfferCategory"/>
         /// </summary>
         [Required]
         public Offer Offer { get; set; }

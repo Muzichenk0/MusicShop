@@ -15,8 +15,11 @@ namespace MusicShop.DataAccess.Contexts.OfferCategory
         /// <param name="builder">Строитель типа сущности</param>
         public void Configure(EntityTypeBuilder<Domain.Models.Offer.OfferCategory> builder)
         {
-            builder.HasKey(u => u.Id);
-            builder.Property(c => c.Name).HasMaxLength(50);
+            builder
+                .HasKey(u => u.Id);
+            builder
+                .Property(c => c.Name)
+                .HasMaxLength(50);
         }
     }
 }
