@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace MusicShop.Domain.Models.ValidationAttributes
+namespace MusicShop.Contracts.ValidationAttributes
 {
     public class PasswordAttribute : ValidationAttribute
     {
-        private readonly Regex _regex = new Regex(@"[@!#$%&*]",RegexOptions.Compiled | RegexOptions.Singleline);
+        private Regex _regex = new Regex(@"[@!#$%&*]", RegexOptions.Compiled | RegexOptions.Singleline);
         public override bool IsValid(object? value)
         {
             if (value != null && value is string valueString)
@@ -14,7 +14,7 @@ namespace MusicShop.Domain.Models.ValidationAttributes
                     valueString.Any(char.IsUpper) &&
                     _regex.IsMatch(valueString))
                     return true;
-        
+
                 return false;
             }
             return false;

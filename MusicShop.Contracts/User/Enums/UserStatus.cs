@@ -1,6 +1,4 @@
-﻿
-
-namespace MusicShop.Contracts.User.Enums
+﻿namespace MusicShop.Contracts.User.Enums
 {
     /// <summary>
     /// Статус учетной записи пользователя

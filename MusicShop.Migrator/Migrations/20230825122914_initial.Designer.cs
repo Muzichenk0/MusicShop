@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MusicShop.Migrator.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20230823145619_initial")]
+    [Migration("20230825122914_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -72,7 +72,6 @@ namespace MusicShop.Migrator.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("ParentId")
-                        .IsRequired()
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("UserId")
@@ -95,8 +94,7 @@ namespace MusicShop.Migrator.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1500)
-                        .HasColumnType("character varying(1500)");
+                        .HasColumnType("text");
 
                     b.Property<double>("Discount")
                         .HasColumnType("double precision");
@@ -276,8 +274,7 @@ namespace MusicShop.Migrator.Migrations
                     b.HasOne("MusicShop.Domain.Models.User.User", "Sender")
                         .WithMany("SendedReviews")
                         .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MusicShop.Domain.Models.User.User", "User")
                         .WithMany("GainedReviews")

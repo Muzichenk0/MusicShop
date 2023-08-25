@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using MusicShop.AppData.Contexts.User.Repository;
+﻿using MusicShop.AppData.Contexts.User.Repository;
 using MusicShop.Contracts.User;
-using System.Text.Json;
 
 namespace MusicShop.AppData.Contexts.User.Services
 {
@@ -12,6 +10,7 @@ namespace MusicShop.AppData.Contexts.User.Services
         {
             _repository = repository;
         }
+        
         public async Task AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default)
           =>  await _repository.AddAsync(createUserDto, cancelToken);        
 

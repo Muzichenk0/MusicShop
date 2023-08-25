@@ -24,7 +24,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
         public async Task<IQueryable<T>> GetAllAsync(CancellationToken token = default)
             => await Task.Run(() => DbSet.AsQueryable());
 
-        public async Task<IQueryable<T>> GetAllFilteredAsync(Func<T, bool> predicateFilter, CancellationToken token = default)
+        public async Task<IQueryable<T>> GetAllFilteredAsync(Func<T, bool>predicateFilter, CancellationToken token = default)
             => await Task.Run(() => DbSet.Where(predicateFilter).AsQueryable());
 
         public async Task<T> GetByIdAsync(Guid id, CancellationToken token = default)

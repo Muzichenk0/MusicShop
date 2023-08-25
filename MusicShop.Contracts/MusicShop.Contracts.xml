@@ -4,6 +4,86 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MusicShop.Contracts.User.CreateUserRequest">
+            <summary>
+            ДТО модель, определяющая интерфейс, доступный запросу на создание пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Id">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Login">
+            <summary>
+            Логин пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Password">
+            <summary>
+            Пароль пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.EMail">
+            <summary>
+            Электронный, почтовый адрес пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.PhoneNumber">
+            <summary>
+            Телефонный номер пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.RegistratedIn">
+            <summary>
+            Дата регистрации
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Status">
+            <summary>
+            Статус учетной записи пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.SendedReviews">
+            <summary>
+            Отправленные оценки пользователя, как покупателя.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.User.DeleteUserRequest">
+            <summary>
+            ДТО модель, описывающая интерфейс, доступный запросу на удаление пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.DeleteUserRequest.Id">
+            <summary>
+            Идентификатор пользователя.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.User.Enums.UserStatus">
+            <summary>
+            Статус учетной записи пользователя
+            </summary>
+        </member>
+        <member name="F:MusicShop.Contracts.User.Enums.UserStatus.Verified">
+            <summary>
+            Верифицирован
+            </summary>
+        </member>
+        <member name="F:MusicShop.Contracts.User.Enums.UserStatus.NotVerified">
+            <summary>
+            Не верифицирован
+            </summary>
+        </member>
+        <member name="F:MusicShop.Contracts.User.Enums.UserStatus.Blocked">
+            <summary>
+            Заблокирован
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.User.UpdateUserRequest">
+            <summary>
+            ДТО модель, определяющая интерфейс для запроса на обновление пользователя.
+            </summary>
+        </member>
         <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Login">
             <summary>
             Логин пользователя.
@@ -22,6 +102,21 @@
         <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Rating">
             <summary>
             Рейтинг пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Status">
+            <summary>
+            Статус учетной записи пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.PhoneNumber">
+            <summary>
+            Номер телефона пользователя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.SendedReviews">
+            <summary>
+            Отправленные оценки пользователя, как покупателя.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.User.UserInfoResponse">
@@ -58,6 +153,21 @@
         <member name="P:MusicShop.Contracts.User.UserInfoResponse.Rating">
             <summary>
             Рейтинг пользователя, как продавца.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.Status">
+            <summary>
+            Статус учетной записи пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.GainedReviews">
+            <summary>
+            Полученные оценки пользователя, как продавца.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.SendedReviews">
+            <summary>
+            Отправленные оценки пользователя, как покупателя.
             </summary>
         </member>
     </members>
