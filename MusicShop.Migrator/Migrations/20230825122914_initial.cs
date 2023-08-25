@@ -33,7 +33,7 @@ namespace MusicShop.Migrator.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ParentId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uuid", nullable: true),
                     CategoryName = table.Column<string>(type: "text", nullable: false),
                     InstrumentTypeId = table.Column<Guid>(type: "uuid", nullable: true),
                     UserId = table.Column<Guid>(type: "uuid", nullable: true)
@@ -59,7 +59,7 @@ namespace MusicShop.Migrator.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     RequirePrice = table.Column<double>(type: "double precision", nullable: false),
-                    Description = table.Column<string>(type: "character varying(1500)", maxLength: 1500, nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
                     OfferState = table.Column<int>(type: "integer", nullable: false),
                     Discount = table.Column<double>(type: "double precision", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false)

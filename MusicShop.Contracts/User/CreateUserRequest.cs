@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MusicShop.Contracts.User.Enums;
+using MusicShop.Contracts.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.User
 {
@@ -33,11 +35,24 @@ namespace MusicShop.Contracts.User
         /// Телефонный номер пользователя
         /// </summary>
         [Required]
+        [PhoneNumber]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Дата регистрации
         /// </summary>
         [Required]
         public DateTime RegistratedIn { get; set; }
+        /// <summary>
+        /// Статус учетной записи пользователя
+        /// </summary>
+        [Required]
+        public UserStatus Status { get; set; }
+        //[Required]
+        //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
+        ///// <summary>
+        ///// Отправленные оценки пользователя, как покупателя.
+        ///// </summary>
+        //[Required]
+        //public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
     }
 }

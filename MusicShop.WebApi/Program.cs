@@ -33,7 +33,6 @@ using MusicShop.Registrator;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using MusicShop.Contracts.User;
-using MusicShop.Infrastructure.Repositories.Base;
 
 namespace MusicShop.WebApi
 {
