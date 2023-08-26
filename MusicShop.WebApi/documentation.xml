@@ -4,6 +4,36 @@
         <name>MusicShop.WebApi</name>
     </assembly>
     <members>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.CreateSellerReviewAsync(MusicShop.Contracts.SellerReview.CreateSellerReviewRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="sReviewToAdd"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.GetAllSellerReviewsAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.GetSellerReviewByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="sReviewId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.DeleteSellerReviewAsync(MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="sReviewToDelete"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="T:MusicShop.WebApi.Controllers.User.UserController">
             <summary>
             Контроллер с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
@@ -41,9 +71,9 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetUserByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Получение пользователя с помощью <paramref name="id"/>
+            Получение пользователя с помощью <paramref name="userId"/>
             </summary>
-            <param name="id"></param>
+            <param name="userId">Идентификатор пользователя</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.DeleteUserAsync(MusicShop.Contracts.User.DeleteUserRequest,System.Threading.CancellationToken)">
@@ -53,10 +83,11 @@
             <param name="userToDelete">Информация о пользователе, для удаления того из БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
         </member>
-        <member name="M:MusicShop.WebApi.Controllers.User.UserController.UpdateUserAsync(MusicShop.Contracts.User.UpdateUserRequest,System.Threading.CancellationToken)">
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.UpdateUserAsync(System.Guid,MusicShop.Contracts.User.UpdateUserRequest,System.Threading.CancellationToken)">
             <summary>
             Обновление информации о пользователе, асинхронно.
             </summary>
+            <param name="userId">Идентификатор пользователя.</param>
             <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
         </member>

@@ -4,6 +4,106 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest">
+            <summary>
+            ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Id">
+            <summary>
+            Идентификатор отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Topic">
+            <summary>
+            Заголовок отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Rating">
+            <summary>
+            Оценка услуги из отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Description">
+            <summary>
+            Описание отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.SenderId">
+            <summary>
+            Идентификатор пользователя, отправившего отзыв о покупателе.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.UserId">
+            <summary>
+            Идентификатор пользователя, отзыв о котором, как продавце, создается.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Date">
+            <summary>
+            Дата создания отзыва.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest">
+            <summary>
+            ДТО модель, определяющая интерфейс, доступный при отправке запроса на удаление отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest.Id">
+            <summary>
+            Идентификатор отзыва.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo">
+            <summary>
+            Интерфейс, доступный при отправке запроса  на получение данных об отзывах.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Id">
+            <summary>
+            Идентификатор отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Topic">
+            <summary>
+            Заголовок отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Rating">
+            <summary>
+            Оценка услуги из отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Description">
+            <summary>
+            Описание отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Date">
+            <summary>
+            Дата создания отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest.Topic">
+            <summary>
+            Заголовок отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest.Rating">
+            <summary>
+            Оценка услуги из отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest.Description">
+            <summary>
+            Описание отзыва.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest.Date">
+            <summary>
+            Дата создания отзыва.
+            </summary>
+        </member>
         <member name="T:MusicShop.Contracts.User.CreateUserRequest">
             <summary>
             ДТО модель, определяющая интерфейс, доступный запросу на создание пользователя.
@@ -42,11 +142,6 @@
         <member name="P:MusicShop.Contracts.User.CreateUserRequest.Status">
             <summary>
             Статус учетной записи пользователя
-            </summary>
-        </member>
-        <member name="P:MusicShop.Contracts.User.CreateUserRequest.SendedReviews">
-            <summary>
-            Отправленные оценки пользователя, как покупателя.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.User.DeleteUserRequest">
@@ -112,11 +207,6 @@
         <member name="P:MusicShop.Contracts.User.UpdateUserRequest.PhoneNumber">
             <summary>
             Номер телефона пользователя.
-            </summary>
-        </member>
-        <member name="P:MusicShop.Contracts.User.UpdateUserRequest.SendedReviews">
-            <summary>
-            Отправленные оценки пользователя, как покупателя.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.User.UserInfoResponse">

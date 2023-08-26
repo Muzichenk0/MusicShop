@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace MusicShop.Contracts.ValidationAttributes
 {
-    public class PasswordAttribute : ValidationAttribute
+    internal class PasswordAttribute : ValidationAttribute
     {
         private Regex _regex = new Regex(@"[@!#$%&*]", RegexOptions.Compiled | RegexOptions.Singleline);
         public override bool IsValid(object? value)

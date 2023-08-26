@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace MusicShop.Contracts.ValidationAttributes
 {
-    public sealed class PhoneNumberAttribute : ValidationAttribute
+    internal sealed class PhoneNumberAttribute : ValidationAttribute
     {
         public override bool IsValid(object? obj)
         {

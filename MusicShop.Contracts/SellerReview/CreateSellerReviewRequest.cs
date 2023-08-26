@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MusicShop.Contracts.User;
+using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.SellerReview
 {
@@ -30,9 +31,14 @@ namespace MusicShop.Contracts.SellerReview
         [Required]
         [StringLength(300)]
         public string Description { get; set; }
-        //[Required]
-        //public UserInfoResponse User { get; set; }
-        //public Guid? SenderId { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя, отправившего отзыв о покупателе.
+        /// </summary>
+        public Guid? SenderId { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя, отзыв о котором, как продавце, создается.
+        /// </summary>
+        public Guid? UserId { get; set; }
         /// <summary>
         /// Дата создания отзыва.
         /// </summary>

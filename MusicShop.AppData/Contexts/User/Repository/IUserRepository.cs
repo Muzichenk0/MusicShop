@@ -29,9 +29,10 @@ namespace MusicShop.AppData.Contexts.User.Repository
         /// <summary>
         /// Обновление состояния пользователя в БД, асинхронно.
         /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="userToUpdate">Пользователь, чье состояние необходимо обновить</param>
         /// <param name="cancelToken">Жетон отмены асинхронной задачи</param>
-        public Task UpdateAsync(UpdateUserRequest userToUpdate, CancellationToken cancelToken = default);
+        public Task UpdateAsync(Guid userId, UpdateUserRequest userToUpdate, CancellationToken cancelToken = default);
         /// <summary>
         /// Удаление пользователя из БД, асинхронно
         /// </summary>

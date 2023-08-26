@@ -37,7 +37,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userToAdd">Информация о пользователе для добавления в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         [HttpPost("/creatingUser")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest userToAdd, CancellationToken token = default)
@@ -46,7 +46,7 @@ namespace MusicShop.WebApi.Controllers.User
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToAdd)} was added into database");
             
-            return Ok();
+            return Created("/creatingUser",userToAdd);
         }
 
         /// <summary>
@@ -60,24 +60,24 @@ namespace MusicShop.WebApi.Controllers.User
         {
             IQueryable<UserInfoResponse> usersInfo = await _userRepository.GetAllAsync(token);
 
-            foreach (UserInfoResponse userInfo in usersInfo)
-                _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userInfo)} was taken from database");
+            //foreach (UserInfoResponse userInfo in usersInfo)
+                //_logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userInfo)} was taken from database");
 
             return Ok(usersInfo);
         }
 
         /// <summary>
-        /// Получение пользователя с помощью <paramref name="id"/>
+        /// Получение пользователя с помощью <paramref name="userId"/>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         [HttpGet("/userById")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetUserByIdAsync([FromHeader]Guid id, CancellationToken token = default)
+        public async Task<IActionResult> GetUserByIdAsync([FromHeader]Guid userId, CancellationToken token = default)
         {
-            UserInfoResponse foundUserInfo = await _userRepository.GetByIdAsync(id, token);
+            UserInfoResponse foundUserInfo = await _userRepository.GetByIdAsync(userId, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(foundUserInfo)} was taken from database");
 
@@ -98,7 +98,7 @@ namespace MusicShop.WebApi.Controllers.User
             if (!ModelState.IsValid)
                 return BadRequest();
             
-            await _userRepository.DeleteAsync(userToDelete);
+            await _userRepository.DeleteAsync(userToDelete, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToDelete)} was deleted from database");;
 
@@ -108,16 +108,17 @@ namespace MusicShop.WebApi.Controllers.User
         /// <summary>
         /// Обновление информации о пользователе, асинхронно.
         /// </summary>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         [HttpPut("/updatingUser")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateUserAsync([FromBody]UpdateUserRequest userToDelete, CancellationToken token = default)
+        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody]UpdateUserRequest userToDelete, CancellationToken token = default)
         {
-            await _userRepository.UpdateAsync(userToDelete,token);
-            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToDelete)} was updated in database");
+            await _userRepository.UpdateAsync(userId,userToDelete,token);
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userId)} was updated in database");
             return Ok();
         }
     }
