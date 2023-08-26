@@ -33,6 +33,8 @@ using MusicShop.Registrator;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using MusicShop.Contracts.User;
+using MusicShop.Infrastructure.MapProfile.SellerReview;
+using MusicShop.Contracts.SellerReview;
 
 namespace MusicShop.WebApi
 {
@@ -73,14 +75,27 @@ namespace MusicShop.WebApi
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Apterra Adverts Api", Version = "V1" });
 
+                #region UserDTOModels
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
-                $"{typeof(CreateUserRequest).Assembly.GetName().Name}.xml")));
+                        $"{typeof(CreateUserRequest).Assembly.GetName().Name}.xml")));
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
-                $"{typeof(UserInfoResponse).Assembly.GetName().Name}.xml")));
+                        $"{typeof(UserInfoResponse).Assembly.GetName().Name}.xml")));
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
-                $"{typeof(UpdateUserRequest).Assembly.GetName().Name}.xml")));
+                        $"{typeof(UpdateUserRequest).Assembly.GetName().Name}.xml")));
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
-                $"{typeof(DeleteUserRequest).Assembly.GetName().Name}.xml")));
+                        $"{typeof(DeleteUserRequest).Assembly.GetName().Name}.xml")));
+                #endregion
+
+                #region SellerReviewDTOModels
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
+                        $"{typeof(CreateSellerReviewRequest).Assembly.GetName().Name}.xml")));
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
+                        $"{typeof(SellerReviewResponseInfo).Assembly.GetName().Name}.xml")));
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
+                        $"{typeof(UpdateSellerReviewRequest).Assembly.GetName().Name}.xml")));
+                options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
+                        $"{typeof(DeleteUserRequest).Assembly.GetName().Name}.xml")));
+                #endregion
 
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, "documentation.xml")));
             });
@@ -114,7 +129,10 @@ namespace MusicShop.WebApi
                 .RunAsync();
         }
         public static MapperConfiguration GetMapperConfiguration()
-            => new MapperConfiguration(cfgExpression => cfgExpression
-            .AddProfile<UserProfile>());
+            => new MapperConfiguration(cfgExpression =>
+            {
+                cfgExpression.AddProfile<UserProfile>();
+                cfgExpression.AddProfile<SellerReviewProfile>();
+            });
     }
 }

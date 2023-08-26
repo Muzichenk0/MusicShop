@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MusicShop.AppData.Contexts.User.Repository;
 using MusicShop.Contracts.User;
@@ -25,21 +26,23 @@ namespace MusicShop.DataAccess.Contexts.User
         {
             IQueryable<Domain.Models.User.User> users = await _repository.GetAllAsync(cancelToken);
 
-            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
+            //_logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
 
             return users
+                .Include(u => u.SendedReviews)
                 .Select(u => _mapper.Map<UserInfoResponse>(u))
                 .AsQueryable();
         }
         public async Task<UserInfoResponse> GetByIdAsync(Guid userId, CancellationToken cancelToken = default)
         {
-            Domain.Models.User.User user = await _repository.GetByIdAsync(userId, cancelToken);
+            Domain.Models.User.User user = (await _repository.GetAllAsync())
+                .Include(u => u.SendedReviews)
+                .First(u => u.Id == userId);
 
-            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(user)} tring to be taken from database");
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(user.Id)} tring to be taken from database");
 
             return _mapper.Map<UserInfoResponse>(user);
         }
-
         public Task AddAsync(CreateUserRequest userToCreate, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToCreate)} tring to be added into database");
@@ -52,12 +55,13 @@ namespace MusicShop.DataAccess.Contexts.User
 
             return _repository.DeleteAsync(_mapper.Map<Domain.Models.User.User>(userToDelete), cancelToken);
         }
-
-        public Task UpdateAsync( UpdateUserRequest userToUpdate, CancellationToken cancelToken = default)
+        public async Task UpdateAsync(Guid userId, UpdateUserRequest userToUpdate, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToUpdate)} trying to be updated into database");
-
-            return _repository.UpdateAsync(_mapper.Map<Domain.Models.User.User>(userToUpdate), cancelToken);
+            Domain.Models.User.User user = await _repository.GetByIdAsync(userId,cancelToken);
+            //return _repository.UpdateAsync(_mapper.Map<Domain.Models.User.User>(userToUpdate), cancelToken);
+             await _repository
+            .UpdateAsync(_mapper.Map(userToUpdate, user), cancelToken);
         }
     }
 }

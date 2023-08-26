@@ -23,7 +23,7 @@ namespace MusicShop.AppData.Contexts.User.Services
         public async Task<UserInfoResponse> GetUserByIdAsync(Guid userId, CancellationToken cancelToken = default)
             => await _repository.GetByIdAsync(userId, cancelToken);
 
-        public async Task UpdateUserAsync(UpdateUserRequest updateUserDto, CancellationToken cancelToken = default)
-            => await _repository.UpdateAsync(updateUserDto, cancelToken);
+        public async Task UpdateUserAsync(Guid userId,UpdateUserRequest updateUserDto, CancellationToken cancelToken = default)
+            => await _repository.UpdateAsync(userId,updateUserDto, cancelToken);
     }
 }

@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Contexts\MusicalInstrument\InstrumentType\" />
     <Folder Include="Contexts\Offer\OfferCategory\" />
-    <Folder Include="Contexts\SellerReview\Services\" />
   </ItemGroup>
 
   <ItemGroup>

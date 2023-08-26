@@ -47,12 +47,5 @@ namespace MusicShop.Contracts.User
         /// </summary>
         [Required]
         public UserStatus Status { get; set; }
-        //[Required]
-        //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
-        ///// <summary>
-        ///// Отправленные оценки пользователя, как покупателя.
-        ///// </summary>
-        //[Required]
-        //public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
     }
 }

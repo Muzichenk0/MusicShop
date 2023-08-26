@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.ValidationAttributes
 {
-    public class MinValueAttribute : ValidationAttribute
+    internal class MinValueAttribute : ValidationAttribute
     {
         private double _minDouble { get; set; }
         public MinValueAttribute(double minDouble) => _minDouble = minDouble;

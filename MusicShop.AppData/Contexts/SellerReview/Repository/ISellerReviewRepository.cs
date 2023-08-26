@@ -44,8 +44,9 @@ namespace MusicShop.AppData.Contexts.SellerReview.Repository
         /// <summary>
         /// Обновление существующего отзыва о продавце, асинхронно.
         /// </summary>
+        /// <param name="sReviewId">Идентификатор отзыва о продавце</param>
         /// <param name="sReviewToUpdate">Отзыв о продавце для обновления</param>
         /// <param name="cancelToken">Жетон для отмены</param>
-        public Task UpdateAsync(UpdateSellerReviewRequest sReviewToUpdate, CancellationToken cancelToken = default);
+        public Task UpdateAsync(Guid sReviewId, UpdateSellerReviewRequest sReviewToUpdate, CancellationToken cancelToken = default);
     }
 }

@@ -1,5 +1,4 @@
-﻿using MusicShop.Contracts.SellerReview;
-using MusicShop.Contracts.User.Enums;
+﻿using MusicShop.Contracts.User.Enums;
 using MusicShop.Contracts.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,8 +9,7 @@ namespace MusicShop.Contracts.User
     /// </summary>
     public sealed class UpdateUserRequest
     {
-        [Required]
-        public Guid Id { get; set; }
+    
         /// <summary>
         /// Логин пользователя.
         /// </summary>
@@ -45,13 +43,13 @@ namespace MusicShop.Contracts.User
         [Required]
         [PhoneNumber]
         public string PhoneNumber { get; set; }
-        [Required]
-        public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
-        /// <summary>
-        /// Отправленные оценки пользователя, как покупателя.
-        /// </summary>
-        [Required]
-        public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
+        //[Required]
+        //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
+        ///// <summary>
+        ///// Отправленные оценки пользователя, как покупателя.
+        ///// </summary>
+        //[Required]
+        //public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
 
     }
 }
