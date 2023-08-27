@@ -6,33 +6,43 @@
     <members>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.CreateSellerReviewAsync(MusicShop.Contracts.SellerReview.CreateSellerReviewRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Добавление нового отзыва о продавце, асинхронно.
             </summary>
             <param name="sReviewToAdd"></param>
-            <param name="token"></param>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.GetAllSellerReviewsAsync(System.Threading.CancellationToken)">
             <summary>
-            
+            Получение всех отзывов о продавцах, асинхронно.
             </summary>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.GetSellerReviewByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            
+            Получение отзыва о продавце, чей ID согласован с <paramref name="sReviewId"/>, асинхронно.
             </summary>
             <param name="sReviewId"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.DeleteSellerReviewAsync(MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Удаление отзыва о продавце, асинхронно.
             </summary>
             <param name="sReviewToDelete"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.UpdateSellerReviewAsync(System.Guid,MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest,System.Threading.CancellationToken)">
+            <summary>
+            Обновление информации об отзыве о продавце, асинхронно.
+            </summary>
+            <param name="sReviewId">Идентификатор отзыва о продавце</param>
+            <param name="sReviewToUpdate">Новая информация об отзыве о продавце</param>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.User.UserController">
             <summary>
@@ -58,16 +68,18 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.CreateUserAsync(MusicShop.Contracts.User.CreateUserRequest,System.Threading.CancellationToken)">
             <summary>
-            Метод-обработчик входящего запроса по маршруту - /user, относительно адреса:порта сервера.
+            Создание пользователя, на основе дто модели - <paramref name="userToAdd"/>, асинхронно.
             </summary>
             <param name="userToAdd">Информация о пользователе для добавления в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetUsersAsync(System.Threading.CancellationToken)">
             <summary>
             Получение каждого пользователя, асинхронно.
             </summary>
             <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetUserByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
@@ -75,6 +87,7 @@
             </summary>
             <param name="userId">Идентификатор пользователя</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.DeleteUserAsync(MusicShop.Contracts.User.DeleteUserRequest,System.Threading.CancellationToken)">
             <summary>
@@ -82,6 +95,7 @@
             </summary>
             <param name="userToDelete">Информация о пользователе, для удаления того из БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.UpdateUserAsync(System.Guid,MusicShop.Contracts.User.UpdateUserRequest,System.Threading.CancellationToken)">
             <summary>
@@ -90,6 +104,7 @@
             <param name="userId">Идентификатор пользователя.</param>
             <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
     </members>
 </doc>

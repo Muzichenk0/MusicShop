@@ -79,6 +79,16 @@
             Описание отзыва.
             </summary>
         </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.UserId">
+            <summary>
+            Идентификатор продавца, отзыв описан о котором
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.SenderId">
+            <summary>
+            Идентификатор пользователя, отправившего отзыв.
+            </summary>
+        </member>
         <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Date">
             <summary>
             Дата создания отзыва.

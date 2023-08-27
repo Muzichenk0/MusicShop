@@ -19,7 +19,7 @@ namespace MusicShop.Domain.Models.MusicalInstrument.MusicalInstrumentType
         /// <summary>
         /// Подтипы, производные, для текущей категории.
         /// </summary>
-        public ICollection<InstrumentType> SubTypes { get; set; }
+        public ICollection<InstrumentType?> SubTypes { get; set; }
         /// <summary>
         /// Музыкальные инструменты, входящие в текущую категорию.
         /// Навигационное свойство в отношении один ко многим, между глав. сущностью <see cref="InstrumentType"/> и завис. <see cref="MusicalInstrument"/>

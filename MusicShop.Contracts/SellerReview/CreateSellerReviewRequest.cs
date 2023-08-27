@@ -1,5 +1,4 @@
-﻿using MusicShop.Contracts.User;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.SellerReview
 {

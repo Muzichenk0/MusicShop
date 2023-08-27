@@ -9,10 +9,11 @@ namespace MusicShop.Contracts.ValidationAttributes
         public MinValueAttribute(double minDouble) => _minDouble = minDouble;
         public override bool IsValid(object? value)
         {
-            if (value == null) return false;
+            if (value == null)
+                return false;
 
             else if (double.TryParse((string)value, out double doubleRes))
-                if (doubleRes <= _minDouble)
+                if (doubleRes >= _minDouble)
                     return true;
 
                 else return false;
