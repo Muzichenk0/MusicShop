@@ -60,6 +60,9 @@ namespace MusicShop.Contracts.User
         /// </summary>
         [Required]
         public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
+        /// <summary>
+        /// Музыкальная специализация текущего пользователя.
+        /// </summary>
         [Required]
         public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
     }

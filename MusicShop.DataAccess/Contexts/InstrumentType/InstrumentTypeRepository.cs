@@ -36,7 +36,8 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         public async Task<IQueryable<InstrumentTypeResponseInfo>> GetAllAsync(CancellationToken cancelToken = default)
         {
             var instTypes = (await _instTypeRepository.GetAllAsync(cancelToken))
-                .Include(t => t.SubTypes);
+                .Include(t => t.SubTypes)
+                .ThenInclude(t => t!.SubTypes);
 
             return instTypes
                 .Select(t => _mapper.Map<InstrumentTypeResponseInfo>(t))

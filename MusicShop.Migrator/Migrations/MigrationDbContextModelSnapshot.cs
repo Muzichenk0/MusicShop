@@ -32,6 +32,9 @@ namespace MusicShop.Migrator.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("OfferId")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid");
 
@@ -39,6 +42,8 @@ namespace MusicShop.Migrator.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OfferId");
 
                     b.HasIndex("ParentId");
 
@@ -108,33 +113,6 @@ namespace MusicShop.Migrator.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Offer");
-                });
-
-            modelBuilder.Entity("MusicShop.Domain.Models.Offer.OfferCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<Guid?>("OfferCategoryId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("OfferId")
-                        .IsRequired()
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OfferCategoryId");
-
-                    b.HasIndex("OfferId");
-
-                    b.ToTable("OfferCategory");
                 });
 
             modelBuilder.Entity("MusicShop.Domain.Models.Review.SellerReview", b =>
@@ -213,6 +191,11 @@ namespace MusicShop.Migrator.Migrations
 
             modelBuilder.Entity("MusicShop.Domain.Models.MusicalInstrument.InstrumentType.InstrumentType", b =>
                 {
+                    b.HasOne("MusicShop.Domain.Models.Offer.Offer", "Offer")
+                        .WithMany("OfferCategories")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("MusicShop.Domain.Models.MusicalInstrument.InstrumentType.InstrumentType", "Parent")
                         .WithMany("SubTypes")
                         .HasForeignKey("ParentId")
@@ -221,6 +204,8 @@ namespace MusicShop.Migrator.Migrations
                     b.HasOne("MusicShop.Domain.Models.User.User", null)
                         .WithMany("MusicalSpecialization")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Offer");
 
                     b.Navigation("Parent");
                 });
@@ -249,21 +234,6 @@ namespace MusicShop.Migrator.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MusicShop.Domain.Models.Offer.OfferCategory", b =>
-                {
-                    b.HasOne("MusicShop.Domain.Models.Offer.OfferCategory", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("OfferCategoryId");
-
-                    b.HasOne("MusicShop.Domain.Models.Offer.Offer", "Offer")
-                        .WithMany("OfferCategories")
-                        .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Offer");
                 });
 
             modelBuilder.Entity("MusicShop.Domain.Models.Review.SellerReview", b =>
@@ -296,11 +266,6 @@ namespace MusicShop.Migrator.Migrations
                     b.Navigation("InstrumentsToOffer");
 
                     b.Navigation("OfferCategories");
-                });
-
-            modelBuilder.Entity("MusicShop.Domain.Models.Offer.OfferCategory", b =>
-                {
-                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("MusicShop.Domain.Models.User.User", b =>

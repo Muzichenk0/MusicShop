@@ -43,10 +43,5 @@ namespace MusicShop.Contracts.User
         /// </summary>
         [Required]
         public UserStatus Status { get; set; }
-        /// <summary>
-        /// Музыкальная специализация пользователя.
-        /// </summary>
-        [Required]
-        public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
     }
 }

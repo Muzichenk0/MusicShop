@@ -1,5 +1,6 @@
 ﻿using MusicShop.Domain.Models.ModelType;
 using MusicShop.Domain.Models.MusicalInstrument.InstrumentType;
+using MusicShop.Domain.Models.Offer;
 
 namespace MusicShop.Domain.Models.MusicalInstrument
 {

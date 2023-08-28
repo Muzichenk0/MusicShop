@@ -1,4 +1,5 @@
 ﻿using MusicShop.Domain.Models.ModelType;
+using MusicShop.Domain.Models.MusicalInstrument.InstrumentType;
 
 namespace MusicShop.Domain.Models.Offer
 {
@@ -34,9 +35,9 @@ namespace MusicShop.Domain.Models.Offer
         public double Discount { get; set; }
         /// <summary>
         /// Категории предложения.
-        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="Offer"/> и завис. <see cref="OfferCategory"/>
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="Offer"/> и завис. <see cref="InstrumentType"/>
         /// </summary>
-        public ICollection<OfferCategory> OfferCategories { get; set; }
+        public ICollection<InstrumentType> OfferCategories { get; set; }
         /// <summary>
         /// Пользователь, открывший предложение.
         /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User.User"/> и завис. <see cref="Offer"/>

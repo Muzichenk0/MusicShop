@@ -29,5 +29,16 @@ namespace MusicShop.Domain.Models.MusicalInstrument.InstrumentType
         /// Навигационное свойство в отношении один ко многим, между глав. сущностью <see cref="InstrumentType"/> и завис. <see cref="MusicalInstrument"/>
         /// </summary>
         public ICollection<MusicalInstrument> MusicalInstruments { get; set; }
+        /// <summary>
+        /// Предложение, частью которого является текущий тип инструмента.
+        /// Навигационное свойство для отношения один ко многим, между глав. сущностью <see cref="Offer.Offer"/> и завис. <see cref="InstrumentType"/>.S
+        /// </summary>
+        public Offer.Offer? Offer { get; set; }
+        /// <summary>
+        /// Идентификатор предложения, частью которого является текущая категория.
+        /// Внешний ключ для отношения один ко многим, между глав. сущностью <see cref="Offer.Offer"/> и завис. <see cref="InstrumentType"/>.S
+        /// </summary>
+        public Guid? OfferId { get; set; }
+
     }
 }

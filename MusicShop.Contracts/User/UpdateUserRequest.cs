@@ -44,8 +44,8 @@ namespace MusicShop.Contracts.User
         [Required]
         [PhoneNumber]
         public string PhoneNumber { get; set; }
-        [Required]
-        public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
+        //[Required]
+        //public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
         //[Required]
         //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
         ///// <summary>

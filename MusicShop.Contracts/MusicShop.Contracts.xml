@@ -144,11 +144,6 @@
             Статус учетной записи пользователя
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.User.CreateUserRequest.MusicalSpecialization">
-            <summary>
-            Музыкальная специализация пользователя.
-            </summary>
-        </member>
         <member name="T:MusicShop.Contracts.User.DeleteUserRequest">
             <summary>
             ДТО модель, описывающая интерфейс, доступный запросу на удаление пользователя.
@@ -263,6 +258,11 @@
         <member name="P:MusicShop.Contracts.User.UserInfoResponse.SendedReviews">
             <summary>
             Отправленные оценки пользователя, как покупателя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.MusicalSpecialization">
+            <summary>
+            Музыкальная специализация текущего пользователя.
             </summary>
         </member>
     </members>
