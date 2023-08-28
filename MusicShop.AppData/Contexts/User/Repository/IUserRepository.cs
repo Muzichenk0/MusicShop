@@ -3,7 +3,7 @@
 namespace MusicShop.AppData.Contexts.User.Repository
 {
     /// <summary>
-    /// Абстрактный тип, описывающий внешний интерфейс репозитория пользователя.
+    /// Абстрактный тип - контракт, описывающий внешний интерфейс репозитория пользователя.
     /// </summary>
     public interface IUserRepository
     {

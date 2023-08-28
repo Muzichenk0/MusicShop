@@ -9,11 +9,6 @@
             ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Id">
-            <summary>
-            Идентификатор отзыва.
-            </summary>
-        </member>
         <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Topic">
             <summary>
             Заголовок отзыва.
@@ -79,6 +74,16 @@
             Описание отзыва.
             </summary>
         </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.UserId">
+            <summary>
+            Идентификатор продавца, отзыв описан о котором
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.SenderId">
+            <summary>
+            Идентификатор пользователя, отправившего отзыв.
+            </summary>
+        </member>
         <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Date">
             <summary>
             Дата создания отзыва.
@@ -107,11 +112,6 @@
         <member name="T:MusicShop.Contracts.User.CreateUserRequest">
             <summary>
             ДТО модель, определяющая интерфейс, доступный запросу на создание пользователя.
-            </summary>
-        </member>
-        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Id">
-            <summary>
-            Идентификатор пользователя
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.User.CreateUserRequest.Login">
@@ -258,6 +258,11 @@
         <member name="P:MusicShop.Contracts.User.UserInfoResponse.SendedReviews">
             <summary>
             Отправленные оценки пользователя, как покупателя.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.MusicalSpecialization">
+            <summary>
+            Музыкальная специализация текущего пользователя.
             </summary>
         </member>
     </members>

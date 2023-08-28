@@ -12,7 +12,6 @@ namespace MusicShop.Infrastructure.Repositories.Base
         /// Контекст, связывающий с таблицами БД.
         /// </summary>
         protected DbContext DbContext { get; set; }
-
         /// <summary>
         /// Текущая таблица из БД, сформированная на основе сущности <see cref="T"/>
         /// </summary>

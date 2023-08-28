@@ -1,4 +1,5 @@
-﻿using MusicShop.Contracts.User.Enums;
+﻿using MusicShop.Contracts.InstrumentType;
+using MusicShop.Contracts.User.Enums;
 using MusicShop.Contracts.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,11 +10,6 @@ namespace MusicShop.Contracts.User
     /// </summary>
     public sealed class CreateUserRequest
     {
-        /// <summary>
-        /// Идентификатор пользователя
-        /// </summary>
-        [Required]
-        public Guid Id { get; set; }
         /// <summary>
         /// Логин пользователя
         /// </summary>

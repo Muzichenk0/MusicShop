@@ -26,7 +26,7 @@ namespace MusicShop.DataAccess.Contexts.User
         {
             IQueryable<Domain.Models.User.User> users = await _repository.GetAllAsync(cancelToken);
 
-            //_logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
 
             return users
                 .Include(u => u.SendedReviews)
@@ -58,8 +58,9 @@ namespace MusicShop.DataAccess.Contexts.User
         public async Task UpdateAsync(Guid userId, UpdateUserRequest userToUpdate, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToUpdate)} trying to be updated into database");
+
             Domain.Models.User.User user = await _repository.GetByIdAsync(userId,cancelToken);
-            //return _repository.UpdateAsync(_mapper.Map<Domain.Models.User.User>(userToUpdate), cancelToken);
+
              await _repository
             .UpdateAsync(_mapper.Map(userToUpdate, user), cancelToken);
         }

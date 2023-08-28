@@ -18,6 +18,10 @@ namespace MusicShop.DataAccess.Contexts.User
             builder
                 .HasKey(u => u.Id);
             builder
+                .Property(u => u.Id)
+                .HasDefaultValue(Guid.NewGuid());
+
+            builder
                 .Property(u => u.Rating);
             builder
                 .HasMany(u => u.Offers)

@@ -5,7 +5,7 @@ using MusicShop.Contracts.SellerReview;
 namespace MusicShop.AppData.Contexts.SellerReview.Services
 {
     /// <summary>
-    /// Абстрактный тип, описывающий внешний интерфейс модели сервиса, для отзывов о покупателе.
+    /// Абстрактный тип - контракт, описывающий внешний интерфейс модели сервиса, для отзывов о покупателе.
     /// </summary>
     public interface ISellerReviewService
     {

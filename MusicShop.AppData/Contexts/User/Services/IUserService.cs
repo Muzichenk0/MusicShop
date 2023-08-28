@@ -3,7 +3,7 @@
 namespace MusicShop.AppData.Contexts.User.Services
 {
     /// <summary>
-    /// Абстрактная сущность, описывающая внешний интерфейс модели сервиса для пользователя.
+    /// Абстрактный тип - контракт, описывающая внешний интерфейс модели сервиса для пользователя.
     /// </summary>
     public interface IUserService
     {

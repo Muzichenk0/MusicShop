@@ -1,30 +1,3 @@
-#region auto-created expressions/instructions
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-
-//builder.Services.AddControllers();
-//// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.MapControllers();
-
-//app.Run(); 
-#endregion
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DataAccess.Db;
@@ -35,11 +8,19 @@ using Microsoft.OpenApi.Models;
 using MusicShop.Contracts.User;
 using MusicShop.Infrastructure.MapProfile.SellerReview;
 using MusicShop.Contracts.SellerReview;
+using MusicShop.Infrastructure.MapProfile.InstrumentType;
 
 namespace MusicShop.WebApi
 {
+    /// <summary>
+    ///  онкретна€ ссылочна€ модель, определ€юща€ интерфейс модели программы.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// “очка дл€ входа в программное решение, асинхронно запускающа€с€.
+        /// </summary>
+        /// <param name="args">»нструкции из CLI</param>
         public static async Task Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -128,11 +109,16 @@ namespace MusicShop.WebApi
             await app
                 .RunAsync();
         }
+        /// <summary>
+        /// Ёлемент поведени€ статического интерфейса дл€ получени€ настроек механизма соотношени€(маппинга).
+        /// </summary>
+        /// <returns>Ёкземпл€р <see cref="MapperConfiguration"/></returns>
         public static MapperConfiguration GetMapperConfiguration()
             => new MapperConfiguration(cfgExpression =>
             {
                 cfgExpression.AddProfile<UserProfile>();
                 cfgExpression.AddProfile<SellerReviewProfile>();
+                cfgExpression.AddProfile<InstrumentTypeProfile>();
             });
     }
 }

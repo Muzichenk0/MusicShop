@@ -1,4 +1,5 @@
-﻿using MusicShop.Contracts.User.Enums;
+﻿using MusicShop.Contracts.InstrumentType;
+using MusicShop.Contracts.User.Enums;
 using MusicShop.Contracts.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -43,6 +44,8 @@ namespace MusicShop.Contracts.User
         [Required]
         [PhoneNumber]
         public string PhoneNumber { get; set; }
+        //[Required]
+        //public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
         //[Required]
         //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
         ///// <summary>

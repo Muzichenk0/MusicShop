@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -26,31 +27,6 @@ namespace MusicShop.Migrator.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InstrumentType",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ParentId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CategoryName = table.Column<string>(type: "text", nullable: false),
-                    InstrumentTypeId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InstrumentType", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_InstrumentType_InstrumentType_InstrumentTypeId",
-                        column: x => x.InstrumentTypeId,
-                        principalTable: "InstrumentType",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InstrumentType_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -105,6 +81,38 @@ namespace MusicShop.Migrator.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InstrumentType",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uuid", nullable: true),
+                    CategoryName = table.Column<string>(type: "text", nullable: false),
+                    OfferId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InstrumentType", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InstrumentType_InstrumentType_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "InstrumentType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InstrumentType_Offer_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "Offer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_InstrumentType_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MusicalInstrument",
                 columns: table => new
                 {
@@ -131,35 +139,15 @@ namespace MusicShop.Migrator.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "OfferCategory",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    OfferId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OfferCategoryId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OfferCategory", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OfferCategory_OfferCategory_OfferCategoryId",
-                        column: x => x.OfferCategoryId,
-                        principalTable: "OfferCategory",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OfferCategory_Offer_OfferId",
-                        column: x => x.OfferId,
-                        principalTable: "Offer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_InstrumentType_OfferId",
+                table: "InstrumentType",
+                column: "OfferId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstrumentType_InstrumentTypeId",
+                name: "IX_InstrumentType_ParentId",
                 table: "InstrumentType",
-                column: "InstrumentTypeId");
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstrumentType_UserId",
@@ -182,16 +170,6 @@ namespace MusicShop.Migrator.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OfferCategory_OfferCategoryId",
-                table: "OfferCategory",
-                column: "OfferCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OfferCategory_OfferId",
-                table: "OfferCategory",
-                column: "OfferId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SellerReview_SenderId",
                 table: "SellerReview",
                 column: "SenderId");
@@ -207,9 +185,6 @@ namespace MusicShop.Migrator.Migrations
         {
             migrationBuilder.DropTable(
                 name: "MusicalInstrument");
-
-            migrationBuilder.DropTable(
-                name: "OfferCategory");
 
             migrationBuilder.DropTable(
                 name: "SellerReview");
