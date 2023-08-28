@@ -7,7 +7,7 @@ using System.Text.Json;
 namespace MusicShop.WebApi.Controllers.User
 {
     /// <summary>
-    /// Контроллер с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
+    /// Модель - контроллер, с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
     /// </summary>
     [ApiController()]
     public class UserController : ControllerBase
@@ -37,7 +37,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost("/creatingUser")]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CreateUserRequest),(int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest userToAdd, CancellationToken token = default)
@@ -54,7 +54,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet("/users")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IQueryable<UserInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetUsersAsync(CancellationToken token = default)
         {
@@ -71,8 +71,8 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/user")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [HttpGet("/user")] 
+        [ProducesResponseType(typeof(UserInfoResponse),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetUserByIdAsync([FromHeader]Guid userId, CancellationToken token = default)

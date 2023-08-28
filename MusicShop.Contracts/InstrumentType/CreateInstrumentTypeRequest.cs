@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MusicShop.Contracts.InstrumentType
+﻿namespace MusicShop.Contracts.InstrumentType
 {
-    internal class CreateInstrumentTypeRequest
+    public class CreateInstrumentTypeRequest
     {
+        public Guid? ParentId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicShop.AppData.Contexts.SellerReview.Services;
 using MusicShop.Contracts.SellerReview;
+using MusicShop.Contracts.User;
 using System.Net;
 using System.Text.Json;
 
@@ -19,11 +20,11 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <summary>
         /// Добавление нового отзыва о продавце, асинхронно.
         /// </summary>
-        /// <param name="sReviewToAdd"></param>
+        /// <param name="sReviewToAdd">Информация об отзыве о продавце, для добавления.</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost("/creatingSellerReview")]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CreateSellerReviewRequest),(int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateSellerReviewAsync([FromBody] CreateSellerReviewRequest sReviewToAdd, CancellationToken token = default)
@@ -40,7 +41,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet("/sellerReviews")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IQueryable<SellerReviewResponseInfo>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllSellerReviewsAsync(CancellationToken token = default)
         {
@@ -53,11 +54,11 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <summary>
         /// Получение отзыва о продавце, чей ID согласован с <paramref name="sReviewId"/>, асинхронно.
         /// </summary>
-        /// <param name="sReviewId"></param>
+        /// <param name="sReviewId">Идентификатор отзыва о продавце</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet("/sellerReview")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(SellerReviewResponseInfo),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetSellerReviewByIdAsync(Guid sReviewId, CancellationToken token = default)
@@ -71,7 +72,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <summary>
         /// Удаление отзыва о продавце, асинхронно.
         /// </summary>
-        /// <param name="sReviewToDelete"></param>
+        /// <param name="sReviewToDelete">Информация об отзыве о продавце, для удаления</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpDelete("/deletingSellerReview")]

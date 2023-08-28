@@ -4,11 +4,56 @@
         <name>MusicShop.WebApi</name>
     </assembly>
     <members>
+        <member name="T:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.CreateInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="instTypeToAdd"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetAllInstrumentTypesAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetInstrumentByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="instTypeId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.DeleteInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="instTypeToDelete"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.UpdateInstrumentTypeAsync(System.Guid,MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="instTypeId"></param>
+            <param name="instTypeToUpdate"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.CreateSellerReviewAsync(MusicShop.Contracts.SellerReview.CreateSellerReviewRequest,System.Threading.CancellationToken)">
             <summary>
             Добавление нового отзыва о продавце, асинхронно.
             </summary>
-            <param name="sReviewToAdd"></param>
+            <param name="sReviewToAdd">Информация об отзыве о продавце, для добавления.</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
@@ -23,7 +68,7 @@
             <summary>
             Получение отзыва о продавце, чей ID согласован с <paramref name="sReviewId"/>, асинхронно.
             </summary>
-            <param name="sReviewId"></param>
+            <param name="sReviewId">Идентификатор отзыва о продавце</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
@@ -31,7 +76,7 @@
             <summary>
             Удаление отзыва о продавце, асинхронно.
             </summary>
-            <param name="sReviewToDelete"></param>
+            <param name="sReviewToDelete">Информация об отзыве о продавце, для удаления</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
@@ -46,7 +91,7 @@
         </member>
         <member name="T:MusicShop.WebApi.Controllers.User.UserController">
             <summary>
-            Контроллер с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
+            Модель - контроллер, с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
             </summary>
         </member>
         <member name="F:MusicShop.WebApi.Controllers.User.UserController._userRepository">
@@ -83,7 +128,7 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetUserByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Получение пользователя с помощью <paramref name="userId"/>
+            Получение пользователя с помощью <paramref name="userId"/>, асинхронно.
             </summary>
             <param name="userId">Идентификатор пользователя</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
@@ -105,6 +150,23 @@
             <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
+        </member>
+        <member name="T:MusicShop.WebApi.Program">
+            <summary>
+            Конкретная ссылочная модель, определяющая интерфейс модели программы.
+            </summary>
+        </member>
+        <member name="M:MusicShop.WebApi.Program.Main(System.String[])">
+            <summary>
+            Точка для входа в программное решение, асинхронно запускающаяся.
+            </summary>
+            <param name="args">Инструкции из CLI</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Program.GetMapperConfiguration">
+            <summary>
+            Элемент поведения статического интерфейса для получения настроек механизма соотношения(маппинга).
+            </summary>
+            <returns>Экземпляр <see cref="T:AutoMapper.MapperConfiguration"/></returns>
         </member>
     </members>
 </doc>

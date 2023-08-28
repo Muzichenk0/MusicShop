@@ -8,11 +8,6 @@ namespace MusicShop.Contracts.SellerReview
     public class CreateSellerReviewRequest
     {
         /// <summary>
-        /// Идентификатор отзыва.
-        /// </summary>
-        [Required]
-        public Guid Id { get; set; }
-        /// <summary>
         /// Заголовок отзыва.
         /// </summary>
         [Required]

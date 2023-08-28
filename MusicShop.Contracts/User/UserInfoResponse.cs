@@ -1,4 +1,5 @@
-﻿using MusicShop.Contracts.SellerReview;
+﻿using MusicShop.Contracts.InstrumentType;
+using MusicShop.Contracts.SellerReview;
 using MusicShop.Contracts.User.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -59,5 +60,7 @@ namespace MusicShop.Contracts.User
         /// </summary>
         [Required]
         public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
+        [Required]
+        public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
     }
 }

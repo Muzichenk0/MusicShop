@@ -9,11 +9,6 @@
             ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Id">
-            <summary>
-            Идентификатор отзыва.
-            </summary>
-        </member>
         <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Topic">
             <summary>
             Заголовок отзыва.
@@ -119,11 +114,6 @@
             ДТО модель, определяющая интерфейс, доступный запросу на создание пользователя.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Id">
-            <summary>
-            Идентификатор пользователя
-            </summary>
-        </member>
         <member name="P:MusicShop.Contracts.User.CreateUserRequest.Login">
             <summary>
             Логин пользователя
@@ -152,6 +142,11 @@
         <member name="P:MusicShop.Contracts.User.CreateUserRequest.Status">
             <summary>
             Статус учетной записи пользователя
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.MusicalSpecialization">
+            <summary>
+            Музыкальная специализация пользователя.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.User.DeleteUserRequest">

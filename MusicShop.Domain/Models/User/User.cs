@@ -1,5 +1,5 @@
 ﻿using MusicShop.Domain.Models.ModelType;
-using MusicShop.Domain.Models.MusicalInstrument.MusicalInstrumentType;
+using MusicShop.Domain.Models.MusicalInstrument.InstrumentType;
 
 namespace MusicShop.Domain.Models.User
 {
@@ -32,7 +32,7 @@ namespace MusicShop.Domain.Models.User
         /// <summary>
         /// Инструментальная специализация.
         /// </summary>
-        public IReadOnlyCollection<InstrumentType?> MusicalSpecialization { get; set; }
+        public IReadOnlyCollection<InstrumentType> MusicalSpecialization { get; set; }
         /// <summary>
         /// Номер телефона пользователя.
         /// </summary>

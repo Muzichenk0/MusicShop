@@ -1,6 +1,6 @@
 ﻿using MusicShop.Domain.Models.ModelType;
 
-namespace MusicShop.Domain.Models.MusicalInstrument.MusicalInstrumentType
+namespace MusicShop.Domain.Models.MusicalInstrument.InstrumentType
 {
     /// <summary>
     /// Cущность, предоставляющая константы -  типы музыкальных инструментов.
@@ -20,6 +20,10 @@ namespace MusicShop.Domain.Models.MusicalInstrument.MusicalInstrumentType
         /// Подтипы, производные, для текущей категории.
         /// </summary>
         public ICollection<InstrumentType?> SubTypes { get; set; }
+        /// <summary>
+        /// Навигационное свойство, родительский тип инструмента.
+        /// </summary>
+        public InstrumentType? Parent { get; set; }
         /// <summary>
         /// Музыкальные инструменты, входящие в текущую категорию.
         /// Навигационное свойство в отношении один ко многим, между глав. сущностью <see cref="InstrumentType"/> и завис. <see cref="MusicalInstrument"/>
