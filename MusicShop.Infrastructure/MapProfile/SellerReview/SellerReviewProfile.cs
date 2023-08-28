@@ -2,6 +2,9 @@
 using MusicShop.Contracts.SellerReview;
 namespace MusicShop.Infrastructure.MapProfile.SellerReview
 {
+    /// <summary>
+    /// Ссылочный, конкретный тип, используемый для соотношения типа <see cref="Domain.Models.Review.SellerReview"/> с иными и наоборот.
+    /// </summary>
     public class SellerReviewProfile : Profile
     {
         public SellerReviewProfile()

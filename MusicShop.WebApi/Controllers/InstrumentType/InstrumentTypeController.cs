@@ -6,12 +6,18 @@ using System.Net;
 namespace MusicShop.WebApi.Controllers.InstrumentType
 {
     /// <summary>
-    /// 
+    /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - тип инструмента.
     /// </summary>
     [ApiController]
     public class InstrumentTypeController : ControllerBase
     {
+        /// <summary>
+        /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="IInstrumentTypeService"></see>
+        /// </summary>
         private readonly IInstrumentTypeService _instTypeService;
+        /// <summary>
+        /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="ILogger"></see>
+        /// </summary>
         private readonly ILogger<InstrumentTypeController> _logger;
         public InstrumentTypeController(IInstrumentTypeService instTypeService, ILogger<InstrumentTypeController> logger)
         {
@@ -25,7 +31,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpPost("/creatingInstrumentType")]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CreateInstrumentTypeRequest),(int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> CreateInstrumentTypeAsync([FromBody]CreateInstrumentTypeRequest instTypeToAdd, CancellationToken token = default)
@@ -40,7 +46,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet("/instrumentTypes")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IQueryable<InstrumentTypeResponseInfo>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllInstrumentTypesAsync(CancellationToken token = default)
         {
@@ -55,7 +61,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet("/instrumentType")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(InstrumentTypeResponseInfo),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetInstrumentByIdAsync([FromHeader]Guid instTypeId, CancellationToken token = default)
@@ -95,8 +101,5 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
             await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, instTypeToUpdate, token);
             return Ok();
         }
-
-
-
     }
 }

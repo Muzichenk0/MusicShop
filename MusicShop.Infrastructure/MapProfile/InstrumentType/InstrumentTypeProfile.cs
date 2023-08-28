@@ -3,6 +3,9 @@ using MusicShop.Contracts.InstrumentType;
 
 namespace MusicShop.Infrastructure.MapProfile.InstrumentType
 {
+    /// <summary>
+    /// Ссылочный, конкретный тип, используемый для соотношения типа <see cref="Domain.Models.MusicalInstrument.InstrumentType.InstrumentType"/> с иными и наоборот.
+    /// </summary>
     public class InstrumentTypeProfile : Profile
     {
         public InstrumentTypeProfile()

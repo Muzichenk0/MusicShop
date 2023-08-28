@@ -6,7 +6,17 @@
     <members>
         <member name="T:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController">
             <summary>
-            
+            Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - тип инструмента.
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController._instTypeService">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:MusicShop.AppData.Contexts.MusicalInstrument.InstrumentType.Services.IInstrumentTypeService"></see>
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController._logger">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
             </summary>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.CreateInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest,System.Threading.CancellationToken)">
@@ -48,6 +58,44 @@
             <param name="instTypeToUpdate"></param>
             <param name="token"></param>
             <returns></returns>
+        </member>
+        <member name="T:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController">
+            <summary>
+            Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - музыкальный инструмент.
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController._musInstrumentService">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:MusicShop.AppData.Contexts.MusicalInstrument.Services.IMusicalInstrumentService"></see>
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController._logger">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
+            </summary>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.CreateMusicInstrumentAsync(MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="_musInstrumentToAdd"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController">
+            <summary>
+            Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - отзыв о продавце.
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController._sReviewService">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:MusicShop.AppData.Contexts.SellerReview.Services.ISellerReviewService"></see>
+            </summary>
+        </member>
+        <member name="F:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController._logger">
+            <summary>
+            Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
+            </summary>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.CreateSellerReviewAsync(MusicShop.Contracts.SellerReview.CreateSellerReviewRequest,System.Threading.CancellationToken)">
             <summary>
@@ -91,7 +139,7 @@
         </member>
         <member name="T:MusicShop.WebApi.Controllers.User.UserController">
             <summary>
-            Модель - контроллер, с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
+            Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - пользователь.
             </summary>
         </member>
         <member name="F:MusicShop.WebApi.Controllers.User.UserController._userRepository">

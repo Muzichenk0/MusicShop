@@ -4,10 +4,14 @@ using MusicShop.Contracts.SellerReview;
 
 namespace MusicShop.AppData.Contexts.SellerReview.Services
 {
+    /// <summary>
+    /// Конкретный ссылочный тип, реализующий интерфейс для сущности - сервис отзыва о продавце.
+    /// </summary>
     public class SellerReviewService : ISellerReviewService
     {
         private readonly ISellerReviewRepository _repository;
-        public SellerReviewService(ISellerReviewRepository repository) => _repository = repository;
+        public SellerReviewService(ISellerReviewRepository repository)
+            => _repository = repository;
 
         public async Task CreateReviewAsync(CreateSellerReviewRequest sReviewToAdd, CancellationToken cancelToken = default)
             => await _repository.AddAsync(sReviewToAdd, cancelToken);

@@ -9,6 +9,7 @@ using MusicShop.Contracts.User;
 using MusicShop.Infrastructure.MapProfile.SellerReview;
 using MusicShop.Contracts.SellerReview;
 using MusicShop.Infrastructure.MapProfile.InstrumentType;
+using MusicShop.Infrastructure.MapProfile.MusicalInstrument;
 
 namespace MusicShop.WebApi
 {
@@ -119,6 +120,7 @@ namespace MusicShop.WebApi
                 cfgExpression.AddProfile<UserProfile>();
                 cfgExpression.AddProfile<SellerReviewProfile>();
                 cfgExpression.AddProfile<InstrumentTypeProfile>();
+                cfgExpression.AddProfile<MusicalInstrumentProfile>();
             });
     }
 }
