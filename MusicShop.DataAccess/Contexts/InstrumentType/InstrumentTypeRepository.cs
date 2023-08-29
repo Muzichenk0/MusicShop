@@ -48,7 +48,7 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         {
             var foundInstType = (await _instTypeRepository.GetAllAsync())
                 .Include(t => t.SubTypes)
-                .ThenInclude(t => t.SubTypes)
+                .ThenInclude(t => t!.SubTypes)
                 .First(u => u.Id == instTypeId);
 
 

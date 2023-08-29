@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MusicShop.AppData.Contexts.MusicalInstrument.Repository;
 using MusicShop.Contracts.MusicalInstrument;
@@ -26,7 +27,10 @@ namespace MusicShop.DataAccess.Contexts.MusicalInstrument
 
         public async Task<IQueryable<MusicalInstrumentResponseInfo>> GetAllAsync(CancellationToken cancelToken = default)
         {
-            var musInstruments = await _musInstrumentRepository.GetAllAsync(cancelToken);
+            var musInstruments = (await _musInstrumentRepository.GetAllAsync(cancelToken))
+                .Include(i => i.InstrumentType)
+                .ThenInclude(t => t.SubTypes)
+                .ThenInclude(t => t!.SubTypes);
 
             return musInstruments
                 .Select(i => _mapper.Map<MusicalInstrumentResponseInfo>(i))
@@ -35,7 +39,11 @@ namespace MusicShop.DataAccess.Contexts.MusicalInstrument
 
         public async Task<MusicalInstrumentResponseInfo> GetByIdAsync(Guid musInstrumentId, CancellationToken cancelToken = default)
         {
-            var foundMusInstrument = await _musInstrumentRepository.GetByIdAsync(musInstrumentId, cancelToken);
+            var foundMusInstrument = (await _musInstrumentRepository.GetAllAsync(cancelToken))
+                .Include(i => i.InstrumentType)
+                .ThenInclude(t => t.SubTypes)
+                .ThenInclude(t => t!.SubTypes)
+                .First(i => i.Id == musInstrumentId);
 
             return _mapper.Map<MusicalInstrumentResponseInfo>(foundMusInstrument);
         }

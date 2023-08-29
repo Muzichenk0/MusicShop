@@ -74,11 +74,49 @@
             Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
             </summary>
         </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.#ctor(MusicShop.AppData.Contexts.MusicalInstrument.Services.IMusicalInstrumentService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController})">
+            <summary>
+            
+            </summary>
+            <param name="musInstrumentService"></param>
+            <param name="logger"></param>
+        </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.CreateMusicInstrumentAsync(MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest,System.Threading.CancellationToken)">
             <summary>
             
             </summary>
             <param name="_musInstrumentToAdd"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.GetAllMusicInstrumentsAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.GetMusicInstrumentByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="musicInstrument"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.DeletingMusicInstrumentAsync(MusicShop.Contracts.MusicalInstrument.DeleteMusicalInstrumentRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="musicInstrumentToDelete"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.UpdatingMusicInstrumentAsync(System.Guid,MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="musicInstrumentId"></param>
+            <param name="musicInstrumentToUpdate"></param>
             <param name="token"></param>
             <returns></returns>
         </member>

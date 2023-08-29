@@ -19,6 +19,11 @@ namespace MusicShop.WebApi.Controllers.MusicalInstrument
         /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="ILogger"></see>
         /// </summary>
         private readonly ILogger<MusicalInstrumentController> _logger;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="musInstrumentService"></param>
+        /// <param name="logger"></param>
         public MusicalInstrumentController(IMusicalInstrumentService musInstrumentService, ILogger<MusicalInstrumentController> logger)
         {
             _musInstrumentService = musInstrumentService;
@@ -29,13 +34,65 @@ namespace MusicShop.WebApi.Controllers.MusicalInstrument
         /// </summary>
         /// <param name="_musInstrumentToAdd"></param>
         /// <param name="token"></param>
-        /// <returns></returns>
         [HttpPost("/creatingMusicalInstrument")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateMusicInstrumentAsync([FromBody]CreateMusicalInstrumentRequest _musInstrumentToAdd, CancellationToken token = default)
+        public async Task<IActionResult> CreateMusicInstrumentAsync([FromBody]CreateMusicalInstrumentRequest musInstrumentToAdd, CancellationToken token = default)
         {
-            await _musInstrumentService.AddMusicInstrumentAsync(_musInstrumentToAdd, token);
-            return Created("/creatingMusicalInstrument", _musInstrumentToAdd);
+            await _musInstrumentService.AddMusicInstrumentAsync(musInstrumentToAdd, token);
+            return Created("/creatingMusicalInstrument", musInstrumentToAdd);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet("/musicalInstruments")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetAllMusicInstrumentsAsync(CancellationToken token = default)
+        {
+            IQueryable<MusicalInstrumentResponseInfo> musInstruments = await _musInstrumentService.GetAllMusicInstrumentsAsync(token);
+            return Ok(musInstruments);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="musicInstrument"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet("/musicalInstrument")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetMusicInstrumentByIdAsync(Guid musicInstrument, CancellationToken token = default)
+        {
+            MusicalInstrumentResponseInfo musicInst = await _musInstrumentService.GetMusicInstrumentByIdAsync(musicInstrument, token);
+            return Ok(musicInst);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="musicInstrumentToDelete"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpDelete("/deletingMusicalInstrument")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeletingMusicInstrumentAsync([FromBody]DeleteMusicalInstrumentRequest musicInstrumentToDelete, CancellationToken token = default)
+        {
+            await _musInstrumentService.DeleteMusicInstrumentAsync(musicInstrumentToDelete,token);
+            return Ok();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="musicInstrumentId"></param>
+        /// <param name="musicInstrumentToUpdate"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPut("/updatingMusicalInstrument")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdatingMusicInstrumentAsync(Guid musicInstrumentId,[FromBody]UpdateMusicalInstrumentRequest musicInstrumentToUpdate, CancellationToken token = default)
+        {
+            await _musInstrumentService.UpdateMusicInstrumentAsync(musicInstrumentId,musicInstrumentToUpdate, token);
+            return Ok();
+        }
+        
     }
 }
