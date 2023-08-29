@@ -4,6 +4,116 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="P:MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest.ParentId">
+            <summary>
+            Идентификатор родительского типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest.CategoryName">
+            <summary>
+            Наименование текущего типа.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest.Id">
+            <summary>
+            Идентификатор типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.Id">
+            <summary>
+            Идентификатор типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.ParentId">
+            <summary>
+            Идентификатор родительского типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.CategoryName">
+            <summary>
+            Наименование текущего типа
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.SubTypes">
+            <summary>
+            Коллекция из типов инструментов. Может содержать значения по умолчанию, для ссылочного типа null.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest.CategoryName">
+            <summary>
+            Наименование текущего типа.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.InstrumentTypeId">
+            <summary>
+            Идентификатор типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.InstrumentModel">
+            <summary>
+            Модель музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.DateOfCreation">
+            <summary>
+            Дата производства описываемого инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.CreationCountry">
+            <summary>
+            Имя страны где инструмент был создан.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.DeleteMusicalInstrumentRequest.Id">
+            <summary>
+            Идентификатор музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.Id">
+            <summary>
+            Идентификатор музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.InstrumentType">
+            <summary>
+            Тип музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.InstrumentModel">
+            <summary>
+            Модель музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.DateOfCreation">
+            <summary>
+            Дата производства данного музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.CreationCountry">
+            <summary>
+            Имя страны, где был произведен инструмент.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.InstrumentTypeId">
+            <summary>
+            Идентификатор типа инструмента
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.InstrumentModel">
+            <summary>
+            Модель инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.DateOfCreation">
+            <summary>
+            Дата производства музыкального инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.CreationCountry">
+            <summary>
+            Страна, где был произедён музыкальный инструмент.
+            </summary>
+        </member>
         <member name="T:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest">
             <summary>
             ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.

@@ -18,9 +18,8 @@ namespace MusicShop.DataAccess.Contexts.User
             builder
                 .HasKey(u => u.Id);
             builder
-                .Property(u => u.Id)
-                .HasDefaultValue(Guid.NewGuid());
-
+                .Property(u => u.RegistratedIn)
+                .HasConversion(d => d, d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
             builder
                 .Property(u => u.Rating);
             builder
