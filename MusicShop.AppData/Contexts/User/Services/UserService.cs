@@ -3,6 +3,9 @@ using MusicShop.Contracts.User;
 
 namespace MusicShop.AppData.Contexts.User.Services
 {
+    /// <summary>
+    /// Конкретный ссылочный тип, реализующий интерфейс для сущности - сервис пользователя.
+    /// </summary>
     public sealed class UserService : IUserService
     {
         private readonly IUserRepository _repository;

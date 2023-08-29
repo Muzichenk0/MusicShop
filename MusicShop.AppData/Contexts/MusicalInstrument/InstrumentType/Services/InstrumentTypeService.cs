@@ -3,6 +3,9 @@ using MusicShop.Contracts.InstrumentType;
 
 namespace MusicShop.AppData.Contexts.MusicalInstrument.InstrumentType.Services
 {
+    /// <summary>
+    /// Конкретный ссылочный тип, реализующий интерфейс для сущности - сервис типа инструмента.
+    /// </summary>
     public class InstrumentTypeService : IInstrumentTypeService
     {
         private readonly IInstrumentTypeRepository _instTypeRepository;

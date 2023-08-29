@@ -17,6 +17,9 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
             entityBuilder
                 .HasKey(r => r.Id);
             entityBuilder
+                .Property(r => r.Id)
+                .HasDefaultValue(Guid.NewGuid());
+            entityBuilder
                 .Property(r => r.Topic)
                 .HasMaxLength(65);
             entityBuilder

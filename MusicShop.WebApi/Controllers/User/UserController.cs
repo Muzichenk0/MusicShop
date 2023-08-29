@@ -7,7 +7,7 @@ using System.Text.Json;
 namespace MusicShop.WebApi.Controllers.User
 {
     /// <summary>
-    /// Модель - контроллер, с конечными точками, для обработки входящих запросов, нацеленных на сущность - пользователь.
+    /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - пользователь.
     /// </summary>
     [ApiController()]
     public class UserController : ControllerBase

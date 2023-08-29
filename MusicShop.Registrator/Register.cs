@@ -2,11 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using MusicShop.AppData.Contexts.MusicalInstrument.InstrumentType.Repository;
 using MusicShop.AppData.Contexts.MusicalInstrument.InstrumentType.Services;
+using MusicShop.AppData.Contexts.MusicalInstrument.Repository;
+using MusicShop.AppData.Contexts.MusicalInstrument.Services;
 using MusicShop.AppData.Contexts.SellerReview.Repository;
 using MusicShop.AppData.Contexts.SellerReview.Services;
 using MusicShop.AppData.Contexts.User.Repository;
 using MusicShop.AppData.Contexts.User.Services;
 using MusicShop.DataAccess.Contexts.InstrumentType;
+using MusicShop.DataAccess.Contexts.MusicalInstrument;
 using MusicShop.DataAccess.Contexts.SellerReview;
 using MusicShop.DataAccess.Contexts.User;
 using MusicShop.DataAccess.Db;
@@ -26,6 +29,8 @@ namespace MusicShop.Registrator
             .AddTransient<ISellerReviewService,SellerReviewService>()
             .AddTransient<IInstrumentTypeRepository,InstrumentTypeRepository>()
             .AddTransient<IInstrumentTypeService,InstrumentTypeService>()
+            .AddTransient<IMusicalInstrumentRepository,MusicalInstrumentRepository>()
+            .AddTransient<IMusicalInstrumentService,MusicalInstrumentService>()
             .AddLogging();
     }
 }

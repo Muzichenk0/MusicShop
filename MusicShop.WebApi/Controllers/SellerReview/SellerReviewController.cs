@@ -1,17 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicShop.AppData.Contexts.SellerReview.Services;
 using MusicShop.Contracts.SellerReview;
-using MusicShop.Contracts.User;
 using System.Net;
 using System.Text.Json;
 
 namespace MusicShop.WebApi.Controllers.SellerReview
 {
+    /// <summary>
+    /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - отзыв о продавце.
+    /// </summary>
     [ApiController]
     public sealed class SellerReviewController : ControllerBase
     {
-        private readonly ILogger<SellerReviewController> _logger;
+        /// <summary>
+        /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="ISellerReviewService"></see>
+        /// </summary>
         private readonly ISellerReviewService _sReviewService;
+        /// <summary>
+        /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="ILogger"></see>
+        /// </summary>
+        private readonly ILogger<SellerReviewController> _logger;
         public SellerReviewController(ILogger<SellerReviewController> logger, ISellerReviewService sellerReviewService)
         {
             _logger = logger;

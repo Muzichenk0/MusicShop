@@ -16,7 +16,10 @@ namespace MusicShop.DataAccess.Contexts.Offer
         public void Configure(EntityTypeBuilder<Domain.Models.Offer.Offer> builder)
         {
             builder
-                .HasKey(u => u.Id);
+                .HasKey(o => o.Id);
+            builder
+                .Property(o => o.Id)
+                .HasDefaultValue(Guid.NewGuid());
             builder
                 .HasMany(o => o.OfferCategories)
                 .WithOne(t => t.Offer)

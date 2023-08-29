@@ -17,6 +17,9 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         {
             builder
                 .HasKey(t => t.Id);
+            builder
+                .Property(t => t.Id)
+                .HasDefaultValue(Guid.NewGuid());
 
             builder
                 .HasMany(t => t.SubTypes)

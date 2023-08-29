@@ -1,5 +1,4 @@
-﻿using MusicShop.Contracts.InstrumentType;
-using MusicShop.Contracts.User.Enums;
+﻿using MusicShop.Contracts.User.Enums;
 using MusicShop.Contracts.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 
