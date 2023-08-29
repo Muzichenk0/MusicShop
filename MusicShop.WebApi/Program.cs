@@ -16,7 +16,7 @@ namespace MusicShop.WebApi
     /// <summary>
     /// Конкретная ссылочная модель, определяющая интерфейс модели программы.
     /// </summary>
-    public static class Program
+    public class Program
     {
         /// <summary>
         /// Точка для входа в программное решение, асинхронно запускающаяся.

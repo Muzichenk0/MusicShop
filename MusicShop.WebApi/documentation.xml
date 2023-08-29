@@ -19,45 +19,52 @@
             Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
             </summary>
         </member>
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.#ctor(MusicShop.AppData.Contexts.MusicalInstrument.InstrumentType.Services.IInstrumentTypeService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController})">
+            <summary>
+            Конструктор сущности <see cref="T:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController"/>
+            </summary>
+            <param name="instTypeService">Сервис типа инструмента, взятый из зависимости</param>
+            <param name="logger">Механизм логгирования</param>
+        </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.CreateInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Создание типа инструмента, асинхронно.
             </summary>
-            <param name="instTypeToAdd"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="instTypeToAdd">Тип инструмента для добавления</param>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetAllInstrumentTypesAsync(System.Threading.CancellationToken)">
             <summary>
-            
+            Получение всех типов инструментов, асинхронно.
             </summary>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetInstrumentByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            
+            Получение типа инструмента, чей ID, согласован с <paramref name="instTypeId"/>, асинхронно.
             </summary>
-            <param name="instTypeId"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="instTypeId">Идентификатор типа инструмента</param>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.DeleteInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Удаление типа инструмента, асинхронно.
             </summary>
-            <param name="instTypeToDelete"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="instTypeToDelete">Тип инструмента для удаления</param>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.UpdateInstrumentTypeAsync(System.Guid,MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Обновление типа инструмента, асинхронно.
             </summary>
-            <param name="instTypeId"></param>
-            <param name="instTypeToUpdate"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="instTypeId">Идентификатор типа инструмента</param>
+            <param name="instTypeToUpdate">Тип инструмента для удаления</param>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController">
             <summary>
@@ -76,49 +83,51 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.#ctor(MusicShop.AppData.Contexts.MusicalInstrument.Services.IMusicalInstrumentService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController})">
             <summary>
-            
+            Конструктор сущности<see cref="T:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController"/>
             </summary>
-            <param name="musInstrumentService"></param>
-            <param name="logger"></param>
+            <param name="musInstrumentService">Сервис музыкального инструмента, взятый из зависимости</param>
+            <param name="logger">Механизм для логгирования</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.CreateMusicInstrumentAsync(MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Создание музыкального инструмента, асинхронно.
             </summary>
-            <param name="_musInstrumentToAdd"></param>
-            <param name="token"></param>
+            <param name="musInstrumentToAdd"></param>
+            <param name="token">Жетон отмены асинхронной операции</param>   
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.GetAllMusicInstrumentsAsync(System.Threading.CancellationToken)">
             <summary>
-            
+            Получение всех музыкальных инструментов, асинхронно.
             </summary>
             <param name="token"></param>
-            <returns></returns>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.GetMusicInstrumentByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            
+            Получение музыкального инструмента, чей ID согласован с <paramref name="musicInstrumentId"/>, асинхронно.
             </summary>
-            <param name="musicInstrument"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="musicInstrumentId"></param>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.DeletingMusicInstrumentAsync(MusicShop.Contracts.MusicalInstrument.DeleteMusicalInstrumentRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Удаление музыкального инструмента, асинхронно.
             </summary>
             <param name="musicInstrumentToDelete"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.MusicalInstrument.MusicalInstrumentController.UpdatingMusicInstrumentAsync(System.Guid,MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest,System.Threading.CancellationToken)">
             <summary>
-            
+            Обновление музыкального инструмента, асинхронно.
             </summary>
             <param name="musicInstrumentId"></param>
             <param name="musicInstrumentToUpdate"></param>
-            <param name="token"></param>
-            <returns></returns>
+            <param name="token">Жетон отмены асинхронной операции</param>
+            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController">
             <summary>
@@ -214,7 +223,7 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetUserByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Получение пользователя с помощью <paramref name="userId"/>, асинхронно.
+            Получение пользователя, чей ID согласован с <paramref name="userId"/>, асинхронно.
             </summary>
             <param name="userId">Идентификатор пользователя</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>

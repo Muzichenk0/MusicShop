@@ -16,12 +16,15 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
         {
             entityBuilder
                 .HasKey(r => r.Id);
+
             entityBuilder
-                .Property(r => r.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .Property(r => r.Date)
+                .HasConversion(r => r, r => DateTime.SpecifyKind(r, DateTimeKind.Utc));
+         
             entityBuilder
                 .Property(r => r.Topic)
                 .HasMaxLength(65);
+
             entityBuilder
                 .Property(r => r.Description)
                 .HasMaxLength(300);

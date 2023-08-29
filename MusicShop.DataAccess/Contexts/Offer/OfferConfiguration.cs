@@ -17,9 +17,7 @@ namespace MusicShop.DataAccess.Contexts.Offer
         {
             builder
                 .HasKey(o => o.Id);
-            builder
-                .Property(o => o.Id)
-                .HasDefaultValue(Guid.NewGuid());
+        
             builder
                 .HasMany(o => o.OfferCategories)
                 .WithOne(t => t.Offer)

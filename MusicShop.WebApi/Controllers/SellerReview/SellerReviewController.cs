@@ -69,7 +69,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         [ProducesResponseType(typeof(SellerReviewResponseInfo),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetSellerReviewByIdAsync(Guid sReviewId, CancellationToken token = default)
+        public async Task<IActionResult> GetSellerReviewByIdAsync([FromQuery]Guid sReviewId, CancellationToken token = default)
         {
             SellerReviewResponseInfo sReview = await _sReviewService.GetReviewByIdAsync(sReviewId, token);
 
@@ -87,7 +87,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> DeleteSellerReviewAsync([FromBody]DeleteSellerReviewRequest sReviewToDelete, CancellationToken token = default)
+        public async Task<IActionResult> DeleteSellerReviewAsync([FromQuery] DeleteSellerReviewRequest sReviewToDelete, CancellationToken token = default)
         {
             await _sReviewService.DeleteReviewAsync(sReviewToDelete, token);
 
@@ -106,7 +106,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSellerReviewAsync(Guid sReviewId, [FromBody] UpdateSellerReviewRequest sReviewToUpdate, CancellationToken token = default)
+        public async Task<IActionResult> UpdateSellerReviewAsync([FromQuery]Guid sReviewId, [FromBody] UpdateSellerReviewRequest sReviewToUpdate, CancellationToken token = default)
         {
             await _sReviewService.UpdateReviewAsync(sReviewId, sReviewToUpdate, token);
 
