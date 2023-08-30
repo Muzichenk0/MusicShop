@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: music-shop
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 7065:80
+    environment:
+      - "Host=localhost;Database=MusicalShop.db;Username=postgres;Password=123"
+    networks:
+      - music-shop-network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "MusicShop"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - music-shop-network
+  
+volumes:
+  pg-data:
+  
+networks:
+  music-shop-network:
