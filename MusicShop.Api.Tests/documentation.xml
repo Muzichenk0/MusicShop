@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MusicShop.Api.Tests</name>
+    </assembly>
+    <members>
+        <member name="M:MusicShop.Api.Tests.DbAppContextFactory.CreateDbContext">
+            <summary>
+            Создать контекст тестовой БД.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

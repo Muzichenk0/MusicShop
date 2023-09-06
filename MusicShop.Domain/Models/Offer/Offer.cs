@@ -1,11 +1,10 @@
 ﻿using MusicShop.Domain.Models.ModelType;
-using MusicShop.Domain.Models.MusicalInstrument.InstrumentType;
 
 namespace MusicShop.Domain.Models.Offer
 {
     /// <summary>
     /// Cущность, описывающая интерфейс модели предложения. 
-    /// Зависима и реализует <see cref="IIdentificable"/>"/>
+    /// Зависима и реализует <see cref="IIdentificable"/>
     /// </summary>
     public class Offer : IIdentificable
     {
@@ -22,10 +21,6 @@ namespace MusicShop.Domain.Models.Offer
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// Коллекция, доступная только для прочтения, с музыкальными инструментами.
-        /// </summary>
-        public IReadOnlyCollection<MusicalInstrument.MusicalInstrument> InstrumentsToOffer { get; set; }
-        /// <summary>
         /// Состояние предложения.
         /// </summary>
         public OfferState.OfferState OfferState { get; set; } 
@@ -35,11 +30,11 @@ namespace MusicShop.Domain.Models.Offer
         public double Discount { get; set; }
         /// <summary>
         /// Категории предложения.
-        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="Offer"/> и завис. <see cref="InstrumentType"/>
+        /// Навигационное свойство в отношении один ко многим между завис. сущностью <see cref="InstrumentType.InstrumentType"/> и главной <see cref="Offer"/>
         /// </summary>
-        public ICollection<InstrumentType> OfferCategories { get; set; }
+        public InstrumentType.InstrumentType OfferCategory { get; set; }
         /// <summary>
-        /// Пользователь, открывший предложение.
+        /// Пользователь, открывший предложение. Продавец.
         /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User.User"/> и завис. <see cref="Offer"/>
         /// </summary>
         public User.User User { get; set; }
@@ -48,5 +43,20 @@ namespace MusicShop.Domain.Models.Offer
         /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="User.User"/> и завис. <see cref="Review.SellerReview"/>
         /// </summary>
         public Guid? UserId { get; set; }
+        /// <summary>
+        /// Пользователь, закрывший предложение.
+        /// Навигационное свойство в отношении один ко многим между глав. сущность <see cref="User.User"/> и зависимой <see cref="Offer"/>
+        /// </summary>
+        public User.User? ClosedUser { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор пользователя, закрывшего предложение.
+        /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="User.User"/> и зависимой <see cref="Offer"/>
+        /// </summary>
+        public Guid? ClosedUserId { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор категории предложения.
+        /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="InstrumentType.InstrumentType"/> и зависимой <see cref="Offer"/>
+        /// </summary>
+        public Guid? OfferCategoryId { get; set; }
     }
 }

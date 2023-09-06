@@ -2,8 +2,10 @@
 
 namespace MusicShop.Contracts.SellerReview
 {
-
-    public class UpdateSellerReviewRequest
+    /// <summary>
+    /// Интерфейс, доступный для запроса на обновление информации о существующем отзыве о продавце.
+    /// </summary>
+    public sealed class UpdateSellerReviewRequest
     {
         /// <summary>
         /// Заголовок отзыва.

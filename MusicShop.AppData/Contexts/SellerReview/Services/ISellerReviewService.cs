@@ -13,15 +13,15 @@ namespace MusicShop.AppData.Contexts.SellerReview.Services
         /// Получение всех отзывов о продавце, асинхронно.
         /// </summary>
         /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
-        /// <returns>Выстроенное в оптимизированный запрос, перечисление из <see cref="SellerReviewResponseInfo"/> </returns>
-        public Task<IQueryable<SellerReviewResponseInfo>> GetAllReviewsAsync(CancellationToken cancelToken = default);
+        /// <returns>Выстроенное в оптимизированный запрос, перечисление из <see cref="SellerReviewInfoResponse"/> </returns>
+        public Task<IQueryable<SellerReviewInfoResponse>> GetAllReviewsAsync(CancellationToken cancelToken = default);
         /// <summary>
         /// Получение отзыва о продавце, через идентификатор, асинхронно.
         /// </summary>
         /// <param name="id">Идентификатор отзыва о продавце</param>
         /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
-        /// <returns>Экземпляр <see cref="SellerReviewResponseInfo"/>, чей ID согласован с <paramref name="id"/></returns>
-        public Task<SellerReviewResponseInfo> GetReviewByIdAsync(Guid id, CancellationToken cancelToken = default);
+        /// <returns>Экземпляр <see cref="SellerReviewInfoResponse"/>, чей ID согласован с <paramref name="id"/></returns>
+        public Task<SellerReviewInfoResponse> GetReviewByIdAsync(Guid id, CancellationToken cancelToken = default);
         /// <summary>
         /// Создание отзыва о продавце, асинхронно.
         /// </summary>

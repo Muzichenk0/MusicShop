@@ -17,13 +17,11 @@ namespace MusicShop.DataAccess.Contexts.Offer
         {
             builder
                 .HasKey(o => o.Id);
-        
             builder
-                .HasMany(o => o.OfferCategories)
-                .WithOne(t => t.Offer)
-                .HasForeignKey(o => o.OfferId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasOne(o => o.OfferCategory)
+                .WithMany(o => o.Offers)
+                .HasForeignKey(o => o.OfferCategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
-
 }

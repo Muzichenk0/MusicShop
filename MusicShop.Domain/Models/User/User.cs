@@ -1,5 +1,4 @@
 ﻿using MusicShop.Domain.Models.ModelType;
-using MusicShop.Domain.Models.MusicalInstrument.InstrumentType;
 
 namespace MusicShop.Domain.Models.User
 {
@@ -31,28 +30,35 @@ namespace MusicShop.Domain.Models.User
         public DateTime RegistratedIn { get; set; }
         /// <summary>
         /// Инструментальная специализация.
+        /// Навигационное свойство в отношении многие ко многим между сущностями: <see cref="User"/> и <see cref="InstrumentType.InstrumentType"/>
         /// </summary>
-        public IReadOnlyCollection<InstrumentType> MusicalSpecialization { get; set; }
+        public ICollection<InstrumentType.InstrumentType> Qualifications { get; set; }
         /// <summary>
         /// Номер телефона пользователя.
         /// </summary>
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Предложения, открытые пользователем.
+        /// Навигационное свойство в отношении один ко многим, между зависимой <see cref="User"/> и главной <see cref="Offer.Offer"
         /// </summary>
         public ICollection<Offer.Offer?> Offers { get; set; }
+        /// <summary>
+        /// Предложения, закрытые пользователем.
+        /// Навигационное свойство в отношении один ко многим, между зависимой <see cref="User"/> и главной <see cref="Offer.Offer"
+        /// </summary>
+        public ICollection<Offer.Offer?> ClosedOffers { get; set; }
         /// <summary>
         /// Рейтинг пользователя.
         /// </summary>
         public double Rating { get; set; }
         /// <summary>
         /// Полученные отзывы о проданных товарах.
-        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
+        /// Навигационное свойство в отношении один ко многим между зависимой <see cref="User"/> и главной <see cref="Review.SellerReview"/>
         /// </summary>
         public ICollection<Review.SellerReview?> GainedReviews { get; set; }
         /// <summary>
         /// Отправленные отзывы о купленных товарах.
-        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="User"/> и завис. <see cref="Review.SellerReview"/>
+        /// Навигационное свойство в отношении один ко многим между зависимой <see cref="User"/> и главной <see cref="Review.SellerReview"/>
         /// </summary>
         public ICollection<Review.SellerReview?> SendedReviews { get; set; }
         

@@ -5,11 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace MusicShop.Contracts.User
 {
     /// <summary>
-    /// ДТО модель, определяющая интерфейс для запроса на обновление пользователя.
+    /// ДТО модель, определяющая интерфейс, доступный запросу на изменение данных, связанных с моделью пользователя.
     /// </summary>
     public sealed class UpdateUserRequest
     {
-    
         /// <summary>
         /// Логин пользователя.
         /// </summary>
