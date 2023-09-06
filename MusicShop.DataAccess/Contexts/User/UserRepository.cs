@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace MusicShop.DataAccess.Contexts.User
 {
     /// <summary>
-    /// Репозиторий для типа <see cref="Domain.Models.User.User"/>
+    /// Модель, реализующая внешний интерфейс для модели - репозиторий пользователя, описанный в  <see cref="IUserRepository"/>.
     /// </summary>
     public class UserRepository : IUserRepository
     {
@@ -27,9 +27,10 @@ namespace MusicShop.DataAccess.Contexts.User
             IQueryable<Domain.Models.User.User> users = await _repository.GetAllAsync(cancelToken);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
-
+            
             return users
                 .Include(u => u.SendedReviews)
+                .Include(u => u.Qualifications)
                 .Select(u => _mapper.Map<UserInfoResponse>(u))
                 .AsQueryable();
         }
@@ -37,6 +38,7 @@ namespace MusicShop.DataAccess.Contexts.User
         {
             Domain.Models.User.User user = (await _repository.GetAllAsync())
                 .Include(u => u.SendedReviews)
+                .Include(u => u.Qualifications)
                 .First(u => u.Id == userId);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(user.Id)} tring to be taken from database");

@@ -1,4 +1,5 @@
-﻿using MusicShop.Contracts.User.Enums;
+﻿using MusicShop.Contracts.InstrumentType;
+using MusicShop.Contracts.User.Enums;
 using MusicShop.Contracts.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -38,9 +39,14 @@ namespace MusicShop.Contracts.User
         [Required]
         public DateTime RegistratedIn { get; set; }
         /// <summary>
-        /// Статус учетной записи пользователя
+        /// Статус учетной записи пользователяS
         /// </summary>
         [Required]
         public UserStatus Status { get; set; }
+        /// <summary>
+        /// Музыкальные квалификации пользователя.
+        /// </summary>
+        [Required]
+        public ICollection<CreateInstrumentTypeRequest?> Qualifications { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace MusicShop.Infrastructure.MapProfile.SellerReview
                 .ReverseMap();
             CreateMap<Domain.Models.Review.SellerReview, UpdateSellerReviewRequest>()
                 .ReverseMap();
-            CreateMap<Domain.Models.Review.SellerReview, SellerReviewResponseInfo>()
+            CreateMap<Domain.Models.Review.SellerReview, SellerReviewInfoResponse>()
                 .ReverseMap();
         }
     }

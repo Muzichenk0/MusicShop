@@ -8,6 +8,9 @@ using System.Text.Json;
 
 namespace MusicShop.DataAccess.Contexts.SellerReview
 {
+    /// <summary>
+    /// Модель, реализующая внешний интерфейс для модели - репозиторий отзыва о продавце, описанный в  <see cref="ISellerReviewRepository"/>.
+    /// </summary>
     public class SellerReviewRepository : ISellerReviewRepository
     {
         private readonly IRepository<Domain.Models.Review.SellerReview> _sReviewRepository;
@@ -34,14 +37,14 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
             return _sReviewRepository.DeleteAsync(_mapper.Map<Domain.Models.Review.SellerReview>(sReviewToDelete), cancelToken);
         }
 
-        public async Task<IQueryable<SellerReviewResponseInfo>> GetAllAsync(CancellationToken cancelToken = default)
+        public async Task<IQueryable<SellerReviewInfoResponse>> GetAllAsync(CancellationToken cancelToken = default)
         {
             IQueryable<Domain.Models.Review.SellerReview> sReviews = await _sReviewRepository.GetAllAsync(cancelToken);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviews)} trying to be taken from database");
 
             return sReviews
-            .Select(r => _mapper.Map<SellerReviewResponseInfo>(r))
+            .Select(r => _mapper.Map<SellerReviewInfoResponse>(r))
             .AsQueryable();
         }
 
@@ -52,9 +55,9 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
         //    .AsQueryable(); 
         #endregion
 
-        public async Task<SellerReviewResponseInfo> GetByIdAsync(Guid id, CancellationToken cancelToken = default)
+        public async Task<SellerReviewInfoResponse> GetByIdAsync(Guid id, CancellationToken cancelToken = default)
         {
-            return _mapper.Map<SellerReviewResponseInfo>(await _sReviewRepository.GetByIdAsync(id, cancelToken));
+            return _mapper.Map<SellerReviewInfoResponse>(await _sReviewRepository.GetByIdAsync(id, cancelToken));
             //_logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviewToAdd)} trying to be added into database");
         }
 

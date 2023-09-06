@@ -1,7 +1,7 @@
 ﻿namespace MusicShop.Contracts.User
 {
     /// <summary>
-    /// ДТО модель, описывающая интерфейс, доступный запросу на удаление пользователя.
+    /// ДТО модель, определяющая интерфейс, доступный запросу на удаление пользователя.
     /// </summary>
     public sealed class DeleteUserRequest
     {

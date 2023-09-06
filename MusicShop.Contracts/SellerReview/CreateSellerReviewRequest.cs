@@ -3,9 +3,9 @@
 namespace MusicShop.Contracts.SellerReview
 {
     /// <summary>
-    /// ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.
+    /// ДТО модель, определяющая интерфейс, доступный запросу на создание нового отзыва о продавце.
     /// </summary>
-    public class CreateSellerReviewRequest
+    public sealed class CreateSellerReviewRequest
     {
         /// <summary>
         /// Заголовок отзыва.

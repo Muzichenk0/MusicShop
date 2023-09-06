@@ -2,7 +2,10 @@
 
 namespace MusicShop.Contracts.InstrumentType
 {
-    public class CreateInstrumentTypeRequest
+    /// <summary>
+    /// Модель, определяющая интерфейс, доступный запросу на создание нового типа инструмента
+    /// </summary>
+    public sealed class CreateInstrumentTypeRequest
     {
         /// <summary>
         /// Идентификатор родительского типа инструмента.

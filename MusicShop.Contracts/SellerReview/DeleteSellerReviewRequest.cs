@@ -3,9 +3,9 @@
 namespace MusicShop.Contracts.SellerReview
 {
     /// <summary>
-    /// ДТО модель, определяющая интерфейс, доступный при отправке запроса на удаление отзыва.
+    /// ДТО модель, определяющая интерфейс, доступный отзыву на удаление существующего отзыва о продавце.
     /// </summary>
-    public class DeleteSellerReviewRequest
+    public sealed class DeleteSellerReviewRequest
     {
         /// <summary>
         /// Идентификатор отзыва.

@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MusicShop.Contracts.User
 {
     /// <summary>
-    /// ДТО модель, для передачи информации о пользователе,
-    /// через ответ от сервера на запросы.
+    /// Интерфейс, доступный, при создании ответа на запрос об информации, связанной с моделью пользователя.
     /// </summary>
     public sealed class UserInfoResponse
     {
@@ -54,16 +53,17 @@ namespace MusicShop.Contracts.User
         /// Полученные оценки пользователя, как продавца.
         /// </summary>
         [Required]
-        public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
+        public ICollection<SellerReviewInfoResponse> GainedReviews { get; set; }
         /// <summary>
         /// Отправленные оценки пользователя, как покупателя.
         /// </summary>
         [Required]
-        public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
+        public ICollection<SellerReviewInfoResponse> SendedReviews { get; set; }
         /// <summary>
         /// Музыкальная специализация текущего пользователя.
         /// </summary>
         [Required]
-        public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
+        public ICollection<InstrumentTypeInfoResponse> Qualifications { get; set; }
+   
     }
 }

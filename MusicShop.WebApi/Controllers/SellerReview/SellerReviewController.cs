@@ -49,11 +49,11 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet("/sellerReviews")]
-        [ProducesResponseType(typeof(IQueryable<SellerReviewResponseInfo>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IQueryable<SellerReviewInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllSellerReviewsAsync(CancellationToken token = default)
         {
-            IQueryable<SellerReviewResponseInfo> sReviews = await _sReviewService.GetAllReviewsAsync(token);
+            IQueryable<SellerReviewInfoResponse> sReviews = await _sReviewService.GetAllReviewsAsync(token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviews)} were taken from database");
 
@@ -65,13 +65,13 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <param name="sReviewId">Идентификатор отзыва о продавце</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/sellerReview")]
-        [ProducesResponseType(typeof(SellerReviewResponseInfo),(int)HttpStatusCode.OK)]
+        [HttpGet("/sellerReviews/{sReviewId:guid}")]
+        [ProducesResponseType(typeof(SellerReviewInfoResponse),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetSellerReviewByIdAsync([FromQuery]Guid sReviewId, CancellationToken token = default)
+        public async Task<IActionResult> GetSellerReviewByIdAsync(Guid sReviewId, CancellationToken token = default)
         {
-            SellerReviewResponseInfo sReview = await _sReviewService.GetReviewByIdAsync(sReviewId, token);
+            SellerReviewInfoResponse sReview = await _sReviewService.GetReviewByIdAsync(sReviewId, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReview)} was taken from database");
 
@@ -102,11 +102,11 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// <param name="sReviewToUpdate">Новая информация об отзыве о продавце</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpPut("/updatingSellerReview")]
+        [HttpPut("/updatingSellerReview/{sReviewId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSellerReviewAsync([FromQuery]Guid sReviewId, [FromBody] UpdateSellerReviewRequest sReviewToUpdate, CancellationToken token = default)
+        public async Task<IActionResult> UpdateSellerReviewAsync(Guid sReviewId, [FromBody] UpdateSellerReviewRequest sReviewToUpdate, CancellationToken token = default)
         {
             await _sReviewService.UpdateReviewAsync(sReviewId, sReviewToUpdate, token);
 

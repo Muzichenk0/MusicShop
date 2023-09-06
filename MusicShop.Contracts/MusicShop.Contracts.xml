@@ -4,6 +4,11 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest">
+            <summary>
+            Модель, определяющая интерфейс, доступный запросу на создание нового типа инструмента
+            </summary>
+        </member>
         <member name="P:MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest.ParentId">
             <summary>
             Идентификатор родительского типа инструмента.
@@ -14,29 +19,44 @@
             Наименование текущего типа.
             </summary>
         </member>
+        <member name="T:MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest">
+            <summary>
+            Модель, определящая интерфейс, доступный для запроса на удаление существующего типа инструмента.
+            </summary>
+        </member>
         <member name="P:MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest.Id">
             <summary>
             Идентификатор типа инструмента.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.Id">
+        <member name="T:MusicShop.Contracts.InstrumentType.InstrumentTypeInfoResponse">
+            <summary>
+            Модель, определяющая интерфейс, доступный при создании ответа на запрос информации, связанной с моделью типа инструмента.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeInfoResponse.Id">
             <summary>
             Идентификатор типа инструмента.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.ParentId">
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeInfoResponse.ParentId">
             <summary>
             Идентификатор родительского типа инструмента.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.CategoryName">
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeInfoResponse.CategoryName">
             <summary>
             Наименование текущего типа
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeResponseInfo.SubTypes">
+        <member name="P:MusicShop.Contracts.InstrumentType.InstrumentTypeInfoResponse.SubTypes">
             <summary>
             Коллекция из типов инструментов. Может содержать значения по умолчанию, для ссылочного типа null.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest">
+            <summary>
+            Модель, определяющая интерфейс, доступный запросу на обновление существующего типа инструмента.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest.CategoryName">
@@ -44,79 +64,124 @@
             Наименование текущего типа.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.InstrumentTypeId">
+        <member name="T:MusicShop.Contracts.Offer.CreateOfferRequest">
             <summary>
-            Идентификатор типа инструмента.
+            Модель, определяющая интерфейс, доступный запросу на создание нового предложения.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.InstrumentModel">
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.RequirePrice">
             <summary>
-            Модель музыкального инструмента.
+            Требуемая цена для закрытия предложения
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.DateOfCreation">
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.Description">
             <summary>
-            Дата производства описываемого инструмента.
+            Описание предложение
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.CreateMusicalInstrumentRequest.CreationCountry">
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.Discount">
             <summary>
-            Имя страны где инструмент был создан.
+            Скидка
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.DeleteMusicalInstrumentRequest.Id">
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.OfferCategoryId">
             <summary>
-            Идентификатор музыкального инструмента.
+            Идентификатор категории предложения.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.Id">
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.UserId">
             <summary>
-            Идентификатор музыкального инструмента.
+            Идентификатор пользователя, создавшего предложение.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.InstrumentType">
+        <member name="T:MusicShop.Contracts.Offer.DeleteOfferRequest">
             <summary>
-            Тип музыкального инструмента.
+            Модель, определяющая интерфейс, доступный запросу на удаление информации, связанной с моделью предложения.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.InstrumentModel">
+        <member name="P:MusicShop.Contracts.Offer.DeleteOfferRequest.Id">
             <summary>
-            Модель музыкального инструмента.
+            Идентификатор предложения.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.DateOfCreation">
+        <member name="T:MusicShop.Contracts.Offer.Enums.OfferState">
             <summary>
-            Дата производства данного музыкального инструмента.
+            Перечисление из констант - состояний предложения.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.MusicalInstrumentResponseInfo.CreationCountry">
+        <member name="F:MusicShop.Contracts.Offer.Enums.OfferState.Open">
             <summary>
-            Имя страны, где был произведен инструмент.
+            Открытое предложение
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.InstrumentTypeId">
+        <member name="F:MusicShop.Contracts.Offer.Enums.OfferState.Moderatable">
             <summary>
-            Идентификатор типа инструмента
+            Проверяющееся модерацией предложение
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.InstrumentModel">
+        <member name="F:MusicShop.Contracts.Offer.Enums.OfferState.Paused">
             <summary>
-            Модель инструмента.
+            В ожидании оплаты от пользователя
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.DateOfCreation">
+        <member name="F:MusicShop.Contracts.Offer.Enums.OfferState.Closed">
             <summary>
-            Дата производства музыкального инструмента.
+            Закрытое предложение
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.MusicalInstrument.UpdateMusicalInstrumentRequest.CreationCountry">
+        <member name="T:MusicShop.Contracts.Offer.OfferInfoResponse">
             <summary>
-            Страна, где был произедён музыкальный инструмент.
+            Модель, определяющая интерфейс, доступный при создании ответа на запрос информации, связанной с моделью предложения.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.Id">
+            <summary>
+            Уникальный идентификатор предложения
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.RequirePrice">
+            <summary>
+            Требуемая цена для закрытия предложения
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.Description">
+            <summary>
+            Описание предложения
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.OfferState">
+            <summary>
+            Состояние предложения
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.Discount">
+            <summary>
+            Скидка на предложение
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.OfferCategoryId">
+            <summary>
+            Категория предложения
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.User">
+            <summary>
+            Пользователь, открывший предложение. Продавец
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.ClosedUser">
+            <summary>
+            Пользователь, закрывший предложение. Покупатель
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.Offer.UpdateOfferRequest">
+            <summary>
+            Модель, определяющая интерфейс, доступный запросу на обновление предложения.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest">
             <summary>
-            ДТО модель, определяющая интерфейс, доступный при отправке запроса на создание нового отзыва.
+            ДТО модель, определяющая интерфейс, доступный запросу на создание нового отзыва о продавце.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.SellerReview.CreateSellerReviewRequest.Topic">
@@ -151,7 +216,7 @@
         </member>
         <member name="T:MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest">
             <summary>
-            ДТО модель, определяющая интерфейс, доступный при отправке запроса на удаление отзыва.
+            ДТО модель, определяющая интерфейс, доступный отзыву на удаление существующего отзыва о продавце.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.SellerReview.DeleteSellerReviewRequest.Id">
@@ -159,44 +224,49 @@
             Идентификатор отзыва.
             </summary>
         </member>
-        <member name="T:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo">
+        <member name="T:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse">
             <summary>
-            Интерфейс, доступный при отправке запроса  на получение данных об отзывах.
+            Модель, определяющая интерфейс, доступный при создании ответа на запрос об информации, связанной с отзывом о продавце.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Id">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.Id">
             <summary>
             Идентификатор отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Topic">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.Topic">
             <summary>
             Заголовок отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Rating">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.Rating">
             <summary>
             Оценка услуги из отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Description">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.Description">
             <summary>
             Описание отзыва.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.UserId">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.UserId">
             <summary>
             Идентификатор продавца, отзыв описан о котором
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.SenderId">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.SenderId">
             <summary>
             Идентификатор пользователя, отправившего отзыв.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewResponseInfo.Date">
+        <member name="P:MusicShop.Contracts.SellerReview.SellerReviewInfoResponse.Date">
             <summary>
             Дата создания отзыва.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest">
+            <summary>
+            Интерфейс, доступный для запроса на обновление информации о существующем отзыве о продавце.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.SellerReview.UpdateSellerReviewRequest.Topic">
@@ -251,12 +321,17 @@
         </member>
         <member name="P:MusicShop.Contracts.User.CreateUserRequest.Status">
             <summary>
-            Статус учетной записи пользователя
+            Статус учетной записи пользователяS
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.User.CreateUserRequest.Qualifications">
+            <summary>
+            Музыкальные квалификации пользователя.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.User.DeleteUserRequest">
             <summary>
-            ДТО модель, описывающая интерфейс, доступный запросу на удаление пользователя.
+            ДТО модель, определяющая интерфейс, доступный запросу на удаление пользователя.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.User.DeleteUserRequest.Id">
@@ -286,7 +361,7 @@
         </member>
         <member name="T:MusicShop.Contracts.User.UpdateUserRequest">
             <summary>
-            ДТО модель, определяющая интерфейс для запроса на обновление пользователя.
+            ДТО модель, определяющая интерфейс, доступный запросу на изменение данных, связанных с моделью пользователя.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.User.UpdateUserRequest.Login">
@@ -321,8 +396,7 @@
         </member>
         <member name="T:MusicShop.Contracts.User.UserInfoResponse">
             <summary>
-            ДТО модель, для передачи информации о пользователе,
-            через ответ от сервера на запросы.
+            Интерфейс, доступный, при создании ответа на запрос об информации, связанной с моделью пользователя.
             </summary>
         </member>
         <member name="P:MusicShop.Contracts.User.UserInfoResponse.Id">
@@ -370,7 +444,7 @@
             Отправленные оценки пользователя, как покупателя.
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.User.UserInfoResponse.MusicalSpecialization">
+        <member name="P:MusicShop.Contracts.User.UserInfoResponse.Qualifications">
             <summary>
             Музыкальная специализация текущего пользователя.
             </summary>

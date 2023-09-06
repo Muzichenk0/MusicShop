@@ -71,11 +71,11 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/user")] 
+        [HttpGet("/users/{userId:guid}")] 
         [ProducesResponseType(typeof(UserInfoResponse),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetUserByIdAsync([FromQuery]Guid userId, CancellationToken token = default)
+        public async Task<IActionResult> GetUserByIdAsync(Guid userId, CancellationToken token = default)
         {
             UserInfoResponse foundUserInfo = await _userRepository.GetByIdAsync(userId, token);
 
@@ -111,11 +111,11 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpPut("/updatingUser")]
+        [HttpPut("/updatingUser/{userId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateUserAsync([FromQuery]Guid userId,[FromBody] UpdateUserRequest userToDelete, CancellationToken token = default)
+        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody] UpdateUserRequest userToDelete, CancellationToken token = default)
         {
             await _userRepository.UpdateAsync(userId,userToDelete,token);
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userId)} was updated in database");

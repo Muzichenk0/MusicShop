@@ -3,7 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.InstrumentType
 {
-    public class UpdateInstrumentTypeRequest
+    /// <summary>
+    /// Модель, определяющая интерфейс, доступный запросу на обновление существующего типа инструмента.
+    /// </summary>
+    public sealed class UpdateInstrumentTypeRequest
     {
         //public Guid? ParentId { get; set; }
         /// <summary>

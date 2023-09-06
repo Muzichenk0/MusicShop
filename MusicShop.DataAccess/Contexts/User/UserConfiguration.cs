@@ -37,6 +37,16 @@ namespace MusicShop.DataAccess.Contexts.User
                 .WithOne(r => r.User)
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasMany(u => u.ClosedOffers)
+                .WithOne(o => o.ClosedUser)
+                .HasForeignKey(o => o.ClosedUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasMany(u => u.Qualifications)
+                .WithMany(u => u.Users);
         }
     }
 }
