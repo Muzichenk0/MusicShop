@@ -13,6 +13,11 @@ namespace MusicShop.WebApi.Controllers.Offer
     {
         private readonly IOfferService _offerService;
         private readonly ILogger<OfferController> _logger;
+        /// <summary>
+        /// Конструктор для экземпляра сущности <see cref="OfferController""/>
+        /// </summary>
+        /// <param name="service">Экземпляр сервиса для модели предложения. Берется из зависимости</param>
+        /// <param name="logger">Механизм логгирования информации.</param>
         public OfferController(IOfferService service, ILogger<OfferController> logger)
         {
             _offerService = service;
@@ -45,12 +50,12 @@ namespace MusicShop.WebApi.Controllers.Offer
             return Ok(offers);
         }
         /// <summary>
-        /// 
+        /// Получение предложения с помощью идентификатора, асинхронно.
         /// </summary>
-        /// <param name="offerId"></param>
-        /// <param name="token"></param>
+        /// <param name="offerId">Идентификатор предложения</param>
+        /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns></returns>
-        [HttpGet("/offer/{offerId:guid}")]
+        [HttpGet("/offers/{offerId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetOfferByIdAsync(Guid offerId, CancellationToken token = default)
@@ -58,6 +63,34 @@ namespace MusicShop.WebApi.Controllers.Offer
             OfferInfoResponse offer = await _offerService.GetOfferByIdAsync(offerId, token);
             return Ok(offer);
         }
-
+        /// <summary>
+        /// Удаление существующего предложения, асинхронно.
+        /// </summary>
+        /// <param name="offerToDelete">Существующее предложение для удаления</param>
+        /// <param name="token">Жетон для отмены асинхронной задачи</param>
+        /// <returns></returns>
+        [HttpDelete("deletingOffer")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DeleteOfferAsync([FromBody]DeleteOfferRequest offerToDelete, CancellationToken token = default)
+        {
+            await _offerService.DeleteOfferAsync(offerToDelete, token);
+            return Ok();
+        }
+        /// <summary>
+        /// Обновление информации у существующего предложения, асинхронно.
+        /// </summary>
+        /// <param name="offerId">Идентификатор предложения</param>
+        /// <param name="updateInfo">Информация для изменения существующего предложения</param>
+        /// <param name="token">Жетон для отмены асинхронной задачи</param>
+        /// <returns></returns>
+        [HttpPut("updatingOffer/{offerId:guid}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> UpdateOfferAsync(Guid offerId, [FromBody] UpdateOfferRequest updateInfo, CancellationToken token = default)
+        {
+            await _offerService.UpdateOfferAsync(offerId, updateInfo, token);
+            return Ok();
+        }
     }
 }

@@ -94,17 +94,17 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// Обновление типа инструмента, асинхронно.
         /// </summary>
         /// <param name="instTypeId">Идентификатор типа инструмента</param>
-        /// <param name="instTypeToUpdate">Тип инструмента для удаления</param>
+        /// <param name="updateInfo">Тип инструмента для удаления</param>
         /// <param name="token">Жетон отмены асинхронной операции</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPut("/updatingInstrumentType/{instTypeId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateInstrumentTypeAsync(Guid instTypeId, [FromBody]UpdateInstrumentTypeRequest instTypeToUpdate,
+        public async Task<IActionResult> UpdateInstrumentTypeAsync(Guid instTypeId, [FromBody]UpdateInstrumentTypeRequest updateInfo,
             CancellationToken token = default)
         {
-            await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, instTypeToUpdate, token);
+            await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, updateInfo, token);
             return Ok();
         }
     }

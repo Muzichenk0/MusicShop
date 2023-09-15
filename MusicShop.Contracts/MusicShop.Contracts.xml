@@ -159,7 +159,7 @@
             Скидка на предложение
             </summary>
         </member>
-        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.OfferCategoryId">
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.OfferCategory">
             <summary>
             Категория предложения
             </summary>

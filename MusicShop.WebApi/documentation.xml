@@ -62,7 +62,7 @@
             Обновление типа инструмента, асинхронно.
             </summary>
             <param name="instTypeId">Идентификатор типа инструмента</param>
-            <param name="instTypeToUpdate">Тип инструмента для удаления</param>
+            <param name="updateInfo">Тип инструмента для удаления</param>
             <param name="token">Жетон отмены асинхронной операции</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
@@ -71,6 +71,7 @@
             Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - предложение.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:MusicShop.WebApi.Controllers.Offer.OfferController.#ctor(MusicShop.AppData.Contexts.Offer.Services.IOfferService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.Offer.OfferController})" -->
         <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.CreateOfferAsync(MusicShop.Contracts.Offer.CreateOfferRequest,System.Threading.CancellationToken)">
             <summary>
             Создание нового предложения, асинхронно.
@@ -86,10 +87,27 @@
         </member>
         <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.GetOfferByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            
+            Получение предложения с помощью идентификатора, асинхронно.
             </summary>
-            <param name="offerId"></param>
-            <param name="token"></param>
+            <param name="offerId">Идентификатор предложения</param>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.DeleteOfferAsync(MusicShop.Contracts.Offer.DeleteOfferRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление существующего предложения, асинхронно.
+            </summary>
+            <param name="offerToDelete">Существующее предложение для удаления</param>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.UpdateOfferAsync(System.Guid,MusicShop.Contracts.Offer.UpdateOfferRequest,System.Threading.CancellationToken)">
+            <summary>
+            Обновление информации у существующего предложения, асинхронно.
+            </summary>
+            <param name="offerId">Идентификатор предложения</param>
+            <param name="updateInfo">Информация для изменения существующего предложения</param>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns></returns>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController">
@@ -143,7 +161,7 @@
             Обновление информации об отзыве о продавце, асинхронно.
             </summary>
             <param name="sReviewId">Идентификатор отзыва о продавце</param>
-            <param name="sReviewToUpdate">Новая информация об отзыве о продавце</param>
+            <param name="updateInfo">Новая информация об отзыве о продавце</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
@@ -205,7 +223,7 @@
             Обновление информации о пользователе, асинхронно.
             </summary>
             <param name="userId">Идентификатор пользователя.</param>
-            <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
+            <param name="updateInfo">Информация о пользователе, для обновления того в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>

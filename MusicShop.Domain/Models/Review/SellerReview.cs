@@ -1,13 +1,12 @@
-﻿using MusicShop.Domain.Models.ModelType;
+﻿using MusicShop.Domain.Models.Base;
 
 namespace MusicShop.Domain.Models.Review
 {
     /// <summary>
     /// Отзыв продавца.
     /// </summary>
-    public class SellerReview : IIdentificable
+    public class SellerReview : BaseEntity
     {
-        public Guid Id { get; set; }
         /// <summary>
         /// Заголовок отзыва.
         /// </summary>

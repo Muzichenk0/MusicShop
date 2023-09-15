@@ -13,19 +13,19 @@ namespace MusicShop.AppData.Contexts.User.Services
         {
             _repository = repository;
         }
-        
-        public async Task AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default)
-          =>  await _repository.AddAsync(createUserDto, cancelToken);        
-
+        ///<inheritdoc/>
+        public async Task<Guid> AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default)
+          =>  await _repository.AddAsync(createUserDto, cancelToken);
+        ///<inheritdoc/>
         public async Task DeleteUserAsync(DeleteUserRequest deleteUserDto, CancellationToken cancelToken = default)
             => await _repository.DeleteAsync(deleteUserDto, cancelToken);
-
+        ///<inheritdoc/>
         public async Task<IQueryable<UserInfoResponse>> GetAllUsersAsync(CancellationToken cancelToken = default)
             => await _repository.GetAllAsync();
-
+        ///<inheritdoc/>
         public async Task<UserInfoResponse> GetUserByIdAsync(Guid userId, CancellationToken cancelToken = default)
             => await _repository.GetByIdAsync(userId, cancelToken);
-
+        ///<inheritdoc/>
         public async Task UpdateUserAsync(Guid userId,UpdateUserRequest updateUserDto, CancellationToken cancelToken = default)
             => await _repository.UpdateAsync(userId,updateUserDto, cancelToken);
     }

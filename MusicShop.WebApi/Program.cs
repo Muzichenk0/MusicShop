@@ -9,7 +9,7 @@ using MusicShop.Contracts.User;
 using MusicShop.Infrastructure.MapProfile.SellerReview;
 using MusicShop.Infrastructure.MapProfile.InstrumentType;
 using MusicShop.Infrastructure.MapProfile.Offer;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 namespace MusicShop.WebApi
 {
     /// <summary>

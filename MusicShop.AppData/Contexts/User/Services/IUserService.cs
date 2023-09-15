@@ -12,7 +12,7 @@ namespace MusicShop.AppData.Contexts.User.Services
         /// </summary>
         /// <param name="createUserDto">Информация о пользователе для создания</param>
         /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
-        public Task AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default);
+        public Task<Guid> AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default);
         /// <summary>
         /// Обновление пользователя, асинхронно.
         /// </summary>

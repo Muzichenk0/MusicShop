@@ -12,20 +12,20 @@ namespace MusicShop.AppData.Contexts.SellerReview.Services
         private readonly ISellerReviewRepository _repository;
         public SellerReviewService(ISellerReviewRepository repository)
             => _repository = repository;
-
-        public  Task CreateReviewAsync(CreateSellerReviewRequest sReviewToAdd, CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public Task CreateReviewAsync(CreateSellerReviewRequest sReviewToAdd, CancellationToken cancelToken = default)
             => _repository.AddAsync(sReviewToAdd, cancelToken);
-
-        public  Task DeleteReviewAsync(DeleteSellerReviewRequest sReviewToDelete, CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public Task DeleteReviewAsync(DeleteSellerReviewRequest sReviewToDelete, CancellationToken cancelToken = default)
             => _repository.DeleteAsync(sReviewToDelete, cancelToken);
-
-        public  Task UpdateReviewAsync(Guid sReviewId, UpdateSellerReviewRequest sReviewToUpdate, CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public Task UpdateReviewAsync(Guid sReviewId, UpdateSellerReviewRequest sReviewToUpdate, CancellationToken cancelToken = default)
             => _repository.UpdateAsync(sReviewId,sReviewToUpdate,cancelToken);
-
-        public  Task<IQueryable<SellerReviewInfoResponse>> GetAllReviewsAsync(CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public Task<IQueryable<SellerReviewInfoResponse>> GetAllReviewsAsync(CancellationToken cancelToken = default)
             => _repository.GetAllAsync(cancelToken);
-
-        public  Task<SellerReviewInfoResponse> GetReviewByIdAsync(Guid id, CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public Task<SellerReviewInfoResponse> GetReviewByIdAsync(Guid id, CancellationToken cancelToken = default)
             => _repository.GetByIdAsync(id,cancelToken);
     }
 }

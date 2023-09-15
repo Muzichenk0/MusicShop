@@ -25,7 +25,7 @@ namespace MusicShop.AppData.Contexts.User.Repository
         /// </summary>
         /// <param name="userToAdd">Пользователь,которого необходимо добавить</param>
         /// <param name="cancelToken">Жетон отмены асинхронной задачи</param>
-        public Task AddAsync(CreateUserRequest userToAdd, CancellationToken cancelToken = default);
+        public Task<Guid> AddAsync(CreateUserRequest userToAdd, CancellationToken cancelToken = default);
         /// <summary>
         /// Обновление состояния пользователя в БД, асинхронно.
         /// </summary>

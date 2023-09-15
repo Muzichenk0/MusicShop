@@ -99,16 +99,16 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// Обновление информации об отзыве о продавце, асинхронно.
         /// </summary>
         /// <param name="sReviewId">Идентификатор отзыва о продавце</param>
-        /// <param name="sReviewToUpdate">Новая информация об отзыве о продавце</param>
+        /// <param name="updateInfo">Новая информация об отзыве о продавце</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPut("/updatingSellerReview/{sReviewId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateSellerReviewAsync(Guid sReviewId, [FromBody] UpdateSellerReviewRequest sReviewToUpdate, CancellationToken token = default)
+        public async Task<IActionResult> UpdateSellerReviewAsync(Guid sReviewId, [FromBody] UpdateSellerReviewRequest updateInfo, CancellationToken token = default)
         {
-            await _sReviewService.UpdateReviewAsync(sReviewId, sReviewToUpdate, token);
+            await _sReviewService.UpdateReviewAsync(sReviewId, updateInfo, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviewId)} was updated into database");
 

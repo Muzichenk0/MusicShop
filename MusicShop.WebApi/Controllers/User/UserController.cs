@@ -37,16 +37,16 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost("/creatingUser")]
-        [ProducesResponseType(typeof(CreateUserRequest),(int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest userToAdd, CancellationToken token = default)
         {
-            await _userRepository.AddAsync(userToAdd,token);
+            Guid newUserGuid = await _userRepository.AddAsync(userToAdd,token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToAdd)} was added into database");
             
-            return Created("/creatingUser",userToAdd);
+            return Created("/creatingUser", newUserGuid);
         }
         /// <summary>
         /// Получение каждого пользователя, асинхронно.
@@ -108,16 +108,16 @@ namespace MusicShop.WebApi.Controllers.User
         /// Обновление информации о пользователе, асинхронно.
         /// </summary>
         /// <param name="userId">Идентификатор пользователя.</param>
-        /// <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
+        /// <param name="updateInfo">Информация о пользователе, для обновления того в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPut("/updatingUser/{userId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody] UpdateUserRequest userToDelete, CancellationToken token = default)
+        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody] UpdateUserRequest updateInfo, CancellationToken token = default)
         {
-            await _userRepository.UpdateAsync(userId,userToDelete,token);
+            await _userRepository.UpdateAsync(userId,updateInfo,token);
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userId)} was updated in database");
             return Ok();
         }
