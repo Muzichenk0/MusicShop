@@ -1,15 +1,18 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using MusicShop.DataAccess.Db;
-using MusicShop.Infrastructure.MapProfile.User;
-using MusicShop.Registrator;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MusicShop.Contracts.User;
-using MusicShop.Infrastructure.MapProfile.SellerReview;
+using MusicShop.DataAccess.Db;
 using MusicShop.Infrastructure.MapProfile.InstrumentType;
 using MusicShop.Infrastructure.MapProfile.Offer;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using MusicShop.Infrastructure.MapProfile.SellerReview;
+using MusicShop.Infrastructure.MapProfile.User;
+using MusicShop.Registrator;
+using System.Text;
+
 namespace MusicShop.WebApi
 {
     /// <summary>
@@ -32,11 +35,12 @@ namespace MusicShop.WebApi
                 .GetRequiredService<IDbContextOptionsConfigurator<DbAppContext>>()
                 .Configure((DbContextOptionsBuilder<DbAppContext>)dbContextOptBuilder));
 
-
-            builder.Services
-               .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            builder.Services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
             builder.Services.ConfigureServices();
+            builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>(); //todo
+    
+            builder.Services.AddAuthorization();
 
             builder.Services.AddControllers();
 
@@ -44,7 +48,23 @@ namespace MusicShop.WebApi
 
             builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            builder.Services.AddAuthentication();
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           .AddJwtBearer(options =>
+           {
+               string? signature = builder.Configuration["Jwt:Key"];
+               options.RequireHttpsMetadata = false;
+               options.SaveToken = true;
+               options.TokenValidationParameters = new TokenValidationParameters()
+               {
+                   ValidateIssuer = false,
+                   ValidateAudience = false,
+                   ValidateLifetime = true,
+                   ValidateIssuerSigningKey = true,
+                   //ValidAudience = builder.Configuration["Jwt:Audience"],
+                   //ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signature))
+               };
+           });
 
             builder.Services.AddAuthorization();
 
@@ -59,7 +79,35 @@ namespace MusicShop.WebApi
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, "documentation.xml")));
                 options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory,
                        $"{typeof(CreateUserRequest).Assembly.GetName().Name}.xml")));
-            });
+
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"JWT Authorization header using the Bearer scheme.  
+                        Enter 'Bearer' [space] and then your token in the text input below.
+                        Example: 'Bearer secretKey'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme()
+                        {
+                            Reference = new OpenApiReference()
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth12",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                        }
+                    });
+                });
 
             using WebApplication app = builder.Build();
             app.UseStaticFiles();
@@ -84,8 +132,7 @@ namespace MusicShop.WebApi
             app.UseAuthorization();
 
             app.MapControllers();
-            await app
-                .RunAsync();
+            await app.RunAsync();
         }
         /// <summary>
         /// Элемент поведения статического интерфейса для получения настроек механизма соотношения(маппинга).

@@ -32,22 +32,19 @@
             </summary>
             <param name="instTypeToAdd">Тип инструмента для добавления</param>
             <param name="token">Жетон отмены асинхронной операции</param>
-            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetAllInstrumentTypesAsync(System.Threading.CancellationToken)">
             <summary>
             Получение всех типов инструментов, асинхронно.
             </summary>
             <param name="token">Жетон отмены асинхронной операции</param>
-            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
-        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetInstrumentByIdAsync(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.GetInstrumentTypeByIdAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Получение типа инструмента, чей ID, согласован с <paramref name="instTypeId"/>, асинхронно.
             </summary>
             <param name="instTypeId">Идентификатор типа инструмента</param>
             <param name="token">Жетон отмены асинхронной операции</param>
-            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.DeleteInstrumentTypeAsync(MusicShop.Contracts.InstrumentType.DeleteInstrumentTypeRequest,System.Threading.CancellationToken)">
             <summary>
@@ -55,7 +52,6 @@
             </summary>
             <param name="instTypeToDelete">Тип инструмента для удаления</param>
             <param name="token">Жетон отмены асинхронной операции</param>
-            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.InstrumentType.InstrumentTypeController.UpdateInstrumentTypeAsync(System.Guid,MusicShop.Contracts.InstrumentType.UpdateInstrumentTypeRequest,System.Threading.CancellationToken)">
             <summary>
@@ -64,14 +60,19 @@
             <param name="instTypeId">Идентификатор типа инструмента</param>
             <param name="updateInfo">Тип инструмента для удаления</param>
             <param name="token">Жетон отмены асинхронной операции</param>
-            <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.Offer.OfferController">
             <summary>
             Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - предложение.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:MusicShop.WebApi.Controllers.Offer.OfferController.#ctor(MusicShop.AppData.Contexts.Offer.Services.IOfferService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.Offer.OfferController})" -->
+        <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.#ctor(MusicShop.AppData.Contexts.Offer.Services.IOfferService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.Offer.OfferController})">
+            <summary>
+            Конструктор для экземпляра сущности <see cref="T:MusicShop.WebApi.Controllers.Offer.OfferController"/>
+            </summary>
+            <param name="service">Экземпляр сервиса для модели предложения. Берется из зависимости</param>
+            <param name="logger">Механизм логгирования информации.</param>
+        </member>
         <member name="M:MusicShop.WebApi.Controllers.Offer.OfferController.CreateOfferAsync(MusicShop.Contracts.Offer.CreateOfferRequest,System.Threading.CancellationToken)">
             <summary>
             Создание нового предложения, асинхронно.
@@ -170,9 +171,9 @@
             Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - пользователь.
             </summary>
         </member>
-        <member name="F:MusicShop.WebApi.Controllers.User.UserController._userRepository">
+        <member name="F:MusicShop.WebApi.Controllers.User.UserController._userService">
             <summary>
-            Экземпляр конкретной сущности из зависимости <see cref="T:MusicShop.AppData.Contexts.User.Repository.IUserRepository"/>
+            Экземпляр конкретной сущности из зависимости <see cref="T:MusicShop.AppData.Contexts.User.Services.IUserService"/>
             </summary>
         </member>
         <member name="F:MusicShop.WebApi.Controllers.User.UserController._logger">
@@ -180,12 +181,12 @@
             Экземпляр конкретной сущности из зависимости <see cref="T:Microsoft.Extensions.Logging.ILogger"/>
             </summary>
         </member>
-        <member name="M:MusicShop.WebApi.Controllers.User.UserController.#ctor(Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.User.UserController},MusicShop.AppData.Contexts.User.Repository.IUserRepository)">
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.#ctor(Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.User.UserController},MusicShop.AppData.Contexts.User.Services.IUserService)">
             <summary>
             Конструктор сущности <see cref="T:MusicShop.WebApi.Controllers.User.UserController"/>
             </summary>
             <param name="logger">Взятый из зависимости логгер</param>
-            <param name="userRepository">Репозиторий, нацеленный на работу с сущностью - пользователь</param>
+            <param name="userService">Репозиторий, нацеленный на работу с сущностью - пользователь</param>
         </member>
         <member name="M:MusicShop.WebApi.Controllers.User.UserController.CreateUserAsync(MusicShop.Contracts.User.CreateUserRequest,System.Threading.CancellationToken)">
             <summary>
@@ -226,6 +227,18 @@
             <param name="updateInfo">Информация о пользователе, для обновления того в БД</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.GetCurrentUser(System.Threading.CancellationToken)">
+            <summary>
+            Получение информации о текущем, активном пользователе в сессии клиента.
+            </summary>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.User.UserController.Login(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Аутентификация пользователя.
+            </summary>
+            <param name="token">Жетон для отмены асинхронной задачи</param>
         </member>
         <member name="T:MusicShop.WebApi.Program">
             <summary>

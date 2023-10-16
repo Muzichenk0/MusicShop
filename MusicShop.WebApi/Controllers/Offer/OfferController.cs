@@ -9,12 +9,13 @@ namespace MusicShop.WebApi.Controllers.Offer
     /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - предложение.
     /// </summary>
     [ApiController]
+    [Route("offer")]
     public class OfferController : ControllerBase
     {
         private readonly IOfferService _offerService;
         private readonly ILogger<OfferController> _logger;
         /// <summary>
-        /// Конструктор для экземпляра сущности <see cref="OfferController""/>
+        /// Конструктор для экземпляра сущности <see cref="OfferController"/>
         /// </summary>
         /// <param name="service">Экземпляр сервиса для модели предложения. Берется из зависимости</param>
         /// <param name="logger">Механизм логгирования информации.</param>
@@ -28,20 +29,20 @@ namespace MusicShop.WebApi.Controllers.Offer
         /// </summary>
         /// <param name="offerToAdd">Предложение для создания</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
-        [HttpPost("/creatingOffer")]
+        [HttpPost()]
         [ProducesResponseType(typeof(CreateOfferRequest),(int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateOfferAsync([FromBody]CreateOfferRequest offerToAdd, CancellationToken token = default)
         {
             await _offerService.AddOfferAsync(offerToAdd, token) ;
-            return Created("/creatingOffer",offerToAdd);
+            return Created("/offer",offerToAdd);
         }
         /// <summary>
         /// Получение всех предложений, асинхронно.
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
-        [HttpGet("/offers")]
+        [HttpGet("offers")]
         [ProducesResponseType(typeof(IQueryable<OfferInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllOfferAsync(CancellationToken token = default)
@@ -55,7 +56,7 @@ namespace MusicShop.WebApi.Controllers.Offer
         /// <param name="offerId">Идентификатор предложения</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns></returns>
-        [HttpGet("/offers/{offerId:guid}")]
+        [HttpGet("{offerId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetOfferByIdAsync(Guid offerId, CancellationToken token = default)
@@ -69,7 +70,7 @@ namespace MusicShop.WebApi.Controllers.Offer
         /// <param name="offerToDelete">Существующее предложение для удаления</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns></returns>
-        [HttpDelete("deletingOffer")]
+        [HttpDelete()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> DeleteOfferAsync([FromBody]DeleteOfferRequest offerToDelete, CancellationToken token = default)
@@ -84,7 +85,7 @@ namespace MusicShop.WebApi.Controllers.Offer
         /// <param name="updateInfo">Информация для изменения существующего предложения</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns></returns>
-        [HttpPut("updatingOffer/{offerId:guid}")]
+        [HttpPut("{offerId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> UpdateOfferAsync(Guid offerId, [FromBody] UpdateOfferRequest updateInfo, CancellationToken token = default)

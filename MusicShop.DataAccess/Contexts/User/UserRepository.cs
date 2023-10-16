@@ -14,11 +14,13 @@ namespace MusicShop.DataAccess.Contexts.User
     public class UserRepository : IUserRepository
     {
         private readonly IRepository<Domain.Models.User.User> _repository;
+        private readonly IRepository<Domain.Models.InstrumentType.InstrumentType> _instTypeRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserRepository> _logger;
-        public UserRepository(IRepository<Domain.Models.User.User> repository, IMapper mapper, ILogger<UserRepository> logger)
+        public UserRepository(IRepository<Domain.Models.User.User> repository, IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository, IMapper mapper, ILogger<UserRepository> logger)
         {
             _repository = repository;
+            _instTypeRepository = instTypeRepository;
             _mapper = mapper;
             _logger = logger;
         }
@@ -52,8 +54,14 @@ namespace MusicShop.DataAccess.Contexts.User
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToCreate)} tring to be added into database");
 
+            IQueryable<Domain.Models.InstrumentType.InstrumentType> instTypes = await _instTypeRepository.GetAllFilteredAsync(instType => userToCreate.Qualifications.Contains(instType.Id));
+
             Domain.Models.User.User userToAdd = _mapper.Map<Domain.Models.User.User>(userToCreate);
+
+            userToAdd.Qualifications = instTypes.ToList();
+
             await _repository.AddAsync(userToAdd, cancelToken);
+
             return userToAdd.Id;
         }
         ///<inheritdoc/>

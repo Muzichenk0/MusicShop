@@ -11,7 +11,13 @@ namespace MusicShop.Infrastructure.MapProfile.User
         public UserProfile()
         {
             CreateMap<Domain.Models.User.User, CreateUserRequest>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dest => dest.Qualifications, conf => conf.Ignore());
+
+            //CreateMap<CreateUserRequest, Domain.Models.User.User>()
+            //    .ForMember(destination => destination.Qualifications,
+            //    config => config.MapFrom(src => src.Qualifications.Select(instTypeId => instTypeId).ToList()));
+
             CreateMap<Domain.Models.User.User, DeleteUserRequest>()
                 .ReverseMap();
             CreateMap<Domain.Models.User.User, UpdateUserRequest>()

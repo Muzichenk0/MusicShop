@@ -47,6 +47,6 @@ namespace MusicShop.Contracts.User
         /// Музыкальные квалификации пользователя.
         /// </summary>
         [Required]
-        public ICollection<CreateInstrumentTypeRequest?> Qualifications { get; set; }
+        public ICollection<Guid?> Qualifications { get; set; }
     }
 }
