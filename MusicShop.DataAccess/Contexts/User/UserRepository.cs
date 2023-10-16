@@ -14,26 +14,30 @@ namespace MusicShop.DataAccess.Contexts.User
     public class UserRepository : IUserRepository
     {
         private readonly IRepository<Domain.Models.User.User> _repository;
+        private readonly IRepository<Domain.Models.InstrumentType.InstrumentType> _instTypeRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserRepository> _logger;
-        public UserRepository(IRepository<Domain.Models.User.User> repository, IMapper mapper, ILogger<UserRepository> logger)
-        {       
+        public UserRepository(IRepository<Domain.Models.User.User> repository, IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository, IMapper mapper, ILogger<UserRepository> logger)
+        {
             _repository = repository;
+            _instTypeRepository = instTypeRepository;
             _mapper = mapper;
             _logger = logger;
         }
+        ///<inheritdoc/>
         public async Task<IQueryable<UserInfoResponse>> GetAllAsync(CancellationToken cancelToken = default)
         {
             IQueryable<Domain.Models.User.User> users = await _repository.GetAllAsync(cancelToken);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(users)} trying to be taken from database");
-            
+
             return users
                 .Include(u => u.SendedReviews)
                 .Include(u => u.Qualifications)
                 .Select(u => _mapper.Map<UserInfoResponse>(u))
                 .AsQueryable();
         }
+        ///<inheritdoc/>
         public async Task<UserInfoResponse> GetByIdAsync(Guid userId, CancellationToken cancelToken = default)
         {
             Domain.Models.User.User user = (await _repository.GetAllAsync())
@@ -45,18 +49,29 @@ namespace MusicShop.DataAccess.Contexts.User
 
             return _mapper.Map<UserInfoResponse>(user);
         }
-        public Task AddAsync(CreateUserRequest userToCreate, CancellationToken cancelToken = default)
+        ///<inheritdoc/>
+        public async Task<Guid> AddAsync(CreateUserRequest userToCreate, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToCreate)} tring to be added into database");
 
-            return _repository.AddAsync(_mapper.Map<Domain.Models.User.User>(userToCreate), cancelToken);
+            IQueryable<Domain.Models.InstrumentType.InstrumentType> instTypes = await _instTypeRepository.GetAllFilteredAsync(instType => userToCreate.Qualifications.Contains(instType.Id));
+
+            Domain.Models.User.User userToAdd = _mapper.Map<Domain.Models.User.User>(userToCreate);
+
+            userToAdd.Qualifications = instTypes.ToList();
+
+            await _repository.AddAsync(userToAdd, cancelToken);
+
+            return userToAdd.Id;
         }
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteUserRequest userToDelete, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToDelete)} trying to be deleted into database");
 
             return _repository.DeleteAsync(_mapper.Map<Domain.Models.User.User>(userToDelete), cancelToken);
         }
+        ///<inheritdoc/>
         public async Task UpdateAsync(Guid userId, UpdateUserRequest userToUpdate, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToUpdate)} trying to be updated into database");

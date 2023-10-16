@@ -4,11 +4,30 @@
         <name>MusicShop.Api.Tests</name>
     </assembly>
     <members>
-        <member name="M:MusicShop.Api.Tests.DbAppContextFactory.CreateDbContext">
+        <member name="T:MusicShop.Api.Tests.IntegrationTests.DataSeedHelper">
+            <summary>
+            Источник с данными, использующийся для инициализаций таблиц при инициализации БД.
+            </summary>
+        </member>
+        <member name="M:MusicShop.Api.Tests.IntergrativeTests.DbAppContextFactory.CreateDbContext">
             <summary>
             Создать контекст тестовой БД.
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_Login_Success">
+            <summary>
+            Тестирование идентификации, аутентификации, авторизации текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_Current_Success">
+            <summary>
+            Получение информации о текущем пользователе.
+            </summary>
+        </member>
+        <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_GetById_Success">
+            <summary>
+            Получение записи из таблицы "пользователи" с помощью идентификатора.
+            </summary>
         </member>
     </members>
 </doc>

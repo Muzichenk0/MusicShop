@@ -12,7 +12,7 @@ namespace MusicShop.AppData.Contexts.User.Services
         /// </summary>
         /// <param name="createUserDto">Информация о пользователе для создания</param>
         /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
-        public Task AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default);
+        public Task<Guid> AddUserAsync(CreateUserRequest createUserDto, CancellationToken cancelToken = default);
         /// <summary>
         /// Обновление пользователя, асинхронно.
         /// </summary>
@@ -39,5 +39,18 @@ namespace MusicShop.AppData.Contexts.User.Services
         /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
         /// <returns>Экземпляр <see cref="UserInfoResponse"/>, чье ID, согласованно с <paramref name="userId"/> </returns>
         public Task<UserInfoResponse> GetUserByIdAsync(Guid userId, CancellationToken cancelToken = default);
+        /// <summary>
+        /// Аутентификация текущего пользователя.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
+        /// <returns>Json Web Token с клеймами для текущего пользователя</returns>
+        public Task<string> Login(string email, CancellationToken cancelToken);
+        /// <summary>
+        /// Получение текущего пользователя в сессии в хосте - клиенте.
+        /// </summary>
+        /// <param name="cancelToken">Жетон для отмены асинхронной задачи</param>
+        /// <returns>Текущий пользователь, представляющий экземпляр <see cref="UserInfoResponse"/> </returns>
+        public Task<UserInfoResponse> GetCurrentUser(CancellationToken cancelToken);
     }
 }

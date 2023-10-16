@@ -1,13 +1,12 @@
-﻿using MusicShop.Domain.Models.ModelType;
+﻿using MusicShop.Domain.Models.Base;
 
 namespace MusicShop.Domain.Models.User
 {
     /// <summary>
-    ///  Cущность, определяющая интерфейс пользователя. Реализует <see cref="IIdentificable"/>
+    ///  Cущность, определяющая интерфейс пользователя. Реализует <see cref="BaseEntity"/>
     /// </summary>
-    public class User : IIdentificable
+    public class User : BaseEntity
     {
-        public Guid Id { get; set; }
         /// <summary>
         /// Логин пользователя.
         /// </summary>

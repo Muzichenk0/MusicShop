@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MusicShop.AppData.Contexts.User.Repository;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MusicShop.AppData.Contexts.User.Services;
 using MusicShop.Contracts.User;
 using System.Net;
 using System.Text.Json;
@@ -9,13 +10,14 @@ namespace MusicShop.WebApi.Controllers.User
     /// <summary>
     /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - пользователь.
     /// </summary>
+    [Route("/user")]
     [ApiController()]
-    public class UserController : ControllerBase
+    public sealed class UserController : ControllerBase
     {
         /// <summary>
-        /// Экземпляр конкретной сущности из зависимости <see cref="IUserRepository"/>
+        /// Экземпляр конкретной сущности из зависимости <see cref="IUserService"/>
         /// </summary>
-        private IUserRepository _userRepository;
+        private IUserService _userService;
         /// <summary>
         /// Экземпляр конкретной сущности из зависимости <see cref="ILogger"/>
         /// </summary>
@@ -24,10 +26,10 @@ namespace MusicShop.WebApi.Controllers.User
         /// Конструктор сущности <see cref="UserController"/>
         /// </summary>
         /// <param name="logger">Взятый из зависимости логгер</param>
-        /// <param name="userRepository">Репозиторий, нацеленный на работу с сущностью - пользователь</param>
-        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
+        /// <param name="userService">Репозиторий, нацеленный на работу с сущностью - пользователь</param>
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
             _logger = logger;
         }
         /// <summary>
@@ -36,29 +38,30 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userToAdd">Информация о пользователе для добавления в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpPost("/creatingUser")]
-        [ProducesResponseType(typeof(CreateUserRequest),(int)HttpStatusCode.Created)]
+        [HttpPost()]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest userToAdd, CancellationToken token = default)
-        {
-            await _userRepository.AddAsync(userToAdd,token);
+        { 
+            Guid newUserGuid = await _userService.AddUserAsync(userToAdd,token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToAdd)} was added into database");
             
-            return Created("/creatingUser",userToAdd);
+            return Created("/user", newUserGuid);
         }
         /// <summary>
         /// Получение каждого пользователя, асинхронно.
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/users")]
+        [HttpGet("users")]
+        [Authorize()]
         [ProducesResponseType(typeof(IQueryable<UserInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetUsersAsync(CancellationToken token = default)
         {
-            IQueryable<UserInfoResponse> usersInfo = await _userRepository.GetAllAsync(token);
+            IQueryable<UserInfoResponse> usersInfo = await _userService.GetAllUsersAsync(token);
 
             foreach (UserInfoResponse userInfo in usersInfo)
                 _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userInfo)} was taken from database");
@@ -71,13 +74,13 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/users/{userId:guid}")] 
+        [HttpGet("{userId:guid}")]
         [ProducesResponseType(typeof(UserInfoResponse),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetUserByIdAsync(Guid userId, CancellationToken token = default)
+        public async Task<IActionResult> GetUserByIdAsync([FromRoute] Guid userId, CancellationToken token = default)
         {
-            UserInfoResponse foundUserInfo = await _userRepository.GetByIdAsync(userId, token);
+            UserInfoResponse foundUserInfo = await _userService.GetUserByIdAsync(userId, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(foundUserInfo)} was taken from database");
 
@@ -89,7 +92,8 @@ namespace MusicShop.WebApi.Controllers.User
         /// <param name="userToDelete">Информация о пользователе, для удаления того из БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpDelete("/deletingUser")]
+        [HttpDelete()]
+        [Authorize()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -98,7 +102,7 @@ namespace MusicShop.WebApi.Controllers.User
             if (!ModelState.IsValid)
                 return BadRequest();
             
-            await _userRepository.DeleteAsync(userToDelete, token);
+            await _userService.DeleteUserAsync(userToDelete, token);
 
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToDelete)} was deleted from database");;
 
@@ -108,18 +112,48 @@ namespace MusicShop.WebApi.Controllers.User
         /// Обновление информации о пользователе, асинхронно.
         /// </summary>
         /// <param name="userId">Идентификатор пользователя.</param>
-        /// <param name="userToDelete">Информация о пользователе, для обновления того в БД</param>
+        /// <param name="updateInfo">Информация о пользователе, для обновления того в БД</param>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpPut("/updatingUser/{userId:guid}")]
+        [HttpPut("{userId:guid}")]
+        [Authorize()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody] UpdateUserRequest userToDelete, CancellationToken token = default)
+        public async Task<IActionResult> UpdateUserAsync(Guid userId,[FromBody] UpdateUserRequest updateInfo, CancellationToken token = default)
         {
-            await _userRepository.UpdateAsync(userId,userToDelete,token);
+            await _userService.UpdateUserAsync(userId,updateInfo,token);
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userId)} was updated in database");
             return Ok();
+        }
+        /// <summary>
+        /// Получение информации о текущем, активном пользователе в сессии клиента.
+        /// </summary>
+        /// <param name="token">Жетон для отмены асинхронной задачи</param>
+        [HttpGet("current")]
+        [Authorize()]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GetCurrentUser(CancellationToken token = default)
+        {
+            UserInfoResponse foundUser = await _userService.GetCurrentUser(token);
+            _logger.Log(LogLevel.Information, $" User with ID:{foundUser.Id} and Login: {foundUser.Login} in session.");
+            return Ok(foundUser);
+        }
+
+        /// <summary>
+        /// Аутентификация пользователя.
+        /// </summary>
+        /// <param name="token">Жетон для отмены асинхронной задачи</param>
+        [HttpPost("authorization")]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Login([FromQuery]string email, CancellationToken token = default)
+        {
+            string jwtToken = await _userService.Login(email, token);
+            _logger.Log(LogLevel.Information, $"user with email: {email} was authorized into session");
+            return Created("/authorization", jwtToken);
         }
     }
 }

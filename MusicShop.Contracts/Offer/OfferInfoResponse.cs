@@ -38,7 +38,7 @@ namespace MusicShop.Contracts.Offer
         /// Категория предложения
         /// </summary>
         [Required]
-        public Guid OfferCategoryId { get; set; }
+        public InstrumentTypeInfoResponse OfferCategory{ get; set; }
         /// <summary>
         /// Пользователь, открывший предложение. Продавец
         /// </summary>

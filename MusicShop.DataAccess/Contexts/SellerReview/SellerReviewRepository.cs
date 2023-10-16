@@ -23,20 +23,21 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
             _sReviewRepository = sReviewRepository;
             _mapper = mapper;
         }
+        ///<inheritdoc/>
         public Task AddAsync(CreateSellerReviewRequest sReviewToAdd, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviewToAdd)} trying to be added into database");
 
             return _sReviewRepository.AddAsync(_mapper.Map<Domain.Models.Review.SellerReview>(sReviewToAdd), cancelToken);
         }
-
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteSellerReviewRequest sReviewToDelete, CancellationToken cancelToken = default)
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviewToDelete)} trying to be deleted from database");
 
             return _sReviewRepository.DeleteAsync(_mapper.Map<Domain.Models.Review.SellerReview>(sReviewToDelete), cancelToken);
         }
-
+        ///<inheritdoc/>
         public async Task<IQueryable<SellerReviewInfoResponse>> GetAllAsync(CancellationToken cancelToken = default)
         {
             IQueryable<Domain.Models.Review.SellerReview> sReviews = await _sReviewRepository.GetAllAsync(cancelToken);
@@ -54,13 +55,13 @@ namespace MusicShop.DataAccess.Contexts.SellerReview
         //    .Select(r => _mapper.Map<SellerReviewResponseInfo>(r))
         //    .AsQueryable(); 
         #endregion
-
+        ///<inheritdoc/>
         public async Task<SellerReviewInfoResponse> GetByIdAsync(Guid id, CancellationToken cancelToken = default)
         {
             return _mapper.Map<SellerReviewInfoResponse>(await _sReviewRepository.GetByIdAsync(id, cancelToken));
             //_logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(sReviewToAdd)} trying to be added into database");
         }
-
+        ///<inheritdoc/>
         public async Task UpdateAsync(Guid sReviewId, UpdateSellerReviewRequest sReviewToUpdate, CancellationToken cancelToken = default)
         {
             Domain.Models.Review.SellerReview review = await _sReviewRepository.GetByIdAsync(sReviewId);

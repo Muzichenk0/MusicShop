@@ -13,18 +13,19 @@ namespace MusicShop.AppData.Contexts.Offer.Services
         {
             _offerRepository = offerRepository;
         }
+        ///<inheritdoc/>
         public Task AddOfferAsync(CreateOfferRequest offerToAdd, CancellationToken cancelToken = default)
             => _offerRepository.AddAsync(offerToAdd, cancelToken);
-
+        ///<inheritdoc/>
         public Task DeleteOfferAsync(DeleteOfferRequest offerToDelete, CancellationToken cancelToken = default)
             => _offerRepository.DeleteAsync(offerToDelete, cancelToken);
-
+        ///<inheritdoc/>
         public Task<IQueryable<OfferInfoResponse>> GetAllOffersAsync(CancellationToken cancelToken = default)
             => _offerRepository.GetAllAsync(cancelToken);
-
+        ///<inheritdoc/>
         public Task<OfferInfoResponse> GetOfferByIdAsync(Guid offerId, CancellationToken cancelToken = default)
             => _offerRepository.GetByIdAsync(offerId, cancelToken);
-
+        ///<inheritdoc/>
         public Task UpdateOfferAsync(Guid offerId, UpdateOfferRequest offerToUpdate, CancellationToken cancelToken = default)
             => _offerRepository.UpdateAsync(offerId, offerToUpdate, cancelToken);
     }

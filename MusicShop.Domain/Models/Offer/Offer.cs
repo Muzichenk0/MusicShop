@@ -1,17 +1,13 @@
-﻿using MusicShop.Domain.Models.ModelType;
+﻿using MusicShop.Domain.Models.Base;
 
 namespace MusicShop.Domain.Models.Offer
 {
     /// <summary>
     /// Cущность, описывающая интерфейс модели предложения. 
-    /// Зависима и реализует <see cref="IIdentificable"/>
+    /// Зависима и реализует <see cref="BaseEntity"/>
     /// </summary>
-    public class Offer : IIdentificable
+    public class Offer : BaseEntity
     {
-        /// <summary>
-        /// Уникальный идентификатор предложения.
-        /// </summary>
-        public Guid Id { get; set; }
         /// <summary>
         /// Требуемая цена для принятия предложения.
         /// </summary>

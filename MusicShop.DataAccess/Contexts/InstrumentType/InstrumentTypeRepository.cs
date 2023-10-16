@@ -20,13 +20,15 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
             _mapper = mapper;
             _logger = logger;
         }
+        ///<inheritdoc/>
         public Task AddAsync(CreateInstrumentTypeRequest instTypeToAdd, CancellationToken cancelToken = default)
             => _instTypeRepository.AddAsync(_mapper.Map<Domain.Models.InstrumentType.InstrumentType>(instTypeToAdd),
                 cancelToken);
-
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteInstrumentTypeRequest instTypeToDelete, CancellationToken cancelToken = default)
             => _instTypeRepository.DeleteAsync(_mapper.Map<Domain.Models.InstrumentType.InstrumentType>(instTypeToDelete),
                 cancelToken);
+        ///<inheritdoc/>
         public async Task UpdateAsync(Guid instTypeId, UpdateInstrumentTypeRequest instTypeToUpdate, CancellationToken cancelToken = default)
         {
             var foundInstType = await _instTypeRepository.GetByIdAsync(instTypeId, cancelToken);
@@ -34,6 +36,7 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
              await _instTypeRepository
                 .UpdateAsync(_mapper.Map(instTypeToUpdate, foundInstType));
         }
+        ///<inheritdoc/>
         public async Task<IQueryable<InstrumentTypeInfoResponse>> GetAllAsync(CancellationToken cancelToken = default)
         {
             var instTypes = (await _instTypeRepository.GetAllAsync(cancelToken))
@@ -44,7 +47,7 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
                 .Select(t => _mapper.Map<InstrumentTypeInfoResponse>(t))
                 .AsQueryable();
         }
-      
+        ///<inheritdoc/>
         public async Task<InstrumentTypeInfoResponse> GetByIdAsync(Guid instTypeId, CancellationToken cancelToken = default)
         {
             var foundInstType = (await _instTypeRepository.GetAllAsync())

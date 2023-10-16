@@ -2,15 +2,16 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MusicShop.Api.Tests.IntegrationTests;
 using MusicShop.DataAccess.Db;
 
-namespace MusicShop.Api.Tests
+namespace MusicShop.Api.Tests.IntergrativeTests
 {
     public class DbAppContextFactory : WebApplicationFactory<WebApi.Program>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((IServiceCollection services) =>
+            builder.ConfigureServices((services) =>
             {
                 ServiceDescriptor? descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IDbContextOptionsConfigurator<DbAppContext>));
 
@@ -27,14 +28,13 @@ namespace MusicShop.Api.Tests
                 DbAppContext db = scopedServices.GetRequiredService<DbAppContext>();
 
                 db.Database.EnsureCreated();
+
                 DataSeedHelper.InitializeDbForTests(db);
             });
         }
-
         /// <summary>
         /// Создать контекст тестовой БД.
         /// </summary>
-        /// <returns></returns>
         public DbAppContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<DbAppContext>();

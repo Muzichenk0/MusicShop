@@ -9,6 +9,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
     /// Модель - контроллер, определяющая интерфейс, с поведением из конечных точек, для обработки входящих запросов, нацеленных на сущность - тип инструмента.
     /// </summary>
     [ApiController]
+    [Route("instrumentType")]
     public class InstrumentTypeController : ControllerBase
     {
         /// <summary>
@@ -34,8 +35,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// </summary>
         /// <param name="instTypeToAdd">Тип инструмента для добавления</param>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [HttpPost("/creatingInstrumentType")]
+        [HttpPost()]
         [ProducesResponseType(typeof(CreateInstrumentTypeRequest),(int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
@@ -43,14 +43,13 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         {
             await _instTypeService.AddInstrumentTypeAsync(instTypeToAdd, token);
 
-            return Created("/creatingInstrumentType", instTypeToAdd);
+            return Created("/instrumentType", instTypeToAdd);
         }
         /// <summary>
         /// Получение всех типов инструментов, асинхронно.
         /// </summary>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/instrumentTypes")]
+        [HttpGet("instrumentTypes")]
         [ProducesResponseType(typeof(IQueryable<InstrumentTypeInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllInstrumentTypesAsync(CancellationToken token = default)
@@ -64,12 +63,11 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// </summary>
         /// <param name="instTypeId">Идентификатор типа инструмента</param>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("/instrumentTypes/{instTypeId:guid}")]
+        [HttpGet("{instTypeId:guid}")]
         [ProducesResponseType(typeof(InstrumentTypeInfoResponse),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetInstrumentByIdAsync([FromQuery] Guid instTypeId, CancellationToken token = default)
+        public async Task<IActionResult> GetInstrumentTypeByIdAsync([FromQuery] Guid instTypeId, CancellationToken token = default)
         {
             InstrumentTypeInfoResponse instTypes = await _instTypeService.GetInstrumentTypeByIdAsync(instTypeId, token);
 
@@ -80,8 +78,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// </summary>
         /// <param name="instTypeToDelete">Тип инструмента для удаления</param>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [HttpDelete("/deletingInstrumentType")]
+        [HttpDelete()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -94,17 +91,16 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// Обновление типа инструмента, асинхронно.
         /// </summary>
         /// <param name="instTypeId">Идентификатор типа инструмента</param>
-        /// <param name="instTypeToUpdate">Тип инструмента для удаления</param>
+        /// <param name="updateInfo">Тип инструмента для удаления</param>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [HttpPut("/updatingInstrumentType/{instTypeId:guid}")]
+        [HttpPut("{instTypeId:guid}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> UpdateInstrumentTypeAsync(Guid instTypeId, [FromBody]UpdateInstrumentTypeRequest instTypeToUpdate,
+        public async Task<IActionResult> UpdateInstrumentTypeAsync(Guid instTypeId, [FromBody]UpdateInstrumentTypeRequest updateInfo,
             CancellationToken token = default)
         {
-            await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, instTypeToUpdate, token);
+            await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, updateInfo, token);
             return Ok();
         }
     }

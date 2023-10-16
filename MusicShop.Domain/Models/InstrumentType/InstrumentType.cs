@@ -1,13 +1,12 @@
-﻿using MusicShop.Domain.Models.ModelType;
+﻿using MusicShop.Domain.Models.Base;
 
 namespace MusicShop.Domain.Models.InstrumentType
 {
     /// <summary>
     /// Cущность, предоставляющая константы -  типы музыкальных инструментов.
     /// </summary>
-    public class InstrumentType : IIdentificable
+    public class InstrumentType : BaseEntity
     {
-        public Guid Id { get; set; }
         /// <summary>
         /// Внешний ключ, указывающий на родительскую, базовую категорию типа инструмента.
         /// </summary>

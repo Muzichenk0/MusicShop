@@ -1,5 +1,4 @@
-﻿using MusicShop.Contracts.InstrumentType;
-using MusicShop.Contracts.Offer.Enums;
+﻿using MusicShop.Contracts.Offer.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.Offer

@@ -22,37 +22,40 @@ namespace MusicShop.DataAccess.Contexts.Offer
             _logger = logger;
 
         }
+        ///<inheritdoc/>
         public Task AddAsync(CreateOfferRequest offerToAdd, CancellationToken cancelToken = default)
         {
             return _offerRepository.AddAsync(_mapper.Map<Domain.Models.Offer.Offer>(offerToAdd), cancelToken);
         }
-
+        ///<inheritdoc/>
         public Task DeleteAsync(DeleteOfferRequest offerToDelete, CancellationToken cancelToken = default)
         {
             return _offerRepository.DeleteAsync(_mapper.Map<Domain.Models.Offer.Offer>(offerToDelete), cancelToken);
         }
-
+        ///<inheritdoc/>
         public async Task<IQueryable<OfferInfoResponse>> GetAllAsync(CancellationToken cancelToken = default)
         {
             var offers = (await _offerRepository.GetAllAsync(cancelToken))
                 .Include(o => o.User)
-                .Include(o => o.ClosedUser);
+                .Include(o => o.ClosedUser)
+                .Include(o => o.OfferCategory);
 
             return offers
                 .Select(o => _mapper.Map<OfferInfoResponse>(o))
                 .AsQueryable();
         }
-
+        ///<inheritdoc/>
         public async Task<OfferInfoResponse> GetByIdAsync(Guid id, CancellationToken cancelToken = default)
         {
             var foundOffer = (await _offerRepository.GetAllAsync(cancelToken))
                 .Include(o => o.User)
                 .Include(o => o.ClosedUser)
+                .Include(o => o.OfferCategory)
                 .First(o => o.Id == id);
 
             return _mapper.Map<OfferInfoResponse>(foundOffer);
         }
-
+        ///<inheritdoc/>
         public async Task UpdateAsync(Guid offerId, UpdateOfferRequest offerToUpdate, CancellationToken cancelToken = default)
         {
             var foundOffer = await _offerRepository.GetByIdAsync(offerId, cancelToken);

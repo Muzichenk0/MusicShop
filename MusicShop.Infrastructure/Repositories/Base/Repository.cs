@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MusicShop.Domain.Models.Base;
 
 namespace MusicShop.Infrastructure.Repositories.Base
 {
@@ -6,11 +7,11 @@ namespace MusicShop.Infrastructure.Repositories.Base
     /// Обобщенная сущность, описывающая интерфейс модели репозитория, используемый для выполнения обязанностей сущности.
     /// </summary>
     /// <typeparam name="T">Тип модели, на основе которой была создана таблица в БД. Класс адаптирован для взаимодействия с этим типом.</typeparam>
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         /// <summary>
         /// Контекст, связывающий с таблицами БД.
-        /// </summary>
+        /// </summary>S
         protected DbContext DbContext { get; set; }
         /// <summary>
         /// Текущая таблица из БД, сформированная на основе сущности <see cref="T"/>
@@ -32,7 +33,6 @@ namespace MusicShop.Infrastructure.Repositories.Base
                 T? foundObj = await DbSet.FindAsync(id);
                 if (foundObj is null)
                     throw new ArgumentNullException(nameof(foundObj));
-
                 return foundObj;
             });
      
@@ -40,7 +40,10 @@ namespace MusicShop.Infrastructure.Repositories.Base
             => await Task.Run(async () =>
             {
                 if (objToUpdate is null)
-                throw new ArgumentNullException(nameof(objToUpdate));
+                    throw new ArgumentNullException(nameof(objToUpdate));
+                if (await DbSet.FindAsync(objToUpdate.Id) is null)
+                    throw new ArgumentNullException($"record with id = {objToUpdate.Id} not found");
+
                 DbContext.Update(objToUpdate);
                 await DbContext.SaveChangesAsync();
             });
