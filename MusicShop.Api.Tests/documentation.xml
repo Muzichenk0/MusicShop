@@ -9,9 +9,25 @@
             Источник с данными, использующийся для инициализаций таблиц при инициализации БД.
             </summary>
         </member>
+        <member name="T:MusicShop.Api.Tests.IntergrativeTests.DbAppContextFactory">
+            <summary>
+            Фабрика для производства контекстов базы данных сборки
+            </summary>
+        </member>
+        <member name="M:MusicShop.Api.Tests.IntergrativeTests.DbAppContextFactory.ConfigureWebHost(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Определение базовых настроек сервера
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="M:MusicShop.Api.Tests.IntergrativeTests.DbAppContextFactory.CreateDbContext">
             <summary>
             Создать контекст тестовой БД.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Api.Tests.UserTests.UserTests">
+            <summary>
+            Интеграционные тесты, связанные с моделью предметной области - пользователь.
             </summary>
         </member>
         <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_Login_Success">
@@ -21,7 +37,7 @@
         </member>
         <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_Current_Success">
             <summary>
-            Получение информации о текущем пользователе.
+            Получение информации о текущем, авторизованном пользователе в активной сессии.
             </summary>
         </member>
         <member name="M:MusicShop.Api.Tests.UserTests.UserTests.User_GetById_Success">

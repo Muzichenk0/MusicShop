@@ -34,7 +34,7 @@ namespace MusicShop.DataAccess.Db
             if (string.IsNullOrWhiteSpace(connectionString))
             {
                 throw new InvalidOperationException(
-                    $"Не найдена строка подключения с именем 'Default'");
+                    $"Не обнаружена строка подключения с именем 'Default' из узлов json объекта");
             }
             optBuilder.UseNpgsql(connectionString);
             optBuilder.UseLoggerFactory(_loggerFactory);

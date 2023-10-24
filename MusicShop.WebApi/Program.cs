@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MusicShop.Contracts.User;
 using MusicShop.DataAccess.Db;
+using MusicShop.Infrastructure.MapProfile.File;
 using MusicShop.Infrastructure.MapProfile.InstrumentType;
 using MusicShop.Infrastructure.MapProfile.Offer;
 using MusicShop.Infrastructure.MapProfile.SellerReview;
@@ -43,7 +44,6 @@ namespace MusicShop.WebApi
             builder.Services.AddAuthorization();
 
             builder.Services.AddControllers();
-
             #region Authentication and Authorization
 
             builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -65,7 +65,7 @@ namespace MusicShop.WebApi
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signature))
                };
            });
-
+            
             builder.Services.AddAuthorization();
 
             #endregion
@@ -145,6 +145,7 @@ namespace MusicShop.WebApi
                 cfgExpression.AddProfile<SellerReviewProfile>();
                 cfgExpression.AddProfile<InstrumentTypeProfile>();
                 cfgExpression.AddProfile<OfferProfile>();
+                cfgExpression.AddProfile<SiteFileProfile>();
             });
     }
 }

@@ -4,6 +4,91 @@
         <name>MusicShop.Contracts</name>
     </assembly>
     <members>
+        <member name="T:MusicShop.Contracts.File.CreateSiteFileRequest">
+            <summary>
+            Модель, определяющая интерфейс, доступный запросу на создание файла.
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.CreateSiteFileRequest.Extension">
+            <summary>
+            Расширение файла 
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.CreateSiteFileRequest.Name">
+            <summary>
+            Имя файла
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.CreateSiteFileRequest.Content">
+            <summary>
+            Содержимое, составляющее файла
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.File.DeleteSiteFileRequest">
+            <summary>
+            Модель, определяющая интерфейс, доступный для запроса на удаление существующего файла
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.DeleteSiteFileRequest.Id">
+            <summary>
+            Идентификатор файла сайта.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.File.SiteFileInfoResponse">
+            <summary>
+            Модель, определяющая интерфейс 
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.SiteFileInfoResponse.Id">
+            <summary>
+            Уникальный идентификатор файла сайта
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.SiteFileInfoResponse.Extension">
+            <summary>
+            Расширение файла сайта
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.SiteFileInfoResponse.Name">
+            <summary>
+            Псевдоним файла сайта
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.SiteFileInfoResponse.Content">
+            <summary>
+            Содержмиое, составляющее сайта файла
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.SiteFileInfoResponse.FileOffer">
+            <summary>
+            Предложение, частью которого является текущий файл.
+            </summary>
+        </member>
+        <member name="T:MusicShop.Contracts.File.UpdateSiteFileRequest">
+            <summary>
+            Модель, доступная
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.UpdateSiteFileRequest.Id">
+            <summary>
+            Идентификатор файла сайта
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.UpdateSiteFileRequest.Name">
+            <summary>
+            Имя файла
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.UpdateSiteFileRequest.Extension">
+            <summary>
+            Расширение файла
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.File.UpdateSiteFileRequest.Content">
+            <summary>
+            Содержимое, составляющее файла
+            </summary>
+        </member>
         <member name="T:MusicShop.Contracts.InstrumentType.CreateInstrumentTypeRequest">
             <summary>
             Модель, определяющая интерфейс, доступный запросу на создание нового типа инструмента
@@ -94,6 +179,11 @@
             Идентификатор пользователя, создавшего предложение.
             </summary>
         </member>
+        <member name="P:MusicShop.Contracts.Offer.CreateOfferRequest.OfferFiles">
+            <summary>
+            Коллекция фото, связанных с предложением.
+            </summary>
+        </member>
         <member name="T:MusicShop.Contracts.Offer.DeleteOfferRequest">
             <summary>
             Модель, определяющая интерфейс, доступный запросу на удаление информации, связанной с моделью предложения.
@@ -172,6 +262,11 @@
         <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.ClosedUser">
             <summary>
             Пользователь, закрывший предложение. Покупатель
+            </summary>
+        </member>
+        <member name="P:MusicShop.Contracts.Offer.OfferInfoResponse.OfferFiles">
+            <summary>
+            Коллекция фото-файлов, связанных с текущим предложением.
             </summary>
         </member>
         <member name="T:MusicShop.Contracts.Offer.UpdateOfferRequest">

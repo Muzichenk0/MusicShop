@@ -4,6 +4,7 @@ namespace MusicShop.Domain.Models.Review
 {
     /// <summary>
     /// Отзыв продавца.
+    /// Зависима и реализует <see cref="BaseEntity"/>
     /// </summary>
     public class SellerReview : BaseEntity
     {

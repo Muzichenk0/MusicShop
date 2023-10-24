@@ -3,7 +3,7 @@
 namespace MusicShop.AppData.Contexts.Offer.Services
 {
     /// <summary>
-    /// Абстрактный тип, контракт, описывающий внешний интеофейс для модели - сервис предложения.
+    /// Абстрактный тип, контракт, описывающий внешний интерфейс для модели - сервис предложения.
     /// </summary>
     public interface IOfferService
     {

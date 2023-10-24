@@ -7,8 +7,15 @@ using MusicShop.DataAccess.Db;
 
 namespace MusicShop.Api.Tests.IntergrativeTests
 {
+    /// <summary>
+    /// Фабрика для производства контекстов базы данных сборки
+    /// </summary>
     public class DbAppContextFactory : WebApplicationFactory<WebApi.Program>
     {
+        /// <summary>
+        /// Определение базовых настроек сервера
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices((services) =>

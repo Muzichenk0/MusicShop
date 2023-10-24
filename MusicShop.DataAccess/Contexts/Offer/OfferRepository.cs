@@ -15,7 +15,10 @@ namespace MusicShop.DataAccess.Contexts.Offer
         private readonly IRepository<Domain.Models.Offer.Offer> _offerRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<OfferRepository> _logger;
-        public OfferRepository(IRepository<Domain.Models.Offer.Offer> offerRepository, IMapper mapper, ILogger<OfferRepository> logger)
+        public OfferRepository(
+            IRepository<Domain.Models.Offer.Offer> offerRepository,
+            IMapper mapper,
+            ILogger<OfferRepository> logger)
         {
             _offerRepository = offerRepository;
             _mapper = mapper;
@@ -38,7 +41,8 @@ namespace MusicShop.DataAccess.Contexts.Offer
             var offers = (await _offerRepository.GetAllAsync(cancelToken))
                 .Include(o => o.User)
                 .Include(o => o.ClosedUser)
-                .Include(o => o.OfferCategory);
+                .Include(o => o.OfferCategory)
+                .Include(o => o.OfferFiles);
 
             return offers
                 .Select(o => _mapper.Map<OfferInfoResponse>(o))
@@ -51,6 +55,7 @@ namespace MusicShop.DataAccess.Contexts.Offer
                 .Include(o => o.User)
                 .Include(o => o.ClosedUser)
                 .Include(o => o.OfferCategory)
+                .Include(o => o.OfferFiles)
                 .First(o => o.Id == id);
 
             return _mapper.Map<OfferInfoResponse>(foundOffer);

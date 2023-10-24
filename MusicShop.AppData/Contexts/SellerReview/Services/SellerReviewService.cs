@@ -7,7 +7,7 @@ namespace MusicShop.AppData.Contexts.SellerReview.Services
     /// <summary>
     /// Конкретный ссылочный тип, реализующий интерфейс для сущности - сервис отзыва о продавце.
     /// </summary>
-    public class SellerReviewService : ISellerReviewService
+    public sealed class SellerReviewService : ISellerReviewService
     {
         private readonly ISellerReviewRepository _repository;
         public SellerReviewService(ISellerReviewRepository repository)

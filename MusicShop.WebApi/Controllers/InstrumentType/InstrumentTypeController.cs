@@ -49,7 +49,7 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         /// Получение всех типов инструментов, асинхронно.
         /// </summary>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        [HttpGet("instrumentTypes")]
+        [HttpGet("all")]
         [ProducesResponseType(typeof(IQueryable<InstrumentTypeInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllInstrumentTypesAsync(CancellationToken token = default)

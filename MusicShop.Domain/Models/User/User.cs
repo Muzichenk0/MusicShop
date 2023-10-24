@@ -4,6 +4,7 @@ namespace MusicShop.Domain.Models.User
 {
     /// <summary>
     ///  Cущность, определяющая интерфейс пользователя. Реализует <see cref="BaseEntity"/>
+    /// Зависима и реализует <see cref="BaseEntity"/>
     /// </summary>
     public class User : BaseEntity
     {

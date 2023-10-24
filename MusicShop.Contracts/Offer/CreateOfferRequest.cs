@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MusicShop.Contracts.File;
+using MusicShop.Contracts.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace MusicShop.Contracts.Offer
 {
@@ -32,5 +34,11 @@ namespace MusicShop.Contracts.Offer
         /// </summary>
         [Required]
         public Guid? UserId { get; set; }
+        /// <summary>
+        /// Коллекция фото, связанных с предложением.
+        /// </summary>
+        [Required]
+        [PhotoCollection]
+        public ICollection<SiteFileInfoResponse?> OfferFiles { get; set; }
     }
 }

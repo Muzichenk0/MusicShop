@@ -14,6 +14,5 @@ namespace MusicShop.DataAccess.Db
         /// </summary>
         /// <param name="optBuilder">Строитель настроек контекста БД</param>
         public void Configure(DbContextOptionsBuilder<TContext> optBuilder);
-
     }
 }

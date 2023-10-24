@@ -17,7 +17,11 @@ namespace MusicShop.DataAccess.Contexts.User
         private readonly IRepository<Domain.Models.InstrumentType.InstrumentType> _instTypeRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserRepository> _logger;
-        public UserRepository(IRepository<Domain.Models.User.User> repository, IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository, IMapper mapper, ILogger<UserRepository> logger)
+        public UserRepository(
+            IRepository<Domain.Models.User.User> repository,
+            IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository,
+            IMapper mapper,
+            ILogger<UserRepository> logger)
         {
             _repository = repository;
             _instTypeRepository = instTypeRepository;
@@ -54,7 +58,8 @@ namespace MusicShop.DataAccess.Contexts.User
         {
             _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(userToCreate)} tring to be added into database");
 
-            IQueryable<Domain.Models.InstrumentType.InstrumentType> instTypes = await _instTypeRepository.GetAllFilteredAsync(instType => userToCreate.Qualifications.Contains(instType.Id));
+            IQueryable<Domain.Models.InstrumentType.InstrumentType> instTypes = await _instTypeRepository
+                .GetAllFilteredAsync(instType => userToCreate.Qualifications.Contains(instType.Id));
 
             Domain.Models.User.User userToAdd = _mapper.Map<Domain.Models.User.User>(userToCreate);
 

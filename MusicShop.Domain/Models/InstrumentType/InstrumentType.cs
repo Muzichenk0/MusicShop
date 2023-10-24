@@ -4,6 +4,7 @@ namespace MusicShop.Domain.Models.InstrumentType
 {
     /// <summary>
     /// Cущность, предоставляющая константы -  типы музыкальных инструментов.
+    /// Зависима и реализует <see cref="BaseEntity"/>
     /// </summary>
     public class InstrumentType : BaseEntity
     {

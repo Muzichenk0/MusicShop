@@ -6,7 +6,7 @@ namespace MusicShop.AppData.Contexts.InstrumentType.Services
     /// <summary>
     /// Конкретный ссылочный тип, реализующий интерфейс для сущности - сервис типа инструмента.
     /// </summary>
-    public class InstrumentTypeService : IInstrumentTypeService
+    public sealed class InstrumentTypeService : IInstrumentTypeService
     {
         private readonly IInstrumentTypeRepository _instTypeRepository;
         public InstrumentTypeService(IInstrumentTypeRepository instTypeRepository)

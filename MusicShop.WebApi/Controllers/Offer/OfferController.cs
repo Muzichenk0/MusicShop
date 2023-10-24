@@ -42,7 +42,7 @@ namespace MusicShop.WebApi.Controllers.Offer
         /// Получение всех предложений, асинхронно.
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
-        [HttpGet("offers")]
+        [HttpGet("all")]
         [ProducesResponseType(typeof(IQueryable<OfferInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllOfferAsync(CancellationToken token = default)

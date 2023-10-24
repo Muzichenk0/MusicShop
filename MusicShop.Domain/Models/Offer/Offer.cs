@@ -54,5 +54,10 @@ namespace MusicShop.Domain.Models.Offer
         /// Внешний ключ в отношении один ко многим между глав. сущностью <see cref="InstrumentType.InstrumentType"/> и зависимой <see cref="Offer"/>
         /// </summary>
         public Guid? OfferCategoryId { get; set; }
+        /// <summary>
+        /// Коллекция из файлов сайта, связанных с текущим предложением.
+        /// Навигационное свойство в отношении один ко многим между глав. сущностью <see cref="Offer"/> и зависимой <see cref="File.SiteFile"/>
+        /// </summary>
+        public ICollection<File.SiteFile?> OfferFiles { get; set; }
     }
 }

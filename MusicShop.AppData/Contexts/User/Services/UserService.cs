@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MusicShop.AppData.Contexts.User.Repository;
@@ -88,7 +87,6 @@ namespace MusicShop.AppData.Contexts.User.Services
                 expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: signCredentials
                 );
-               
             
             string result = new JwtSecurityTokenHandler().WriteToken(token);
             return result;

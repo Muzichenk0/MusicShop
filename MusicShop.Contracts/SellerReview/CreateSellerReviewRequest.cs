@@ -17,7 +17,7 @@ namespace MusicShop.Contracts.SellerReview
         /// Оценка услуги из отзыва.
         /// </summary>
         [Required]
-        [Range(0, 5)]
+        [Range(0.00, 5.00)]
         public double Rating { get; set; }
         /// <summary>
         /// Описание отзыва.
