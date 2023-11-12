@@ -144,7 +144,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// Аутентификация пользователя.
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
-        [HttpPost("authorization")]
+        [HttpPost("authentication")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

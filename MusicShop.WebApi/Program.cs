@@ -41,8 +41,6 @@ namespace MusicShop.WebApi
             builder.Services.ConfigureServices();
             builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>(); //todo
     
-            builder.Services.AddAuthorization();
-
             builder.Services.AddControllers();
             #region Authentication and Authorization
 

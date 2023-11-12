@@ -11,6 +11,9 @@ namespace MusicShop.AppData.Contexts.SiteFile.Service
     /// </summary>
     public sealed class SiteFileService : ISiteFileService
     {
+        /// <summary>
+        /// Конкретный репозиторий, связанный с моделью - файл сайта.
+        /// </summary>
         private readonly ISiteFileRepository _siteFileRepository;
         public SiteFileService(ISiteFileRepository siteFileRepository)
         {

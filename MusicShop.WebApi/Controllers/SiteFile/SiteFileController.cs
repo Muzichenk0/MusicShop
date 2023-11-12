@@ -2,6 +2,7 @@
 using MusicShop.AppData.Contexts.SiteFile.Service;
 using MusicShop.Contracts.File;
 using System.Net;
+using System.Text.Json;
 
 namespace MusicShop.WebApi.Controllers.SiteFile
 {
@@ -40,7 +41,10 @@ namespace MusicShop.WebApi.Controllers.SiteFile
                 Extension =  _siteFileService.GetFormFileExtension(file),
                 Name = file.Name
             };
+
             Guid fileId = await _siteFileService.CreateFileAsync(siteFileToAdd, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(siteFileToAdd.Name)} was added into database");
 
             return Results.Created("/file", fileId);
         }
@@ -54,6 +58,10 @@ namespace MusicShop.WebApi.Controllers.SiteFile
         public async Task<IResult> GetAllSiteFilesAsync(CancellationToken token = default)
         {
             IQueryable<SiteFileInfoResponse?> siteFiles = await _siteFileService.GetAllFilesAsync(token);
+
+            foreach (SiteFileInfoResponse file in siteFiles)
+                _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(file)} was taken from database");
+
             return Results.Ok(siteFiles);
         }
         /// <summary>
@@ -67,6 +75,7 @@ namespace MusicShop.WebApi.Controllers.SiteFile
         public async Task<IResult> GetSiteFileById([FromRoute] Guid fileId, CancellationToken token = default)
         {
             SiteFileInfoResponse? siteFile = await _siteFileService.GetFileByIdAsync(fileId, token);
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(siteFile.Name)} was taken from database");
             return Results.Ok(siteFile);
         }
         /// <summary>
@@ -80,6 +89,9 @@ namespace MusicShop.WebApi.Controllers.SiteFile
         public async Task<IResult> DeleteSiteFileAsync([FromQuery] DeleteSiteFileRequest fileToDelete, CancellationToken token = default)
         {
             await _siteFileService.DeleteFileAsync(fileToDelete, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(fileToDelete.Id)} was deleted from database");
+
             return Results.Ok();
         }
         /// <summary>
@@ -101,6 +113,9 @@ namespace MusicShop.WebApi.Controllers.SiteFile
                 Extension = _siteFileService.GetFormFileExtension(newFile)
             };
             await _siteFileService.UpdateFileAsync(fileId, fileToUpdate, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(fileId)} was updated in database");
+
             return Results.Ok();
         }
     }

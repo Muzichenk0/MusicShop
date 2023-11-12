@@ -20,13 +20,13 @@ namespace MusicShop.Infrastructure.Repositories.Base
          
         public Repository(DbContext dbContext)
             => (DbContext, DbSet) = (dbContext, dbContext.Set<T>());
-
+        ///<inheritdoc/>
         public async Task<IQueryable<T>> GetAllAsync(CancellationToken token = default)
             => await Task.Run(() => DbSet.AsQueryable());
-
+        ///<inheritdoc/>
         public async Task<IQueryable<T>> GetAllFilteredAsync(Func<T, bool>predicateFilter, CancellationToken token = default)
             => await Task.Run(() => DbSet.Where(predicateFilter).AsQueryable());
-
+        ///<inheritdoc/>
         public async Task<T> GetByIdAsync(Guid id, CancellationToken token = default)
             => await Task.Run(async () =>
             {
@@ -35,7 +35,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
                     throw new ArgumentNullException(nameof(foundObj));
                 return foundObj;
             });
-     
+        ///<inheritdoc/>
         public async Task UpdateAsync(T objToUpdate, CancellationToken token = default)
             => await Task.Run(async () =>
             {
@@ -47,7 +47,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
                 DbContext.Update(objToUpdate);
                 await DbContext.SaveChangesAsync();
             });
-
+        ///<inheritdoc/>
         public async Task DeleteAsync(T objToDelete, CancellationToken token = default)
             => await Task.Run(async () =>
             {
@@ -57,7 +57,7 @@ namespace MusicShop.Infrastructure.Repositories.Base
                 DbContext.Remove(objToDelete);
                 await DbContext.SaveChangesAsync();
             });
-
+        ///<inheritdoc/>
         public async Task AddAsync(T? objToAdd, CancellationToken token = default)
             => await Task.Run(async () =>
             {

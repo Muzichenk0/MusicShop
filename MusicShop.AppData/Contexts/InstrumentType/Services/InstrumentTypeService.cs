@@ -8,6 +8,9 @@ namespace MusicShop.AppData.Contexts.InstrumentType.Services
     /// </summary>
     public sealed class InstrumentTypeService : IInstrumentTypeService
     {
+        /// <summary>
+        /// Конкретный репозиторий, связанный с моделью - тип инструмента.
+        /// </summary>
         private readonly IInstrumentTypeRepository _instTypeRepository;
         public InstrumentTypeService(IInstrumentTypeRepository instTypeRepository)
             => _instTypeRepository = instTypeRepository;

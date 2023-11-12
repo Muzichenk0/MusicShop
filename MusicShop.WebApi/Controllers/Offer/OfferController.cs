@@ -2,6 +2,7 @@
 using MusicShop.AppData.Contexts.Offer.Services;
 using MusicShop.Contracts.Offer;
 using System.Net;
+using System.Text.Json;
 
 namespace MusicShop.WebApi.Controllers.Offer
 {
@@ -36,6 +37,9 @@ namespace MusicShop.WebApi.Controllers.Offer
         public async Task<IActionResult> CreateOfferAsync([FromBody]CreateOfferRequest offerToAdd, CancellationToken token = default)
         {
             await _offerService.AddOfferAsync(offerToAdd, token) ;
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(offerToAdd)} was added into database");
+
             return Created("/offer",offerToAdd);
         }
         /// <summary>
@@ -48,6 +52,10 @@ namespace MusicShop.WebApi.Controllers.Offer
         public async Task<IActionResult> GetAllOfferAsync(CancellationToken token = default)
         {
             IQueryable<OfferInfoResponse> offers = await _offerService.GetAllOffersAsync(token);
+
+            foreach(OfferInfoResponse offer in offers)
+              _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(offer.Id)} was taken from database");
+
             return Ok(offers);
         }
         /// <summary>
@@ -62,6 +70,9 @@ namespace MusicShop.WebApi.Controllers.Offer
         public async Task<IActionResult> GetOfferByIdAsync(Guid offerId, CancellationToken token = default)
         {
             OfferInfoResponse offer = await _offerService.GetOfferByIdAsync(offerId, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(offer.Id)} was taken from database");
+
             return Ok(offer);
         }
         /// <summary>
@@ -76,6 +87,9 @@ namespace MusicShop.WebApi.Controllers.Offer
         public async Task<IActionResult> DeleteOfferAsync([FromBody]DeleteOfferRequest offerToDelete, CancellationToken token = default)
         {
             await _offerService.DeleteOfferAsync(offerToDelete, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(offerToDelete.Id)} was deleted from database");
+
             return Ok();
         }
         /// <summary>
@@ -91,6 +105,9 @@ namespace MusicShop.WebApi.Controllers.Offer
         public async Task<IActionResult> UpdateOfferAsync(Guid offerId, [FromBody] UpdateOfferRequest updateInfo, CancellationToken token = default)
         {
             await _offerService.UpdateOfferAsync(offerId, updateInfo, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(updateInfo)} was updated in database");
+
             return Ok();
         }
     }

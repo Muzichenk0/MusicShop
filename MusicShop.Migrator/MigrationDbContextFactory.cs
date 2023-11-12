@@ -7,7 +7,7 @@ namespace MusicShop.Migrator
     /// <summary>
     /// Фабрика по производству контекста о базе данных, для миграций.
     /// </summary>
-    public class MigrationDbContextFactory: IDesignTimeDbContextFactory<MigrationDbContext>
+    public class MigrationDbContextFactory : IDesignTimeDbContextFactory<MigrationDbContext>
     {
         public MigrationDbContext CreateDbContext(string[] args)
         {

@@ -9,6 +9,9 @@ namespace MusicShop.AppData.Contexts.SellerReview.Services
     /// </summary>
     public sealed class SellerReviewService : ISellerReviewService
     {
+        /// <summary>
+        /// Конкретный репозиторий, связанный с моделью - отзыв о продавце.
+        /// </summary>
         private readonly ISellerReviewRepository _repository;
         public SellerReviewService(ISellerReviewRepository repository)
             => _repository = repository;
