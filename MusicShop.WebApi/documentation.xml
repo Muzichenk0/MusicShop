@@ -126,6 +126,13 @@
             Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="T:Microsoft.Extensions.Logging.ILogger"></see>
             </summary>
         </member>
+        <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.#ctor(Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.SellerReview.SellerReviewController},MusicShop.AppData.Contexts.SellerReview.Services.ISellerReviewService)">
+            <summary>
+            Конструктор, определяющий логику инициализации
+            </summary>
+            <param name="logger">Логгер с категорией <see cref="T:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController"/></param>
+            <param name="sellerReviewService">Сервис из зависимости с абстрактным типом <see cref="T:MusicShop.AppData.Contexts.SellerReview.Services.ISellerReviewService"/></param>
+        </member>
         <member name="M:MusicShop.WebApi.Controllers.SellerReview.SellerReviewController.CreateSellerReviewAsync(MusicShop.Contracts.SellerReview.CreateSellerReviewRequest,System.Threading.CancellationToken)">
             <summary>
             Добавление нового отзыва о продавце, асинхронно.
@@ -165,6 +172,53 @@
             <param name="updateInfo">Новая информация об отзыве о продавце</param>
             <param name="token">Жетон для отмены асинхронной задачи</param>
             <returns><see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/></returns>
+        </member>
+        <member name="T:MusicShop.WebApi.Controllers.SiteFile.SiteFileController">
+            <summary>
+            Контроллер, хранящий конечные точки для обработки входящих запросов, связанных с доменной моделью - файл сайта/>
+            </summary>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.#ctor(MusicShop.AppData.Contexts.SiteFile.Service.ISiteFileService,Microsoft.Extensions.Logging.ILogger{MusicShop.WebApi.Controllers.SiteFile.SiteFileController})">
+            <summary>
+            Конструктор, определяющий логику инициализации экземпляра <see cref="T:MusicShop.WebApi.Controllers.SiteFile.SiteFileController"/>
+            </summary>
+            <param name="siteFileService">экземпляр сервис файла сайта, извлеченный из зависимости</param>
+            <param name="logger">логгер, экземпляр извлеченный из зависимости</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.CreateSiteFileAsync(Microsoft.AspNetCore.Http.IFormFile,System.Threading.CancellationToken)">
+            <summary>
+            Создание файла сайта, асинхронно
+            </summary>
+            <param name="file">Выбранный файл</param>
+            <param name="token">Жетон отмены асинхронной задачи</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.GetAllSiteFilesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Получение всех файлов, асинхронно
+            </summary>
+            <param name="token">Жетон отмены асинхронной задачи</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.GetSiteFileById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Получение информации о существующем файле, чей ID согласован с <paramref name="fileId"/>, асинхронно
+            </summary>
+            <param name="fileId">Идентификатор необходимого файла</param>
+            <param name="token">Жетон отмены асинхронной задачи</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.DeleteSiteFileAsync(MusicShop.Contracts.File.DeleteSiteFileRequest,System.Threading.CancellationToken)">
+            <summary>
+            Удаление существующего файла сайта, асинхронно
+            </summary>
+            <param name="fileToDelete">Информация о файле для удаления</param>
+            <param name="token">Жетон отмены асинхронной задачи</param>
+        </member>
+        <member name="M:MusicShop.WebApi.Controllers.SiteFile.SiteFileController.UpdateSiteFileAsync(System.Guid,Microsoft.AspNetCore.Http.IFormFile,System.Threading.CancellationToken)">
+            <summary>
+            Обновление существующего файла, новым, асинхронно
+            </summary>
+            <param name="fileId">Идентификатор существующего файла</param>
+            <param name="newFile">Новый файл</param>
+            <param name="token">Жетон отмены асинхронной задачи</param>
         </member>
         <member name="T:MusicShop.WebApi.Controllers.User.UserController">
             <summary>

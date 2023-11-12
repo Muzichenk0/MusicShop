@@ -13,8 +13,10 @@ namespace MusicShop.DataAccess.Contexts.InstrumentType
         private readonly IRepository<Domain.Models.InstrumentType.InstrumentType> _instTypeRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<InstrumentTypeRepository> _logger;
-        public InstrumentTypeRepository(IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository,
-            IMapper mapper, ILogger<InstrumentTypeRepository> logger)
+        public InstrumentTypeRepository(
+            IRepository<Domain.Models.InstrumentType.InstrumentType> instTypeRepository,
+            IMapper mapper,
+            ILogger<InstrumentTypeRepository> logger)
         {
             _instTypeRepository = instTypeRepository;
             _mapper = mapper;

@@ -2,6 +2,7 @@
 using MusicShop.AppData.Contexts.InstrumentType.Services;
 using MusicShop.Contracts.InstrumentType;
 using System.Net;
+using System.Text.Json;
 
 namespace MusicShop.WebApi.Controllers.InstrumentType
 {
@@ -43,18 +44,23 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         {
             await _instTypeService.AddInstrumentTypeAsync(instTypeToAdd, token);
 
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(instTypeToAdd)} was added into database");
+
             return Created("/instrumentType", instTypeToAdd);
         }
         /// <summary>
         /// Получение всех типов инструментов, асинхронно.
         /// </summary>
         /// <param name="token">Жетон отмены асинхронной операции</param>
-        [HttpGet("instrumentTypes")]
+        [HttpGet("all")]
         [ProducesResponseType(typeof(IQueryable<InstrumentTypeInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllInstrumentTypesAsync(CancellationToken token = default)
         {
             IQueryable<InstrumentTypeInfoResponse> instTypes = await _instTypeService.GetAllInstrumentTypesAsync(token);
+
+            foreach(InstrumentTypeInfoResponse instType in instTypes)
+                _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(instType.Id)} was taken from database");
 
             return Ok(instTypes);
         }
@@ -69,9 +75,11 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetInstrumentTypeByIdAsync([FromQuery] Guid instTypeId, CancellationToken token = default)
         {
-            InstrumentTypeInfoResponse instTypes = await _instTypeService.GetInstrumentTypeByIdAsync(instTypeId, token);
+            InstrumentTypeInfoResponse instType = await _instTypeService.GetInstrumentTypeByIdAsync(instTypeId, token);
 
-            return Ok(instTypes);
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(instType.Id)} was taken from database");
+
+            return Ok(instType);
         }
         /// <summary>
         /// Удаление типа инструмента, асинхронно.
@@ -85,6 +93,9 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
         public async Task<IActionResult> DeleteInstrumentTypeAsync([FromQuery] DeleteInstrumentTypeRequest instTypeToDelete, CancellationToken token = default)
         {
             await _instTypeService.DeleteInstrumentTypeAsync(instTypeToDelete, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(instTypeToDelete.Id)} was deleted from database");
+
             return Ok();
         }
         /// <summary>
@@ -101,6 +112,9 @@ namespace MusicShop.WebApi.Controllers.InstrumentType
             CancellationToken token = default)
         {
             await _instTypeService.UpdateInstrumentTypeAsync(instTypeId, updateInfo, token);
+
+            _logger.Log(LogLevel.Information, $"{JsonSerializer.Serialize(instTypeId)} was updated in database");
+
             return Ok();
         }
     }

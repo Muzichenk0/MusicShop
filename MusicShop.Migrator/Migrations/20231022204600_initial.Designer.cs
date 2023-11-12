@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MusicShop.Migrator.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20230905170635_initial")]
+    [Migration("20231022204600_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -24,6 +24,50 @@ namespace MusicShop.Migrator.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("InstrumentTypeUser", b =>
+                {
+                    b.Property<Guid>("QualificationsId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("QualificationsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("InstrumentTypeUser");
+                });
+
+            modelBuilder.Entity("MusicShop.Domain.Models.File.SiteFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("OfferId")
+                        .IsRequired()
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfferId");
+
+                    b.ToTable("SiteFile");
+                });
 
             modelBuilder.Entity("MusicShop.Domain.Models.InstrumentType.InstrumentType", b =>
                 {
@@ -41,14 +85,9 @@ namespace MusicShop.Migrator.Migrations
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ParentId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("InstrumentType");
                 });
@@ -155,7 +194,9 @@ namespace MusicShop.Migrator.Migrations
                         .HasColumnType("text");
 
                     b.Property<double>("Rating")
-                        .HasColumnType("double precision");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("double precision")
+                        .HasDefaultValue(0.0);
 
                     b.Property<DateTime>("RegistratedIn")
                         .HasColumnType("timestamp with time zone");
@@ -168,16 +209,38 @@ namespace MusicShop.Migrator.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("InstrumentTypeUser", b =>
+                {
+                    b.HasOne("MusicShop.Domain.Models.InstrumentType.InstrumentType", null)
+                        .WithMany()
+                        .HasForeignKey("QualificationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.Domain.Models.User.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MusicShop.Domain.Models.File.SiteFile", b =>
+                {
+                    b.HasOne("MusicShop.Domain.Models.Offer.Offer", "FileOffer")
+                        .WithMany("OfferFiles")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FileOffer");
+                });
+
             modelBuilder.Entity("MusicShop.Domain.Models.InstrumentType.InstrumentType", b =>
                 {
                     b.HasOne("MusicShop.Domain.Models.InstrumentType.InstrumentType", "Parent")
                         .WithMany("SubTypes")
                         .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MusicShop.Domain.Models.User.User", null)
-                        .WithMany("MusicalSpecialization")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Parent");
                 });
@@ -233,13 +296,16 @@ namespace MusicShop.Migrator.Migrations
                     b.Navigation("SubTypes");
                 });
 
+            modelBuilder.Entity("MusicShop.Domain.Models.Offer.Offer", b =>
+                {
+                    b.Navigation("OfferFiles");
+                });
+
             modelBuilder.Entity("MusicShop.Domain.Models.User.User", b =>
                 {
                     b.Navigation("ClosedOffers");
 
                     b.Navigation("GainedReviews");
-
-                    b.Navigation("MusicalSpecialization");
 
                     b.Navigation("Offers");
 

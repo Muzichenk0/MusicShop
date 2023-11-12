@@ -3,6 +3,9 @@ using MusicShop.Contracts.Offer;
 
 namespace MusicShop.Infrastructure.MapProfile.Offer
 {
+    /// <summary>
+    /// Ссылочный, конкретный тип, используемый для соотношения типа <see cref="Domain.Models.Offer.Offer"/> с иными и наоборот.
+    /// </summary>
     public sealed class OfferProfile : Profile
     {
         public OfferProfile()

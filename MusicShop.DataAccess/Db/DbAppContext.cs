@@ -8,8 +8,7 @@ namespace MusicShop.DataAccess.Db
     /// </summary>
     public class DbAppContext : DbContext
     {
-        public DbAppContext(DbContextOptions options) : base(options)
-        {}
+        public DbAppContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder
             .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly(),

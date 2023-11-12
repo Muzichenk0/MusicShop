@@ -22,6 +22,11 @@ namespace MusicShop.DataAccess.Contexts.Offer
                 .WithMany(o => o.Offers)
                 .HasForeignKey(o => o.OfferCategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasMany(o => o.OfferFiles)
+                .WithOne(f => f.FileOffer)
+                .HasForeignKey(f => f.OfferId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

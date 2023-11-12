@@ -10,7 +10,7 @@ namespace MusicShop.Migrator
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Добавление сервисов.
+        /// Добавление зависимостей в IOC контейнер.
         /// </summary>
         /// <param name="services">Сервисы.</param>
         /// <param name="configuration">Конфигурация.</param>
@@ -21,7 +21,7 @@ namespace MusicShop.Migrator
         }
 
         /// <summary>
-        /// Конфигурация подключения к БД.
+        /// Конфигурация процесса подключений к БД.
         /// </summary>
         private static IServiceCollection ConfigureDbConnections(this IServiceCollection services, IConfiguration configuration)
         {

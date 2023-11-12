@@ -21,7 +21,8 @@ namespace MusicShop.DataAccess.Contexts.User
                 .Property(u => u.RegistratedIn)
                 .HasConversion(d => d, d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
             builder
-                .Property(u => u.Rating);
+                .Property(u => u.Rating)
+                .HasDefaultValue(0.00);
             builder
                 .HasMany(u => u.Offers)
                 .WithOne(o => o.User)

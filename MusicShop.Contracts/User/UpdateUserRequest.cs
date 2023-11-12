@@ -29,7 +29,7 @@ namespace MusicShop.Contracts.User
         /// Рейтинг пользователя.
         /// </summary>
         [Required]
-        [Range(0,5)]
+        [Range(0.00,5.00)]
         public double Rating { get; set; }
         /// <summary>
         /// Статус учетной записи пользователя
@@ -42,15 +42,5 @@ namespace MusicShop.Contracts.User
         [Required]
         [PhoneNumber]
         public string PhoneNumber { get; set; }
-        //[Required]
-        //public IReadOnlyCollection<InstrumentTypeResponseInfo> MusicalSpecialization { get; set; }
-        //[Required]
-        //public ICollection<SellerReviewResponseInfo> GainedReviews { get; set; }
-        ///// <summary>
-        ///// Отправленные оценки пользователя, как покупателя.
-        ///// </summary>
-        //[Required]
-        //public ICollection<SellerReviewResponseInfo> SendedReviews { get; set; }
-
     }
 }

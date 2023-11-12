@@ -8,6 +8,9 @@ using Xunit;
 
 namespace MusicShop.Api.Tests.UserTests
 {
+    /// <summary>
+    /// Интеграционные тесты, связанные с моделью предметной области - пользователь.
+    /// </summary>
     public class UserTests : IClassFixture<DbAppContextFactory>
     {
         private readonly DbAppContextFactory _dbContextFactory;
@@ -31,7 +34,7 @@ namespace MusicShop.Api.Tests.UserTests
             Assert.NotNull(jwToken);
         }
         /// <summary>
-        /// Получение информации о текущем пользователе.
+        /// Получение информации о текущем, авторизованном пользователе в активной сессии.
         /// </summary>
         [Fact()]
         public async Task User_Current_Success()

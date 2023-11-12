@@ -21,6 +21,11 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// Экземпляр для конкретной сущности из зависимости с абстрактным типом <see cref="ILogger"></see>
         /// </summary>
         private readonly ILogger<SellerReviewController> _logger;
+        /// <summary>
+        /// Конструктор, определяющий логику инициализации
+        /// </summary>
+        /// <param name="logger">Логгер с категорией <see cref="SellerReviewController"/></param>
+        /// <param name="sellerReviewService">Сервис из зависимости с абстрактным типом <see cref="ISellerReviewService"/></param>
         public SellerReviewController(ILogger<SellerReviewController> logger, ISellerReviewService sellerReviewService)
         {
             _logger = logger;
@@ -49,7 +54,7 @@ namespace MusicShop.WebApi.Controllers.SellerReview
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("sellerReviews")]
+        [HttpGet("all")]
         [ProducesResponseType(typeof(IQueryable<SellerReviewInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAllSellerReviewsAsync(CancellationToken token = default)

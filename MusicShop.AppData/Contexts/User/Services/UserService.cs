@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MusicShop.AppData.Contexts.User.Repository;
@@ -15,8 +14,17 @@ namespace MusicShop.AppData.Contexts.User.Services
     /// </summary>
     public sealed class UserService : IUserService
     {
+        /// <summary>
+        /// Конкретный репозиторий, связанный с моделью - пользователь.
+        /// </summary>
         private readonly IUserRepository _repository;
+        /// <summary>
+        /// Доступ к основной информации о входящем запросе, для обработки.
+        /// </summary>
         private readonly IHttpContextAccessor _accessor;
+        /// <summary>
+        /// Конфигурация сборки, проекта.
+        /// </summary>
         private readonly IConfiguration _configuration;
         public UserService(IUserRepository repository, IHttpContextAccessor accessor, IConfiguration configuration)
         {
@@ -56,8 +64,8 @@ namespace MusicShop.AppData.Contexts.User.Services
 
             if (user == null)
                 throw new InvalidOperationException($"Не найден пользователь с идентификатором '{id}'.");
-            
-            return new UserInfoResponse() {Id = id, Login = user.Login };
+
+            return user;
         }
         ///<inheritdoc/>
         public async Task<string> Login(string email, CancellationToken cancellationToken)
@@ -88,7 +96,6 @@ namespace MusicShop.AppData.Contexts.User.Services
                 expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: signCredentials
                 );
-               
             
             string result = new JwtSecurityTokenHandler().WriteToken(token);
             return result;

@@ -14,6 +14,5 @@ namespace MusicShop.Contracts.InstrumentType
         /// </summary>
         [Required]
         public string CategoryName { get; set; }
-        //public ICollection<InstrumentTypeResponseInfo?> SubTypes { get; set; }
     }
 }

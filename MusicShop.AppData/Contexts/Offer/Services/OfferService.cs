@@ -6,8 +6,11 @@ namespace MusicShop.AppData.Contexts.Offer.Services
     /// <summary>
     /// Конкретный тип, реализующий интерфейс для модели - сервис предложения.
     /// </summary>
-    public class OfferService : IOfferService
+    public sealed class OfferService : IOfferService
     {
+        /// <summary>
+        /// Конкретный репозиторий, связанный с моделью - предложение.
+        /// </summary>
         private readonly IOfferRepository _offerRepository;
         public OfferService(IOfferRepository offerRepository)
         {

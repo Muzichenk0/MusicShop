@@ -55,8 +55,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
         /// <returns><see cref="IActionResult"/></returns>
-        [HttpGet("users")]
-        [Authorize()]
+        [HttpGet("all")]
         [ProducesResponseType(typeof(IQueryable<UserInfoResponse>),(int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetUsersAsync(CancellationToken token = default)
@@ -145,7 +144,7 @@ namespace MusicShop.WebApi.Controllers.User
         /// Аутентификация пользователя.
         /// </summary>
         /// <param name="token">Жетон для отмены асинхронной задачи</param>
-        [HttpPost("authorization")]
+        [HttpPost("authentication")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

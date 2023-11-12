@@ -42,7 +42,7 @@ namespace MusicShop.Contracts.User
         /// Рейтинг пользователя, как продавца.
         /// </summary>
         [Required]
-        [Range(0, 5)]
+        [Range(0.00, 5.00)]
         public double Rating { get; set; }
         /// <summary>
         /// Статус учетной записи пользователя

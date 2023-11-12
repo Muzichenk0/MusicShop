@@ -2,7 +2,8 @@
 using MusicShop.Contracts.InstrumentType;
 using MusicShop.Contracts.User;
 using System.ComponentModel.DataAnnotations;
-
+using MusicShop.Contracts.File;
+using MusicShop.Contracts.ValidationAttributes;
 namespace MusicShop.Contracts.Offer
 {
     /// <summary>
@@ -48,5 +49,11 @@ namespace MusicShop.Contracts.Offer
         /// Пользователь, закрывший предложение. Покупатель
         /// </summary>
         public UserInfoResponse? ClosedUser { get; set; }
+        /// <summary>
+        /// Коллекция фото-файлов, связанных с текущим предложением.
+        /// </summary>
+        [Required]
+        [PhotoCollection()]
+        public ICollection<SiteFileInfoResponse?> OfferFiles { get; set; }
     }
 }
